@@ -1,43 +1,44 @@
-# Astro Starter Kit: Minimal
+# VIIO Astro Theme
 
-```sh
-pnpm create astro@latest -- --template minimal
+VIIO is an experimental Astro landing page theme featuring interactive Three.js elements.
+
+## Getting Started
+
+Edit the following files to customize links, content, and layout details:
+
+- `src/pages/index.astro`
+- `src/layouts/Layout.astro`
+
+## Preview
+
+Live preview:  
+https://viio.pages.dev/
+
+## Installation
+
+Install dependencies:
+
+```bash
+npm install
+````
+
+Run the development server:
+
+```bash
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Build the production site (output to `./dist/`):
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Customization
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+For customizations, additional pages, or support, contact:
+hi[at]hashemian.me
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This theme and all included components may be used **for non-commercial purposes only**.
