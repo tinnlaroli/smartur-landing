@@ -1,13 +1,16 @@
 // @ts-check
-import {
-  defineConfig,
-  fontProviders,
-} from "astro/config";
-
+import { defineConfig, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  scopedStyleStrategy: 'where',
+  scopedStyleStrategy: "where",
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en", "fr"],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   experimental: {
     fonts: [
       {

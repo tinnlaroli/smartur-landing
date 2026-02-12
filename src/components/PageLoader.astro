@@ -1,0 +1,553 @@
+---
+import circuitIcon from "../assets/imgs/circuit.png";
+import leafIcon from "../assets/imgs/leaf.png";
+import mountainIcon from "../assets/imgs/mountain.png";
+import personIcon from "../assets/imgs/person.png";
+---
+
+<div id="page-loader" class="page-loader" aria-hidden="true">
+  <!-- Vortex container (esto es lo que "explota") -->
+  <div class="vortex-container">
+    <!-- Logo central (pequeño al inicio) -->
+
+
+    <!-- Orbital rings (los iconos que se convierten en anillos borrosos) -->
+    <div class="orbital-ring ring-circuit">
+      <div class="ring-icon">
+        <img src={circuitIcon.src} alt="" />
+      </div>
+    </div>
+
+    <div class="orbital-ring ring-leaf">
+      <div class="ring-icon">
+        <img src={leafIcon.src} alt="" />
+      </div>
+    </div>
+
+    <div class="orbital-ring ring-mountain">
+      <div class="ring-icon">
+        <img src={mountainIcon.src} alt="" />
+      </div>
+    </div>
+
+    <div class="orbital-ring ring-person">
+      <div class="ring-icon">
+        <img src={personIcon.src} alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Explosion overlay (para el efecto de expansión de color) -->
+  <div class="explosion-overlay"></div>
+
+  <!-- Counter (minimalista) -->
+  <div class="loader-counter">
+    <span class="counter-text">0</span><span class="counter-percent">%</span>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="loader-progress">
+    <div class="loader-progress-bar"></div>
+  </div>
+</div>
+
+<style>
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: all;
+    background: var(--color-bg);
+  }
+
+  /* Vortex container */
+  .vortex-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Central logo */
+  .central-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+  }
+
+  .central-logo img {
+    width: 140px;
+    height: auto;
+    display: block;
+  }
+
+  .logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--rgb-purple-accent), 0.6),
+      rgba(var(--rgb-pink-primary), 0.4),
+      transparent
+    );
+    filter: blur(30px);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  /* Orbital rings */
+  .orbital-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    opacity: 0;
+  }
+
+  .ring-icon {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: center calc(70px); /* Radio de órbita */
+  }
+
+  .ring-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  /* Colores específicos para cada anillo */
+  .ring-circuit {
+    color: rgb(var(--rgb-purple-accent));
+  }
+
+  .ring-leaf {
+    color: rgb(var(--rgb-green-accent));
+  }
+
+  .ring-mountain {
+    color: rgb(var(--rgb-orange-cta));
+  }
+
+  .ring-person {
+    color: rgb(var(--rgb-pink-primary));
+  }
+
+  /* Explosion overlay */
+  .explosion-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: radial-gradient(
+      circle at center,
+      rgb(var(--rgb-purple-accent)),
+      rgb(var(--rgb-pink-primary)),
+      rgb(var(--rgb-cyan-accent))
+    );
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+
+  /* Counter */
+  .loader-counter {
+    position: fixed;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text-alt);
+    opacity: 0;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .counter-text {
+    font-variant-numeric: tabular-nums;
+    min-width: 2.5ch;
+    text-align: right;
+  }
+
+  .counter-percent {
+    font-size: 0.8em;
+    opacity: 0.6;
+    margin-left: 2px;
+  }
+
+  /* Progress bar */
+  .loader-progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(var(--rgb-text), 0.05);
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .loader-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--rgb-purple-accent)),
+      rgb(var(--rgb-pink-primary)),
+      rgb(var(--rgb-cyan-accent))
+    );
+    background-size: 200% 100%;
+    animation: progressShimmer 1.5s linear infinite;
+  }
+
+  @keyframes progressShimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Responsive */
+  @media (--mq-phone) {
+    .vortex-container {
+      width: 300px;
+      height: 300px;
+    }
+
+    .central-logo img {
+      width: 50px;
+    }
+
+    .orbital-ring {
+      width: 110px;
+      height: 110px;
+    }
+
+    .ring-icon {
+      width: 35px;
+      height: 35px;
+      transform-origin: center calc(55px);
+    }
+
+    .loader-counter {
+      font-size: 1rem;
+      bottom: 3rem;
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  const loader = document.getElementById("page-loader");
+  if (loader) {
+    const tl = gsap.timeline();
+    const counterEl = loader.querySelector(".counter-text") as HTMLElement;
+    const progressBar = loader.querySelector(
+      ".loader-progress-bar",
+    ) as HTMLElement;
+    const vortexContainer = loader.querySelector(".vortex-container") as HTMLElement;
+    const centralLogo = loader.querySelector(".central-logo") as HTMLElement;
+    const logoGlow = loader.querySelector(".logo-glow") as HTMLElement;
+    const orbitalRings = loader.querySelectorAll(".orbital-ring");
+    const ringIcons = loader.querySelectorAll(".ring-icon");
+    const explosionOverlay = loader.querySelector(".explosion-overlay") as HTMLElement;
+    const counterWrap = loader.querySelector(".loader-counter") as HTMLElement;
+
+    const counter = { val: 0 };
+
+    // ——— Phase 1: Aparición minimalista ———
+    
+    // Logo central aparece pequeño
+    tl.to(
+      centralLogo,
+      {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+      0.3,
+    );
+
+    tl.to(
+      logoGlow,
+      {
+        opacity: 0.6,
+        duration: 0.8,
+        ease: "power2.out",
+      },
+      0.4,
+    );
+
+    // Counter aparece
+    tl.to(
+      counterWrap,
+      {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.5,
+    );
+
+    // Anillos orbitales aparecen
+    tl.to(
+      orbitalRings,
+      {
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+      },
+      0.7,
+    );
+
+    // ——— Phase 2: Rotación inicial (lenta) ———
+    
+    // Cada icono empieza a rotar alrededor del logo
+    // Cada uno en un ángulo inicial diferente
+    tl.set(".ring-circuit .ring-icon", { rotation: 0 }, 0);
+    tl.set(".ring-leaf .ring-icon", { rotation: 90 }, 0);
+    tl.set(".ring-mountain .ring-icon", { rotation: 180 }, 0);
+    tl.set(".ring-person .ring-icon", { rotation: 270 }, 0);
+
+    // Rotación suave inicial (2 segundos por vuelta)
+    const slowRotation = gsap.to(ringIcons, {
+      rotation: "+=360",
+      duration: 2,
+      repeat: 1,
+      ease: "none",
+      stagger: {
+        each: 0,
+        from: "start",
+      },
+    });
+
+    tl.add(slowRotation, 1.2);
+
+    // Counter y progress suben gradualmente
+    tl.to(
+      counter,
+      {
+        val: 60,
+        duration: 3,
+        ease: "power1.inOut",
+        onUpdate() {
+          const v = Math.round(counter.val);
+          counterEl.textContent = String(v);
+          progressBar.style.width = v + "%";
+        },
+      },
+      1.2,
+    );
+
+    // ——— Phase 3: ACELERACIÓN EXPONENCIAL ———
+    
+    // La rotación se acelera dramáticamente
+    const fastRotation = gsap.to(ringIcons, {
+      rotation: "+=1440", // 4 vueltas completas
+      duration: 2,
+      ease: "power4.in", // Aceleración exponencial
+    });
+
+    tl.add(fastRotation, 4.2);
+
+    // Los iconos empiezan a difuminarse (blur aumenta)
+    tl.to(
+      ringIcons,
+      {
+        filter: "blur(8px) drop-shadow(0 0 20px currentColor)",
+        duration: 1.5,
+        ease: "power2.in",
+      },
+      4.2,
+    );
+
+    // El blur aumenta aún más, creando anillos de color
+    tl.to(
+      ringIcons,
+      {
+        filter: "blur(25px) drop-shadow(0 0 40px currentColor)",
+        duration: 0.8,
+        ease: "power3.in",
+      },
+      5.2,
+    );
+
+    // Los anillos se expanden ligeramente
+    tl.to(
+      ".ring-icon",
+      {
+        scale: 1.5,
+        duration: 1,
+        ease: "power2.in",
+      },
+      5,
+    );
+
+    // Counter final
+    tl.to(
+      counter,
+      {
+        val: 100,
+        duration: 2,
+        ease: "power2.in",
+        onUpdate() {
+          const v = Math.round(counter.val);
+          counterEl.textContent = String(v);
+          progressBar.style.width = v + "%";
+        },
+      },
+      4.2,
+    );
+
+    // Logo glow pulsa intensamente
+    tl.to(
+      logoGlow,
+      {
+        opacity: 1,
+        scale: 1.5,
+        duration: 0.8,
+        ease: "power2.in",
+      },
+      5.5,
+    );
+
+    // ——— Phase 4: ROTACIÓN ULTRA-RÁPIDA (Vórtice máximo) ———
+    
+    const ultraRotation = gsap.to(ringIcons, {
+      rotation: "+=2880", // 8 vueltas más a velocidad extrema
+      duration: 1,
+      ease: "none",
+    });
+
+    tl.add(ultraRotation, 6.2);
+
+    // Blur extremo - los iconos son completamente irreconocibles
+    tl.to(
+      ringIcons,
+      {
+        filter: "blur(50px) drop-shadow(0 0 60px currentColor)",
+        duration: 0.8,
+        ease: "power2.in",
+      },
+      6.2,
+    );
+
+    // ——— Phase 5: EXPLOSIÓN / PORTAL ———
+    
+    // El vórtice entero escala masivamente hacia la cámara
+    tl.to(
+      vortexContainer,
+      {
+        scale: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.in",
+      },
+      7,
+    );
+
+    // La explosión de color llena la pantalla
+    tl.to(
+      explosionOverlay,
+      {
+        opacity: 1,
+        scale: 3,
+        filter: "blur(100px)",
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      7,
+    );
+
+    // Counter desaparece
+    tl.to(
+      counterWrap,
+      {
+        opacity: 0,
+        y: -30,
+        duration: 0.6,
+        ease: "power2.in",
+      },
+      7,
+    );
+
+    // Progress bar desaparece
+    tl.to(
+      ".loader-progress",
+      {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.in",
+      },
+      7.1,
+    );
+
+    // ——— Phase 6: FADE OUT / BARRIDO ———
+    
+    // La explosión de color se desvanece revelando el contenido
+    tl.to(
+      explosionOverlay,
+      {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+      },
+      8,
+    );
+
+    // También puedes hacer un barrido hacia arriba en lugar de fade
+    // Descomenta esto si prefieres barrido:
+    /*
+    tl.to(
+      explosionOverlay,
+      {
+        y: "-100%",
+        duration: 1,
+        ease: "power3.inOut",
+      },
+      8,
+    );
+    */
+
+    // Remover el loader del DOM
+    tl.call(
+      () => {
+        document.body.classList.remove("is-loading");
+        loader.style.display = "none";
+
+        // Dispatch evento para el hero
+        window.dispatchEvent(new CustomEvent("smartur:loaded"));
+      },
+      [],
+      8.8,
+    );
+  }
+</script>

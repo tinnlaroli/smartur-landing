@@ -1,0 +1,114 @@
+---
+import mountainImg from "../assets/imgs/mountain.png";
+
+interface Props {
+  id?: string;
+  title: string;
+  text: string;
+}
+
+const { id, title, text } = Astro.props;
+---
+
+<div class="sy-region-section" id={id || "region"}>
+  <div class="u-container container">
+    <div class="inner">
+      <div class="content">
+        <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+        <p class="u-text description" data-sy-reveal="lines">
+          {text}
+        </p>
+      </div>
+      <div class="visual">
+        <img
+          src={mountainImg.src}
+          alt="Las Altas Montañas de Veracruz"
+          class="mountain-icon"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sy-region-section {
+    position: relative;
+    padding: 10rem 0;
+    background: rgba(var(--rgb-cyan-accent), 0.08); /* Solid cyan background */
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+
+    @media (--mq-tablet) {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  .content {
+    flex: 1;
+    max-width: 40rem;
+  }
+
+  .title {
+    --fs: 3rem;
+    --lh: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--color-purple);
+
+    @media (--mq-phone) {
+      --fs: 2.5rem;
+    }
+  }
+
+  .description {
+    --fs: var(--font-size-lg);
+    color: var(--color-text-alt);
+    line-height: 1.6;
+  }
+
+  .visual {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .mountain-icon {
+    width: 20rem;
+    height: auto;
+    opacity: 0.8;
+    filter: drop-shadow(0 10px 30px rgba(var(--rgb-cyan-accent), 0.3));
+    animation: float 6s ease-in-out infinite;
+
+    @media (--mq-tablet) {
+      width: 15rem;
+    }
+
+    @media (--mq-phone) {
+      width: 12rem;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+</style>

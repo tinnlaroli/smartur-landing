@@ -158,9 +158,9 @@ const { title, items } = Astro.props;
       content: "";
       display: block;
       min-height: 100%;
-      min-width: 2px;
+      min-width: 3px;
       margin-right: 3rem;
-      background: var(--color-brand-3);
+      background: var(--color-purple); /* Solid purple instead of gradient */
 
       @media (--mq-tablet-sm) {
         margin-right: 1.5rem;
@@ -210,12 +210,12 @@ const { title, items } = Astro.props;
       }
     }
 
-    :global(.item.is-active &) {
-      &::before {
-        opacity: 1;
-        border-right-color: var(--color-brand-1);
+      :global(.item.is-active &) {
+        &::before {
+          opacity: 1;
+          border-right-color: var(--color-orange);
+        }
       }
-    }
   }
 
   .item-title {

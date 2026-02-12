@@ -1,0 +1,268 @@
+---
+import circuitImg from "../assets/imgs/circuit.png";
+
+interface Benefit {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  id?: string;
+  title: string;
+  subtitle: string;
+  benefits: Benefit[];
+  improvements: {
+    title: string;
+    items: string[];
+  };
+}
+
+const { id, title, subtitle, benefits, improvements } = Astro.props;
+---
+
+<section class="benefits-section" id={id}>
+  <div class="circuit-bg"></div>
+  <div class="u-container container">
+    <div class="header">
+      <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+      <p class="u-text subtitle" data-sy-reveal="lines">{subtitle}</p>
+    </div>
+
+    <div class="benefits-grid">
+      {benefits.map((benefit, index) => (
+        <div class="benefit-card" data-sy-reveal="fade" style={`transition-delay: ${index * 0.1}s`}>
+          <div class="benefit-icon">
+            <Fragment set:html={benefit.icon} />
+          </div>
+          <h3 class="u-text benefit-title">{benefit.title}</h3>
+          <p class="u-text benefit-description">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="improvements-section" data-sy-reveal="fade">
+      <h3 class="u-heading improvements-title">{improvements.title}</h3>
+      <ul class="improvements-list">
+        {improvements.items.map((item) => (
+          <li class="u-text improvement-item">
+            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ circuitBgUrl: `url(${circuitImg.src})` }}>
+  .benefits-section {
+    position: relative;
+    padding: 10rem 0;
+    background: rgba(var(--rgb-purple-accent), 0.05); /* Solid subtle purple background */
+    overflow: hidden;
+  }
+
+  .circuit-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--circuitBgUrl);
+    background-repeat: repeat;
+    background-size: 100px;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    @media (--mq-tablet) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .title {
+    --fs: 3.5rem;
+    --lh: 1.2;
+    --fw: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+
+    @media (--mq-tablet) {
+      --fs: 3rem;
+    }
+
+    @media (--mq-phone) {
+      --fs: 2.5rem;
+    }
+  }
+
+  .subtitle {
+    --fs: var(--font-size-lg);
+    color: var(--color-text-alt);
+    max-width: 40em;
+    margin: 0 auto;
+
+    @media (--mq-phone) {
+      --fs: var(--font-size-md);
+    }
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+
+    @media (--mq-desktop-lg) {
+      gap: 2rem;
+    }
+
+    @media (--mq-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      margin-bottom: 4rem;
+    }
+
+    @media (--mq-phone) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .benefit-card {
+    background: var(--color-bg);
+    border: 2px solid rgba(var(--rgb-text), 0.08);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    transition: all 0.3s var(--ease-out-cubic);
+    opacity: 0;
+    transform: translateY(30px);
+
+    &[data-sy-reveal="fade"].is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &:hover {
+      border-color: rgba(var(--rgb-purple-accent), 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(var(--rgb-text), 0.08);
+    }
+
+    @media (--mq-phone) {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .benefit-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(var(--rgb-purple-accent), 0.1);
+    color: var(--color-purple);
+    transition: all 0.3s var(--ease-out-cubic);
+
+    .benefit-card:hover & {
+      background: rgba(var(--rgb-purple-accent), 0.15);
+      transform: scale(1.05);
+    }
+
+    :global(svg) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .benefit-title {
+    --fs: var(--font-size-lg);
+    --fw: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .benefit-description {
+    --fs: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--color-text-alt);
+  }
+
+  .improvements-section {
+    background: var(--color-bg);
+    border: 2px solid rgba(var(--rgb-green-accent), 0.2);
+    border-radius: 1rem;
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s var(--ease-out-cubic);
+
+    &[data-sy-reveal="fade"].is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (--mq-tablet) {
+      padding: 2.5rem 2rem;
+    }
+
+    @media (--mq-phone) {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .improvements-title {
+    --fs: var(--font-size-xl);
+    --fw: 700;
+    color: var(--color-green);
+    margin-bottom: 1.5rem;
+    text-align: center;
+
+    @media (--mq-phone) {
+      --fs: var(--font-size-lg);
+    }
+  }
+
+  .improvements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .improvement-item {
+    --fs: var(--font-size-md);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--color-text);
+    line-height: 1.6;
+
+    @media (--mq-phone) {
+      --fs: var(--font-size-sm);
+    }
+  }
+
+  .check-icon {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    color: var(--color-green);
+  }
+</style>

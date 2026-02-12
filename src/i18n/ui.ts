@@ -1,15 +1,567 @@
 export const languages = {
-  en: 'English',
+  es: "Español",
+  en: "English",
+  fr: "Français",
 };
 
-export const defaultLang = 'en';
+export const defaultLang = "es";
 
 export const ui = {
-  en: {
-    'accessibility.skip-to-content': 'Skip to content',
+  es: {
+    // Accessibility
+    "accessibility.skip-to-content": "Saltar al contenido",
 
-    'nav.home': 'Home',
-    'nav.about': 'About',
-    'nav.twitter': 'Twitter',
+    // Navigation
+    "nav.home": "Inicio",
+    "nav.about": "Nosotros",
+    "nav.technology": "Tecnología",
+    "nav.pricing": "Precios",
+    "nav.contact": "Contacto",
+
+    // Buttons
+    "button.get-started": "Comenzar",
+    "button.learn-more": "Saber Más",
+    "button.login": "Soy turista",
+    "button.discover": "Descubrir SMARTUR",
+    "button.know-more": "Conoce Más",
+    "button.view-plans": "Ver Planes",
+    "button.contact": "Contactar",
+
+    // Hero
+    "hero.title": "IA que guía, turismo que une.",
+    "hero.subtitle":
+      "SMARTUR conecta turistas con experiencias auténticas mediante IA, impulsando a las MiPyMEs de Veracruz en su transformación digital.",
+    "hero.cta": "Descubre SMARTUR",
+
+    // About
+    "about.title": "Quiénes Somos",
+    "about.subtitle": "Innovación tecnológica al servicio del turismo regional",
+    "about.award": "Galardón Turístico Mi Veracruz",
+    "about.mission.title": "Nuestra Misión",
+    "about.mission.text":
+      "Conectar turistas con experiencias auténticas en Las Altas Montañas mediante inteligencia artificial que empodera a las MiPyMEs locales.",
+    "about.description":
+      "Galardonados con el 'Galardón Turístico Mi Veracruz 2024', SMARTUR utiliza algoritmos avanzados de Machine Learning para ofrecer recomendaciones personalizadas que benefician tanto a viajeros como a negocios locales.",
+    "about.stat.mipymes": "MiPyMEs Registradas",
+    "about.stat.recommendations": "Recomendaciones IA",
+    "about.stat.municipalities": "Municipios Cubiertos",
+
+    // Introducing
+    "introducing.title":
+      "Transformando el turismo regional con tecnología e innovación",
+    "introducing.text":
+      "SMARTUR nace del manual de procedimientos galardonado 'Galardón Turístico Mi Veracruz 2024'. Nuestra misión es empoderar a las MiPyMEs turísticas de las Altas Montañas mediante inteligencia artificial, ofreciendo recomendaciones personalizadas que conectan a viajeros con experiencias auténticas y fortalecen la economía local.",
+
+    // Region
+    "region.title": "Las Altas Montañas de Veracruz",
+    "region.text":
+      "Una región rica en cultura, naturaleza y tradiciones. Desde pueblos mágicos hasta paisajes montañosos impresionantes, Las Altas Montañas ofrece experiencias turísticas únicas que SMARTUR ayuda a descubrir y promover.",
+
+    // Technology
+    "tech.title": "Tecnología que impulsa el turismo",
+    "tech.text":
+      "SMARTUR utiliza algoritmos de Machine Learning para analizar preferencias, comportamientos y contextos, generando recomendaciones turísticas personalizadas que benefician tanto a viajeros como a negocios locales.",
+    "tech.feature1.title": "Recomendaciones Personalizadas",
+    "tech.feature1.desc":
+      "Algoritmos de IA que aprenden de las preferencias de cada usuario para sugerir experiencias únicas y relevantes.",
+    "tech.feature2.title": "Apoyo a MiPyMEs",
+    "tech.feature2.desc":
+      "Visibilidad y promoción para pequeños y medianos negocios turísticos de la región.",
+    "tech.feature3.title": "Datos Seguros",
+    "tech.feature3.desc":
+      "Protección de información con estándares de seguridad y privacidad de clase mundial.",
+
+    // Timeline
+    "timeline.title": "Nuestro camino",
+    "timeline.step1.title": "Galardón Turístico Mi Veracruz 2024",
+    "timeline.step1.text":
+      "SMARTUR nace del manual de procedimientos galardonado, reconocido por su innovación en la promoción del turismo regional.",
+    "timeline.step2.title": "Desarrollo de algoritmos de IA",
+    "timeline.step2.text":
+      "Creación de un sistema de recomendaciones inteligente basado en Machine Learning, diseñado específicamente para el contexto turístico de Las Altas Montañas.",
+    "timeline.step3.title": "Implementación regional",
+    "timeline.step3.text":
+      "Despliegue de la plataforma en colaboración con hoteles, restaurantes y comercios locales, generando impacto real en la economía turística.",
+
+    // Statements
+    "statement1.title": "Innovación",
+    "statement1.text":
+      "Utilizamos inteligencia artificial y tecnología de vanguardia para revolucionar la forma en que se descubre y experimenta el turismo en Las Altas Montañas.",
+    "statement2.title": "Identidad Regional",
+    "statement2.text":
+      "Celebramos y promovemos la riqueza cultural, natural y gastronómica única de Veracruz, conectando a viajeros con experiencias auténticas.",
+    "statement3.title": "Sostenibilidad Tecnológica",
+    "statement3.text":
+      "Empoderamos a las MiPyMEs locales con herramientas digitales accesibles que fortalecen su competitividad y crecimiento sostenible.",
+
+    // Pricing
+    "pricing.title": "Planes SMARTUR",
+    "pricing.subtitle": "Soluciones para MiPyMEs turísticas",
+    "pricing.basic.title": "Básico",
+    "pricing.basic.price": "$499",
+    "pricing.basic.duration": "mes",
+    "pricing.basic.feature1": "Perfil de negocio básico",
+    "pricing.basic.feature2": "Hasta 10 fotos",
+    "pricing.basic.feature3": "Recomendaciones IA",
+    "pricing.basic.feature4": "Soporte por email",
+    "pricing.basic.feature5": "Análisis avanzado",
+    "pricing.basic.feature6": "Promociones destacadas",
+    "pricing.mipyme.title": "MiPyME",
+    "pricing.mipyme.price": "$999",
+    "pricing.mipyme.duration": "mes",
+    "pricing.mipyme.feature1": "Perfil de negocio completo",
+    "pricing.mipyme.feature2": "Fotos ilimitadas",
+    "pricing.mipyme.feature3": "Recomendaciones IA prioritarias",
+    "pricing.mipyme.feature4": "Soporte prioritario",
+    "pricing.mipyme.feature5": "Análisis y métricas",
+    "pricing.mipyme.feature6": "Promociones destacadas",
+    "pricing.enterprise.title": "Enterprise",
+    "pricing.enterprise.price": "$1,999",
+    "pricing.enterprise.duration": "mes",
+    "pricing.enterprise.feature1": "Todo en MiPyME, más:",
+    "pricing.enterprise.feature2": "Múltiples ubicaciones",
+    "pricing.enterprise.feature3": "API personalizada",
+    "pricing.enterprise.feature4": "Gerente de cuenta dedicado",
+    "pricing.enterprise.feature5": "Integración con sistemas",
+    "pricing.enterprise.feature6": "Reportes personalizados",
+
+    // User Segmentation
+    "segmentation.title": "Forma parte del catálogo",
+    "segmentation.business.title": "Registrar mi negocio",
+    "segmentation.business.desc": "Para MiPyMEs",
+    "segmentation.business.text":
+      "Registra tu negocio turístico y accede a recomendaciones inteligentes que conectan a viajeros con tus servicios.",
+    "segmentation.tourist.title": "Soy turista",
+    "segmentation.tourist.desc": "Para Viajeros",
+    "segmentation.tourist.text":
+      "Descubre experiencias auténticas en Las Altas Montañas con recomendaciones personalizadas por IA.",
+
+    // Benefits
+    "benefits.title": "¿Por qué elegirnos?",
+    "benefits.subtitle": "Beneficios de pertenecer a SMARTUR",
+    "benefits.improvements.title": "Mejoras claras con IA",
+
+    // Video Section
+    "video.title": "Explora la riqueza de nuestra región",
+    "video.description":
+      "Descubre la belleza natural y cultural de Las Altas Montañas de Veracruz",
+
+    // Testimonials
+    "testimonials.title": "Testimonios: ¿Qué dicen los servicios asociados?",
+
+    // New Pricing Plans
+    "pricing.new.title":
+      "Soluciones diseñadas para cada actor del ecosistema turístico",
+    "pricing.new.subtitle": "Planes flexibles que se adaptan a tus necesidades",
+    "pricing.toggle.monthly": "Mensual",
+    "pricing.toggle.annual": "Anual",
+    "pricing.emprendedor.title": "Emprendedor",
+    "pricing.emprendedor.desc": "Para negocios pequeños",
+    "pricing.emprendedor.price": "$00",
+    "pricing.emprendedor.duration": "mes",
+    "pricing.emprendedor.feature1": "Segmentación de audiencia",
+    "pricing.emprendedor.feature2": "Enfoque turismo focal",
+    "pricing.emprendedor.feature3": "Recomendaciones IA básicas",
+    "pricing.emprendedor.feature4": "Soporte por email",
+    "pricing.emprendedor.cta": "Registrar mi negocio",
+    "pricing.destino.title": "Destino",
+    "pricing.destino.desc": "Para Pacaemy Argentohes",
+    "pricing.destino.price": "$00",
+    "pricing.destino.duration": "mes",
+    "pricing.destino.feature1": "Todo en Emprendedor, más:",
+    "pricing.destino.feature2": "Reportes avanzados",
+    "pricing.destino.feature3": "Dashboard para toma de decisiones",
+    "pricing.destino.feature4": "Análisis predictivo",
+    "pricing.destino.feature5": "Soporte prioritario",
+    "pricing.destino.cta": "Agendar demo",
+
+    // Marquee
+    "marquee.text1": "Turismo Inteligente",
+    "marquee.text2": "Innovación Regional",
+    "marquee.text3": "IA para MiPyMEs",
+    "marquee.text4": "Las Altas Montañas",
+
+    // FAQs
+    "faqs.title": "FAQs",
+    "faqs.subtitle": "Respuestas a tus dudas sobre SMARTUR",
+    "faq1.question": "¿Qué es SMARTUR?",
+    "faq1.answer":
+      "SMARTUR es una plataforma de recomendación turística inteligente que utiliza IA para conectar a viajeros con experiencias auténticas en Las Altas Montañas de Veracruz, mientras apoya a las MiPyMEs locales.",
+    "faq2.question": "¿Cómo funciona el sistema de recomendaciones?",
+    "faq2.answer":
+      "Utilizamos algoritmos de Machine Learning que analizan preferencias, comportamientos y contextos para generar sugerencias personalizadas de hoteles, restaurantes y actividades turísticas.",
+    "faq3.question": "¿Es gratuito para los negocios locales?",
+    "faq3.answer":
+      "SMARTUR ofrece planes accesibles diseñados específicamente para MiPyMEs, con opciones que se adaptan a diferentes necesidades y presupuestos.",
+    "faq4.question": "¿Mis datos están seguros?",
+    "faq4.answer":
+      "Sí. Implementamos estándares de seguridad y privacidad de clase mundial para proteger toda la información de usuarios y negocios.",
+    "faq5.question": "¿Cómo puedo integrar mi negocio a SMARTUR?",
+    "faq5.answer":
+      "Contáctanos a través del formulario en nuestra página. Nuestro equipo te guiará en el proceso de registro y configuración de tu perfil empresarial.",
+
+    // Footer
+    "footer.slogan": "IA que guía, turismo que une",
+    "footer.quicklinks": "Enlaces Rápidos",
+    "footer.contact": "Contacto",
+    "footer.social": "Redes Sociales",
+    "footer.location": "Las Altas Montañas, Veracruz",
+    "footer.copyright": "Todos los derechos reservados.",
+  },
+  en: {
+    // Accessibility
+    "accessibility.skip-to-content": "Skip to content",
+
+    // Navigation
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.technology": "Technology",
+    "nav.pricing": "Pricing",
+    "nav.contact": "Contact",
+
+    // Buttons
+    "button.get-started": "Get Started",
+    "button.learn-more": "Learn More",
+    "button.login": "Login",
+    "button.discover": "Discover SMARTUR",
+    "button.know-more": "Learn More",
+    "button.view-plans": "View Plans",
+    "button.contact": "Contact",
+
+    // Hero
+    "hero.title": "Smart Tourism for the High Mountains",
+    "hero.subtitle":
+      "SMARTUR connects tourists with authentic experiences through AI, empowering Veracruz SMEs in their digital transformation.",
+    "hero.cta": "Discover SMARTUR",
+
+    // About
+    "about.title": "Who We Are",
+    "about.subtitle":
+      "Technological innovation at the service of regional tourism",
+    "about.award": "Mi Veracruz Tourism Award",
+    "about.mission.title": "Our Mission",
+    "about.mission.text":
+      "Connect tourists with authentic experiences in the High Mountains through artificial intelligence that empowers local SMEs.",
+    "about.description":
+      "Awarded the 'Mi Veracruz Tourism Award 2024', SMARTUR uses advanced Machine Learning algorithms to offer personalized recommendations that benefit both travelers and local businesses.",
+    "about.stat.mipymes": "Registered SMEs",
+    "about.stat.recommendations": "AI Recommendations",
+    "about.stat.municipalities": "Municipalities Covered",
+
+    // Introducing
+    "introducing.title":
+      "Transforming regional tourism with technology and innovation",
+    "introducing.text":
+      "SMARTUR was born from the award-winning procedures manual 'Mi Veracruz Tourism Award 2024'. Our mission is to empower tourism SMEs in the High Mountains through artificial intelligence, offering personalized recommendations that connect travelers with authentic experiences and strengthen the local economy.",
+
+    // Region
+    "region.title": "The High Mountains of Veracruz",
+    "region.text":
+      "A region rich in culture, nature, and traditions. From magical towns to breathtaking mountain landscapes, the High Mountains offer unique tourism experiences that SMARTUR helps discover and promote.",
+
+    // Technology
+    "tech.title": "Technology that drives tourism",
+    "tech.text":
+      "SMARTUR uses Machine Learning algorithms to analyze preferences, behaviors, and contexts, generating personalized tourism recommendations that benefit both travelers and local businesses.",
+    "tech.feature1.title": "Personalized Recommendations",
+    "tech.feature1.desc":
+      "AI algorithms that learn from each user's preferences to suggest unique and relevant experiences.",
+    "tech.feature2.title": "SME Support",
+    "tech.feature2.desc":
+      "Visibility and promotion for small and medium tourism businesses in the region.",
+    "tech.feature3.title": "Secure Data",
+    "tech.feature3.desc":
+      "Information protection with world-class security and privacy standards.",
+
+    // Timeline
+    "timeline.title": "Our Journey",
+    "timeline.step1.title": "Mi Veracruz Tourism Award 2024",
+    "timeline.step1.text":
+      "SMARTUR was born from the award-winning procedures manual, recognized for its innovation in promoting regional tourism.",
+    "timeline.step2.title": "AI Algorithm Development",
+    "timeline.step2.text":
+      "Creation of an intelligent recommendation system based on Machine Learning, specifically designed for the tourism context of the High Mountains.",
+    "timeline.step3.title": "Regional Implementation",
+    "timeline.step3.text":
+      "Platform deployment in collaboration with hotels, restaurants, and local businesses, generating real impact on the tourism economy.",
+
+    // Statements
+    "statement1.title": "Innovation",
+    "statement1.text":
+      "We use artificial intelligence and cutting-edge technology to revolutionize how tourism is discovered and experienced in the High Mountains.",
+    "statement2.title": "Regional Identity",
+    "statement2.text":
+      "We celebrate and promote Veracruz's unique cultural, natural, and gastronomic richness, connecting travelers with authentic experiences.",
+    "statement3.title": "Technological Sustainability",
+    "statement3.text":
+      "We empower local SMEs with accessible digital tools that strengthen their competitiveness and sustainable growth.",
+
+    // Pricing
+    "pricing.title": "SMARTUR Plans",
+    "pricing.subtitle": "Solutions for tourism SMEs",
+    
+    // New Pricing Plans
+    "pricing.new.title": "Solutions designed for every player in the tourism ecosystem",
+    "pricing.new.subtitle": "Flexible plans that adapt to your needs",
+    "pricing.toggle.monthly": "Monthly",
+    "pricing.toggle.annual": "Annual",
+    "pricing.emprendedor.title": "Entrepreneur",
+    "pricing.emprendedor.desc": "For small businesses",
+    "pricing.emprendedor.price": "$00",
+    "pricing.emprendedor.duration": "month",
+    "pricing.emprendedor.feature1": "Audience segmentation",
+    "pricing.emprendedor.feature2": "Focal tourism approach",
+    "pricing.emprendedor.feature3": "Basic AI recommendations",
+    "pricing.emprendedor.feature4": "Email support",
+    "pricing.emprendedor.cta": "Register my business",
+    "pricing.destino.title": "Destination",
+    "pricing.destino.desc": "For organizations & governments",
+    "pricing.destino.price": "$00",
+    "pricing.destino.duration": "month",
+    "pricing.destino.feature1": "Everything in Entrepreneur, plus:",
+    "pricing.destino.feature2": "Advanced reporting",
+    "pricing.destino.feature3": "Decision-making dashboard",
+    "pricing.destino.feature4": "Predictive analytics",
+    "pricing.destino.feature5": "Priority support",
+    "pricing.destino.cta": "Schedule demo",
+
+    "pricing.basic.title": "Basic",
+    "pricing.basic.price": "$499",
+    "pricing.basic.duration": "month",
+    "pricing.basic.feature1": "Basic business profile",
+    "pricing.basic.feature2": "Up to 10 photos",
+    "pricing.basic.feature3": "AI recommendations",
+    "pricing.basic.feature4": "Email support",
+    "pricing.basic.feature5": "Advanced analytics",
+    "pricing.basic.feature6": "Featured promotions",
+    "pricing.mipyme.title": "SME",
+    "pricing.mipyme.price": "$999",
+    "pricing.mipyme.duration": "month",
+    "pricing.mipyme.feature1": "Complete business profile",
+    "pricing.mipyme.feature2": "Unlimited photos",
+    "pricing.mipyme.feature3": "Priority AI recommendations",
+    "pricing.mipyme.feature4": "Priority support",
+    "pricing.mipyme.feature5": "Analytics and metrics",
+    "pricing.mipyme.feature6": "Featured promotions",
+    "pricing.enterprise.title": "Enterprise",
+    "pricing.enterprise.price": "$1,999",
+    "pricing.enterprise.duration": "month",
+    "pricing.enterprise.feature1": "Everything in SME, plus:",
+    "pricing.enterprise.feature2": "Multiple locations",
+    "pricing.enterprise.feature3": "Custom API",
+    "pricing.enterprise.feature4": "Dedicated account manager",
+    "pricing.enterprise.feature5": "System integration",
+    "pricing.enterprise.feature6": "Custom reports",
+
+    // Marquee
+    "marquee.text1": "Smart Tourism",
+    "marquee.text2": "Regional Innovation",
+    "marquee.text3": "AI for SMEs",
+    "marquee.text4": "The High Mountains",
+
+    // FAQs
+    "faqs.title": "FAQs",
+    "faqs.subtitle": "Answers to your questions about SMARTUR",
+    "faq1.question": "What is SMARTUR?",
+    "faq1.answer":
+      "SMARTUR is an intelligent tourism recommendation platform that uses AI to connect travelers with authentic experiences in the High Mountains of Veracruz, while supporting local SMEs.",
+    "faq2.question": "How does the recommendation system work?",
+    "faq2.answer":
+      "We use Machine Learning algorithms that analyze preferences, behaviors, and contexts to generate personalized suggestions for hotels, restaurants, and tourism activities.",
+    "faq3.question": "Is it free for local businesses?",
+    "faq3.answer":
+      "SMARTUR offers accessible plans specifically designed for SMEs, with options that adapt to different needs and budgets.",
+    "faq4.question": "Is my data secure?",
+    "faq4.answer":
+      "Yes. We implement world-class security and privacy standards to protect all user and business information.",
+    "faq5.question": "How can I integrate my business into SMARTUR?",
+    "faq5.answer":
+      "Contact us through the form on our page. Our team will guide you through the registration process and business profile setup.",
+
+    // Footer
+    "footer.slogan": "AI that guides, tourism that unites",
+    "footer.quicklinks": "Quick Links",
+    "footer.contact": "Contact",
+    "footer.social": "Social Media",
+    "footer.location": "High Mountains, Veracruz",
+    "footer.copyright": "All rights reserved.",
+  },
+  fr: {
+    // Accessibility
+    "accessibility.skip-to-content": "Passer au contenu",
+
+    // Navigation
+    "nav.home": "Accueil",
+    "nav.about": "À propos",
+    "nav.technology": "Technologie",
+    "nav.pricing": "Tarifs",
+    "nav.contact": "Contact",
+
+    // Buttons
+    "button.get-started": "Commencer",
+    "button.learn-more": "En savoir plus",
+    "button.login": "Connexion",
+    "button.discover": "Découvrir SMARTUR",
+    "button.know-more": "En savoir plus",
+    "button.view-plans": "Voir les plans",
+    "button.contact": "Contacter",
+
+    // Hero
+    "hero.title": "Tourisme Intelligent pour les Hautes Montagnes",
+    "hero.subtitle":
+      "SMARTUR connecte les touristes avec des expériences authentiques grâce à l'IA, en soutenant les PME de Veracruz dans leur transformation numérique.",
+    "hero.cta": "Découvrir SMARTUR",
+
+    // About
+    "about.title": "Qui sommes-nous",
+    "about.subtitle":
+      "Innovation technologique au service du tourisme régional",
+    "about.award": "Prix Touristique Mi Veracruz",
+    "about.mission.title": "Notre Mission",
+    "about.mission.text":
+      "Connecter les touristes avec des expériences authentiques dans les Hautes Montagnes grâce à l'intelligence artificielle qui autonomise les PME locales.",
+    "about.description":
+      "Lauréat du 'Prix Touristique Mi Veracruz 2024', SMARTUR utilise des algorithmes avancés de Machine Learning pour offrir des recommandations personnalisées qui profitent aux voyageurs et aux entreprises locales.",
+    "about.stat.mipymes": "PME Enregistrées",
+    "about.stat.recommendations": "Recommandations IA",
+    "about.stat.municipalities": "Municipalités Couvertes",
+
+    // Introducing
+    "introducing.title":
+      "Transformer le tourisme régional avec la technologie et l'innovation",
+    "introducing.text":
+      "SMARTUR est né du manuel de procédures primé 'Prix Touristique Mi Veracruz 2024'. Notre mission est d'autonomiser les PME touristiques des Hautes Montagnes grâce à l'intelligence artificielle, en offrant des recommandations personnalisées qui connectent les voyageurs avec des expériences authentiques et renforcent l'économie locale.",
+
+    // Region
+    "region.title": "Les Hautes Montagnes de Veracruz",
+    "region.text":
+      "Une région riche en culture, nature et traditions. Des villages magiques aux paysages montagneux époustouflants, les Hautes Montagnes offrent des expériences touristiques uniques que SMARTUR aide à découvrir et promouvoir.",
+
+    // Technology
+    "tech.title": "Technologie qui stimule le tourisme",
+    "tech.text":
+      "SMARTUR utilise des algorithmes de Machine Learning pour analyser les préférences, les comportements et les contextes, générant des recommandations touristiques personnalisées qui profitent aux voyageurs et aux entreprises locales.",
+    "tech.feature1.title": "Recommandations Personnalisées",
+    "tech.feature1.desc":
+      "Algorithmes d'IA qui apprennent des préférences de chaque utilisateur pour suggérer des expériences uniques et pertinentes.",
+    "tech.feature2.title": "Soutien aux PME",
+    "tech.feature2.desc":
+      "Visibilité et promotion pour les petites et moyennes entreprises touristiques de la région.",
+    "tech.feature3.title": "Données Sécurisées",
+    "tech.feature3.desc":
+      "Protection des informations avec des normes de sécurité et de confidentialité de classe mondiale.",
+
+    // Timeline
+    "timeline.title": "Notre Parcours",
+    "timeline.step1.title": "Prix Touristique Mi Veracruz 2024",
+    "timeline.step1.text":
+      "SMARTUR est né du manuel de procédures primé, reconnu pour son innovation dans la promotion du tourisme régional.",
+    "timeline.step2.title": "Développement d'algorithmes IA",
+    "timeline.step2.text":
+      "Création d'un système de recommandations intelligent basé sur le Machine Learning, spécifiquement conçu pour le contexte touristique des Hautes Montagnes.",
+    "timeline.step3.title": "Mise en œuvre régionale",
+    "timeline.step3.text":
+      "Déploiement de la plateforme en collaboration avec les hôtels, restaurants et commerces locaux, générant un impact réel sur l'économie touristique.",
+
+    // Statements
+    "statement1.title": "Innovation",
+    "statement1.text":
+      "Nous utilisons l'intelligence artificielle et la technologie de pointe pour révolutionner la façon dont le tourisme est découvert et vécu dans les Hautes Montagnes.",
+    "statement2.title": "Identité Régionale",
+    "statement2.text":
+      "Nous célébrons et promouvons la richesse culturelle, naturelle et gastronomique unique de Veracruz, en connectant les voyageurs avec des expériences authentiques.",
+    "statement3.title": "Durabilité Technologique",
+    "statement3.text":
+      "Nous autonomisons les PME locales avec des outils numériques accessibles qui renforcent leur compétitivité et leur croissance durable.",
+
+    // Pricing
+    "pricing.title": "Plans SMARTUR",
+    "pricing.subtitle": "Solutions pour les PME touristiques",
+
+    // New Pricing Plans
+    "pricing.new.title": "Des solutions conçues pour chaque acteur de l'écosystème touristique",
+    "pricing.new.subtitle": "Des plans flexibles qui s'adaptent à vos besoins",
+    "pricing.toggle.monthly": "Mensuel",
+    "pricing.toggle.annual": "Annuel",
+    "pricing.emprendedor.title": "Entrepreneur",
+    "pricing.emprendedor.desc": "Pour les petites entreprises",
+    "pricing.emprendedor.price": "$00",
+    "pricing.emprendedor.duration": "mois",
+    "pricing.emprendedor.feature1": "Segmentation d'audience",
+    "pricing.emprendedor.feature2": "Approche tourisme ciblé",
+    "pricing.emprendedor.feature3": "Recommandations IA basiques",
+    "pricing.emprendedor.feature4": "Support par email",
+    "pricing.emprendedor.cta": "Enregistrer mon entreprise",
+    "pricing.destino.title": "Destination",
+    "pricing.destino.desc": "Pour organisations et gouvernements",
+    "pricing.destino.price": "$00",
+    "pricing.destino.duration": "mois",
+    "pricing.destino.feature1": "Tout dans Entrepreneur, plus:",
+    "pricing.destino.feature2": "Rapports avancés",
+    "pricing.destino.feature3": "Tableau de bord décisionnel",
+    "pricing.destino.feature4": "Analyses prédictives",
+    "pricing.destino.feature5": "Support prioritaire",
+    "pricing.destino.cta": "Planifier une démo",
+
+    "pricing.basic.title": "Basique",
+    "pricing.basic.price": "$499",
+    "pricing.basic.duration": "mois",
+    "pricing.basic.feature1": "Profil d'entreprise basique",
+    "pricing.basic.feature2": "Jusqu'à 10 photos",
+    "pricing.basic.feature3": "Recommandations IA",
+    "pricing.basic.feature4": "Support par email",
+    "pricing.basic.feature5": "Analyses avancées",
+    "pricing.basic.feature6": "Promotions en vedette",
+    "pricing.mipyme.title": "PME",
+    "pricing.mipyme.price": "$999",
+    "pricing.mipyme.duration": "mois",
+    "pricing.mipyme.feature1": "Profil d'entreprise complet",
+    "pricing.mipyme.feature2": "Photos illimitées",
+    "pricing.mipyme.feature3": "Recommandations IA prioritaires",
+    "pricing.mipyme.feature4": "Support prioritaire",
+    "pricing.mipyme.feature5": "Analyses et métriques",
+    "pricing.mipyme.feature6": "Promotions en vedette",
+    "pricing.enterprise.title": "Enterprise",
+    "pricing.enterprise.price": "$1,999",
+    "pricing.enterprise.duration": "mois",
+    "pricing.enterprise.feature1": "Tout dans PME, plus:",
+    "pricing.enterprise.feature2": "Plusieurs emplacements",
+    "pricing.enterprise.feature3": "API personnalisée",
+    "pricing.enterprise.feature4": "Gestionnaire de compte dédié",
+    "pricing.enterprise.feature5": "Intégration avec les systèmes",
+    "pricing.enterprise.feature6": "Rapports personnalisés",
+
+    // Marquee
+    "marquee.text1": "Tourisme Intelligent",
+    "marquee.text2": "Innovation Régionale",
+    "marquee.text3": "IA pour les PME",
+    "marquee.text4": "Les Hautes Montagnes",
+
+    // FAQs
+    "faqs.title": "FAQ",
+    "faqs.subtitle": "Réponses à vos questions sur SMARTUR",
+    "faq1.question": "Qu'est-ce que SMARTUR?",
+    "faq1.answer":
+      "SMARTUR est une plateforme de recommandation touristique intelligente qui utilise l'IA pour connecter les voyageurs avec des expériences authentiques dans les Hautes Montagnes de Veracruz, tout en soutenant les PME locales.",
+    "faq2.question": "Comment fonctionne le système de recommandations?",
+    "faq2.answer":
+      "Nous utilisons des algorithmes de Machine Learning qui analysent les préférences, les comportements et les contextes pour générer des suggestions personnalisées d'hôtels, restaurants et activités touristiques.",
+    "faq3.question": "Est-ce gratuit pour les entreprises locales?",
+    "faq3.answer":
+      "SMARTUR propose des plans accessibles spécifiquement conçus pour les PME, avec des options qui s'adaptent à différents besoins et budgets.",
+    "faq4.question": "Mes données sont-elles sécurisées?",
+    "faq4.answer":
+      "Oui. Nous mettons en œuvre des normes de sécurité et de confidentialité de classe mondiale pour protéger toutes les informations des utilisateurs et des entreprises.",
+    "faq5.question": "Comment puis-je intégrer mon entreprise à SMARTUR?",
+    "faq5.answer":
+      "Contactez-nous via le formulaire sur notre page. Notre équipe vous guidera dans le processus d'inscription et de configuration de votre profil d'entreprise.",
+
+    // Footer
+    "footer.slogan": "L'IA qui guide, le tourisme qui unit",
+    "footer.quicklinks": "Liens Rapides",
+    "footer.contact": "Contact",
+    "footer.social": "Réseaux Sociaux",
+    "footer.location": "Hautes Montagnes, Veracruz",
+    "footer.copyright": "Tous droits réservés.",
   },
 } as const;

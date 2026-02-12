@@ -1,0 +1,273 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroHome from "../../components/HeroHome.astro";
+import TextMarquee from "../../components/TextMarquee.astro";
+import Faqs from "../../components/Faqs.astro";
+import StepsTimeline from "../../components/StepsTimeline.astro";
+import Statements from "../../components/Statements.astro";
+import RegionSection from "../../components/RegionSection.astro";
+
+import About from "../../components/About.astro";
+import PlansNew from "../../components/PlansNew.astro";
+import UserSegmentation from "../../components/UserSegmentation.astro";
+import VideoSection from "../../components/VideoSection.astro";
+import Benefits from "../../components/Benefits.astro";
+import Testimonials from "../../components/Testimonials.astro";
+---
+
+<Layout title="Home">
+  <section id="home">
+    <HeroHome
+      title="Smart Tourism for the High Mountains"
+      subtitle="SMARTUR connects tourists with authentic experiences through AI, empowering SMEs in Veracruz in their digital transformation."
+      cta={{
+        title: "Discover SMARTUR",
+        url: "#about",
+      }}
+    />
+  </section>
+
+  <UserSegmentation
+    title="Join the catalog"
+    businessCta={{
+      title: "Register my business",
+      url: "#contact",
+    }}
+    touristCta={{
+      title: "I am a tourist",
+      url: "#region",
+    }}
+  />
+
+  <RegionSection
+    title="The High Mountains of Veracruz"
+    text="A region rich in culture, nature and traditions. From magical towns to impressive mountain landscapes, the High Mountains offer unique tourism experiences that SMARTUR helps discover and promote."
+  />
+
+  <VideoSection
+    title="Explore the richness of our region"
+    description="Discover the natural and cultural beauty of the High Mountains of Veracruz"
+  />
+
+  <section id="technology">
+    <Benefits
+      id="technology-inner"
+      title="Why Choose Us?"
+      subtitle="Benefits of belonging to SMARTUR"
+      benefits={[
+        {
+          title: "Regional Visibility",
+          description: "Position your business in front of thousands of tourists looking for authentic experiences.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+        },
+        {
+          title: "AI Recommendations",
+          description: "Intelligent algorithms that connect your business with ideal customers.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>`
+        },
+        {
+          title: "Data Analysis",
+          description: "Metrics and reports that help you make informed decisions.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`
+        },
+        {
+          title: "Dedicated Support",
+          description: "Expert team that accompanies you in every step of your digital transformation.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+        },
+        {
+          title: "Sustainable Growth",
+          description: "Tools that scale with your business and strengthen the local economy.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`
+        },
+        {
+          title: "Easy Integration",
+          description: "Simple and fast registration process to start receiving customers.",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+        }
+      ]}
+      improvements={{
+        title: "Clear improvements with AI",
+        items: [
+          "Average 40% increase in bookings for registered businesses",
+          "60% reduction in search time for tourists",
+          "85% improvement in satisfaction with recommended experiences",
+          "Automatic price optimization based on demand and season"
+        ]
+      }}
+    />
+  </section>
+
+  <StepsTimeline
+    title="Our Journey"
+    items={[
+      {
+        title: "Mi Veracruz Tourism Award 2024",
+        text: "SMARTUR was born from the award-winning procedures manual, recognized for its innovation in promoting regional tourism.",
+      },
+      {
+        title: "AI Algorithm Development",
+        text: "Creation of an intelligent recommendation system based on Machine Learning, specifically designed for the tourism context of the High Mountains.",
+      },
+      {
+        title: "Regional Implementation",
+        text: "Platform deployment in collaboration with hotels, restaurants and local businesses, generating real impact on the tourism economy.",
+      },
+    ]}
+  />
+
+  <Statements
+    items={[
+      {
+        title: "Innovation",
+        text: "We use artificial intelligence and cutting-edge technology to revolutionize the way tourism is discovered and experienced in the High Mountains.",
+      },
+      {
+        title: "Regional Identity",
+        text: "We celebrate and promote the unique cultural, natural and gastronomic richness of Veracruz, connecting travelers with authentic experiences.",
+      },
+      {
+        title: "Technological Sustainability",
+        text: "We empower local SMEs with accessible digital tools that strengthen their competitiveness and sustainable growth.",
+      },
+    ]}
+  />
+
+  <Testimonials
+    title="Testimonials: What do associated services say?"
+    testimonials={[
+      {
+        name: "Cha Ji-Hun",
+        role: "Owner",
+        business: "Café Las Montañas",
+        content: "Since joining SMARTUR, our bookings increased by 45%. The platform connects us with tourists who truly value the authentic experience we offer."
+      },
+      {
+        name: "María González",
+        role: "Manager",
+        business: "Hotel Vista Hermosa",
+        content: "AI recommendations are incredible. We receive exactly the type of guests looking for what we offer. The analytics dashboard helps us make better decisions."
+      },
+      {
+        name: "Roberto Sánchez",
+        role: "Tour Guide",
+        business: "Aventuras Veracruz",
+        content: "SMARTUR transformed my business. Now I can focus on offering memorable experiences while the platform takes care of connecting me with the right travelers."
+      }
+    ]}
+  />
+
+  <About
+    id="about"
+    title="Who We Are"
+    subtitle="Technological innovation at the service of regional tourism"
+    award="Mi Veracruz Tourism Award"
+    mission="Connect tourists with authentic experiences in the High Mountains through artificial intelligence that empowers local SMEs."
+    description="Awarded the 'Mi Veracruz Tourism Award 2024', SMARTUR uses advanced Machine Learning algorithms to offer personalized recommendations that benefit both travelers and local businesses."
+    cta={{
+      title: "View Plans",
+      url: "#pricing",
+    }}
+  />
+
+  <PlansNew
+    id="pricing"
+    title="Solutions designed for every player in the tourism ecosystem"
+    subtitle="Flexible plans that adapt to your needs"
+    showToggle={true}
+    items={[
+      {
+        title: "Entrepreneur",
+        description: "For small businesses",
+        price: {
+          amount: "$00",
+          duration: "month",
+        },
+        link: {
+          title: "Register my business",
+          url: "#contact",
+        },
+        features: [
+          { title: "Audience segmentation" },
+          { title: "Focal tourism approach" },
+          { title: "Basic AI recommendations" },
+          { title: "Email support" },
+          { title: "Basic dashboard" },
+          { title: "Advanced analytics", disabled: true },
+        ],
+      },
+      {
+        title: "Destination",
+        description: "For organizations & governments",
+        price: {
+          amount: "$00",
+          duration: "month",
+        },
+        link: {
+          title: "Schedule demo",
+          url: "#contact",
+        },
+        features: [
+          { title: "Everything in Entrepreneur, plus:" },
+          { title: "Advanced reporting" },
+          { title: "Decision-making dashboard" },
+          { title: "Predictive analytics" },
+          { title: "Priority support" },
+          { title: "System integration" },
+        ],
+      },
+    ]}
+  />
+
+  <TextMarquee
+    class="marquee"
+    texts={[
+      "Smart Tourism",
+      "Regional Innovation",
+      "AI for SMEs",
+      "The High Mountains",
+    ]}
+  />
+
+  <section id="contact">
+    <Faqs
+    title="FAQs"
+    mobileTitle="FAQs"
+    subtitle="Answers to your questions about SMARTUR"
+    items={[
+      {
+        question: "What is SMARTUR?",
+        answer:
+          "SMARTUR is an intelligent tourism recommendation platform that uses AI to connect travelers with authentic experiences in the High Mountains of Veracruz, while supporting local SMEs.",
+      },
+      {
+        question: "How does the recommendation system work?",
+        answer:
+          "We use Machine Learning algorithms that analyze preferences, behaviors and contexts to generate personalized suggestions for hotels, restaurants and tourism activities.",
+      },
+      {
+        question: "Is it free for local businesses?",
+        answer:
+          "SMARTUR offers accessible plans specifically designed for SMEs, with options that adapt to different needs and budgets.",
+      },
+      {
+        question: "Is my data secure?",
+        answer:
+          "Yes. We implement world-class security and privacy standards to protect all user and business information.",
+      },
+      {
+        question: "How can I integrate my business into SMARTUR?",
+        answer:
+          "Contact us through the form on our page. Our team will guide you through the registration process and setting up your business profile.",
+      },
+    ]}
+  />
+
+</Layout>
+
+<style>
+  .marquee {
+    padding: 2rem 0;
+    z-index: 9;
+  }
+</style>

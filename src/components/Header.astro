@@ -1,6 +1,8 @@
 ---
 import Button from "./Button.astro";
-import Logo from "../assets/logo.svg";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import logoImage from "../assets/imgs/logo_arriba.png";
 import type { Link } from "../types";
 
 interface Props {
@@ -19,7 +21,12 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     <div class="inner u-container">
       <div class="wrapper">
         <a class="logo" href={logoUrl}>
-          <Logo />
+          <img
+            src={logoImage.src}
+            alt="Logotipo de SMARTUR - Plataforma de Turismo Inteligente con IA"
+            loading="eager"
+            decoding="async"
+          />
           <span class="u-sr-only">{logoAlt}</span>
         </a>
 
@@ -38,12 +45,22 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
         <div class="buttons">
           {
             link1 ? (
-              <a class="login" href={link1.url}>
-                {link1.title}
+              <a class="tourist-link" href={link1.url} target="_blank" rel="noopener noreferrer">
+                <span>{link1.title}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
               </a>
             ) : null
           }
           {link2 ? <Button {...link2} revealable={false} /> : null}
+          
+          <div class="controls">
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
 
           <button type="button" class="toggle" aria-label="">
             <span class="u-sr-only">Toggle Mobile Menu</span>
@@ -92,60 +109,69 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     }
 
     &::after {
-      background: rgba(var(--rgb-brand-3), 0.7);
-      transition: transform 0.3s var(--ease-out-cubic);
+      background: rgba(var(--rgb-bg), 0.85);
+      transition:
+        transform 0.3s var(--ease-out-cubic),
+        box-shadow 0.3s var(--ease-out-cubic);
       transform: scaleY(0);
       transform-origin: top;
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 3px rgba(var(--rgb-text), 0.05);
     }
 
     :global(body.is-nav-small) & {
       &::after {
         transform: scaleY(1);
+        box-shadow: 0 2px 8px rgba(var(--rgb-text), 0.08);
       }
     }
   }
 
   .inner {
-    padding: 1rem 0;
+    padding: 0;
     transition: padding 0.3s var(--ease-out-cubic);
 
     :global(body.is-nav-small) & {
-      padding: 0.5rem 0;
+      padding: 0;
     }
   }
 
   .wrapper {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 2rem;
 
     @media (--mq-tablet) {
       flex-wrap: wrap;
+      gap: 1.5rem;
     }
   }
 
   .logo {
     position: relative;
     z-index: 3;
+    flex-shrink: 0;
 
-    svg {
-      width: 2.4rem;
-
-      :global(path) {
-        fill: currentcolor;
-      }
+    img {
+      height: 2.2rem; /* Reduced from 2.4rem */
+      width: auto;
     }
   }
 
   .menu {
     display: flex;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: min-content;
+    margin-left: 2rem;
+    width: auto;
+    
+    /* Adjust menu item spacing */
+    @media (max-width: 1024px) {
+      :global(ul) {
+        gap: 1.25em;
+      }
+    }
 
     @media (--mq-tablet) {
       align-items: center;
@@ -154,9 +180,12 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
       height: 100vh;
       position: fixed;
       z-index: 2;
-      background: var(--color-brand-3);
+      background: rgba(var(--rgb-bg), 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       top: 0;
       left: 0;
+      margin: 0;
       clip-path: inset(0 0 0%);
       transition: clip-path 0.5s var(--ease-out-expo);
 
@@ -187,10 +216,10 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
       padding: 0;
       margin: 0;
       align-items: center;
-      gap: 1.3125em;
+      gap: 1.75em;
 
       @media (--mq-tablet) {
-        color: var(--color-brand-1);
+        color: var(--color-text);
       }
 
       @media (--mq-tablet) {
@@ -255,11 +284,37 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
   .buttons {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.25rem;
     z-index: 2;
+    margin-left: auto;
+
+    /* Intermediate breakpoint for narrower screens */
+    @media (max-width: 1024px) {
+      gap: 0.9rem;
+    }
 
     @media (--mq-tablet) {
-      gap: 1.25rem;
+      gap: 1.5rem;
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    margin-left: 1rem;
+    border-left: 1px solid rgba(var(--rgb-text), 0.1);
+
+    @media (max-width: 1024px) {
+      padding-left: 0.75rem;
+      margin-left: 0.75rem;
+    }
+
+    @media (--mq-tablet) {
+      border-left: none;
+      padding-left: 0;
+      margin-left: 0;
     }
   }
 
@@ -269,35 +324,45 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     }
   }
 
-  .login {
+  .tourist-link {
     @extend %u-text;
 
-    --fs: var(--font-size-sm);
-    position: relative;
-    transform: translateY(0);
-    transition: 0.3s var(--ease-out-expo);
-    transition-property: transform, color;
+    --fs: var(--font-size-xs);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    background: rgba(var(--rgb-cyan-accent), 0.08);
+    border: 1px solid rgba(var(--rgb-cyan-accent), 0.2);
+    color: var(--color-cyan);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s var(--ease-out-cubic);
+    flex-shrink: 0;
 
-    &::after {
-      content: "";
-      position: absolute;
-      height: 2px;
-      background: currentcolor;
-      top: 115%;
-      width: 100%;
-      left: 0;
-      pointer-events: none;
-      transform: scaleX(0);
-      transition: transform 0.3s var(--ease-out-expo);
-      transform-origin: right;
+    svg {
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s var(--ease-out-cubic);
     }
 
     &:hover,
     &:focus {
-      &::after {
-        transform: scaleX(1);
-        transform-origin: left;
+      background: rgba(var(--rgb-cyan-accent), 0.15);
+      border-color: var(--color-cyan);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(var(--rgb-cyan-accent), 0.2);
+
+      svg {
+        transform: translate(2px, -2px);
       }
+    }
+
+    /* Hide on narrower screens */
+    @media (max-width: 1100px) {
+      display: none;
     }
 
     @media (--mq-phone) {
@@ -314,16 +379,16 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     align-items: center;
     display: none;
     z-index: 2;
-    color: var(--color-brand-1);
+    color: var(--color-purple);
     transition: color 0.3s var(--ease-out-expo);
 
     :global(.has-no-bg &) {
-      color: var(--color-brand-3);
+      color: var(--color-pink);
     }
 
     :global(body.is-nav-opened &),
     :global(body.is-nav-small) & {
-      color: var(--color-brand-1);
+      color: var(--color-purple);
     }
 
     @media (--mq-tablet) {
@@ -353,7 +418,7 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     }
 
     :global(body.is-nav-opened) & {
-      color: var(--color-brand-1);
+      color: var(--color-purple);
 
       > span {
         span {

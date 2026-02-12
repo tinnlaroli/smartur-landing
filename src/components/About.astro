@@ -1,0 +1,382 @@
+---
+import Button from "./Button.astro";
+import type { Link } from "../types";
+
+interface Props {
+  id?: string;
+  title: string;
+  subtitle?: string;
+  award: string;
+  mission: string;
+  description: string;
+  cta?: Link;
+}
+
+const { id = "about", title, subtitle, award, mission, description, cta } = Astro.props;
+---
+
+<section class="sy-about" id={id}>
+  <div class="u-container">
+    <!-- Editorial Two-Column Layout -->
+    <div class="editorial-grid">
+      <!-- Left Column: Main Content (60%) -->
+      <div class="content-column">
+        <div class="section-label" data-sy-reveal="">
+          <span class="label-line"></span>
+          <span class="label-text">Nuestra Historia</span>
+        </div>
+
+        <h2 class="editorial-title" data-sy-reveal="words">
+          {title}
+        </h2>
+
+        {
+          subtitle ? (
+            <p class="editorial-subtitle" data-sy-reveal="lines">
+              {subtitle}
+            </p>
+          ) : null
+        }
+
+        <!-- Award Badge - Minimal Seal Style -->
+        <div class="award-seal" data-sy-reveal="">
+          <div class="seal-badge">
+            <svg
+              class="seal-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
+            <span class="seal-text">Galardonado</span>
+          </div>
+          <div class="award-info">
+            <h3 class="award-name">{award}</h3>
+            <span class="award-year">2024</span>
+          </div>
+        </div>
+
+        <!-- Mission Statement - Clean Typography -->
+        <div class="mission-statement" data-sy-reveal="lines">
+          <h3 class="mission-label">Nuestra Misión</h3>
+          <p class="mission-text">{mission}</p>
+        </div>
+
+        <!-- Description -->
+        <p class="editorial-description" data-sy-reveal="lines">
+          {description}
+        </p>
+
+        {cta ? <Button {...cta} arrow class="cta-button" /> : null}
+      </div>
+
+      <!-- Right Column: Stats Overlay (40%) -->
+      <div class="stats-column">
+        <div class="stats-overlay" data-sy-reveal="">
+          <!-- Minimal Stats Display -->
+          <div class="stat-item">
+            <div class="stat-number">100<span class="stat-plus">+</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat-label">MiPyMEs Registradas</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number">50<span class="stat-plus">K+</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Recomendaciones IA</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number">15<span class="stat-plus">+</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat-label">Municipios Cubiertos</div>
+          </div>
+        </div>
+
+        <!-- Decorative Element -->
+        <div class="decorative-accent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sy-about {
+    padding: 10rem 0;
+    position: relative;
+    background: var(--color-bg); /* Pure white/solid background */
+
+    @media (--mq-tablet) {
+      padding: 6rem 0;
+    }
+  }
+
+  /* Editorial Grid Layout */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* 60/40 split */
+    gap: 6rem;
+    align-items: start;
+
+    @media (--mq-desktop-lg) {
+      gap: 4rem;
+    }
+
+    @media (--mq-tablet) {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* Section Label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s var(--ease-out-cubic);
+
+    &.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .label-line {
+    width: 3rem;
+    height: 2px;
+    background: var(--color-purple);
+  }
+
+  .label-text {
+    font-family: var(--font-family-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+  }
+
+  /* Editorial Title - Large Format */
+  .editorial-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin: 0 0 1.5rem 0;
+    max-width: 20ch; /* Optimal reading width */
+
+    @media (--mq-phone) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .editorial-subtitle {
+    font-family: var(--font-family-body);
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-text-alt);
+    margin: 0 0 3rem 0;
+    max-width: 60ch;
+  }
+
+  /* Award Seal - Minimal & Elegant */
+  .award-seal {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin: 3rem 0;
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .seal-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .seal-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-green);
+    stroke-width: 1.5;
+  }
+
+  .seal-text {
+    font-family: var(--font-family-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-green);
+  }
+
+  .award-info {
+    flex: 1;
+    padding-top: 0.25rem;
+  }
+
+  .award-name {
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .award-year {
+    font-family: var(--font-family-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-alt);
+  }
+
+  /* Mission Statement - Clean Typography */
+  .mission-statement {
+    margin: 3rem 0;
+    padding-left: 2rem;
+    border-left: 2px solid var(--color-purple);
+  }
+
+  .mission-label {
+    font-family: var(--font-family-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-purple);
+    margin: 0 0 1rem 0;
+  }
+
+  .mission-text {
+    font-family: var(--font-family-body);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0;
+    max-width: 55ch;
+  }
+
+  /* Editorial Description */
+  .editorial-description {
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--color-text-alt);
+    margin: 2.5rem 0;
+    max-width: 60ch;
+  }
+
+  .cta-button {
+    margin-top: 2.5rem;
+  }
+
+  /* Stats Column - Minimal Overlay Style */
+  .stats-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stats-overlay {
+    background: rgba(var(--rgb-text), 0.02);
+    border: 1px solid rgba(var(--rgb-text), 0.08);
+    border-radius: 0.5rem;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s var(--ease-out-cubic);
+
+    &.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (--mq-tablet) {
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  /* Stat Item - Inline Minimal Design */
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-family-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+
+    @media (--mq-phone) {
+      font-size: 3rem;
+    }
+  }
+
+  .stat-plus {
+    font-size: 2rem;
+    color: var(--color-text-alt);
+    font-weight: 600;
+  }
+
+  .stat-divider {
+    width: 2rem;
+    height: 2px;
+    background: var(--color-orange);
+  }
+
+  .stat-label {
+    font-family: var(--font-family-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-text-alt);
+    max-width: 20ch;
+  }
+
+  /* Decorative Accent */
+  .decorative-accent {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(var(--rgb-purple-accent), 0.08) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+
+    @media (--mq-tablet) {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,314 @@
+---
+import Button from "./Button.astro";
+import type { Link } from "../types";
+
+interface Item {
+  title: string;
+  description: string;
+  price: {
+    amount: string;
+    duration: string;
+  };
+  link: Link;
+  features: {
+    title: string;
+    disabled?: boolean;
+  }[];
+}
+
+interface Props {
+  id?: string;
+  title: string;
+  subtitle: string;
+  items: Item[];
+  showToggle?: boolean;
+}
+
+const { title, subtitle, items, showToggle = false } = Astro.props;
+---
+
+<div class="sy-plans" id={Astro.props.id}>
+  <div class="u-container">
+    <div data-gl-place data-gl-place-factor="1.5"></div>
+
+    <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+    <p class="u-text subtitle" data-sy-reveal="lines">{subtitle}</p>
+
+    {showToggle && (
+      <div class="pricing-toggle" data-sy-reveal="fade">
+        <button class="toggle-btn active" data-period="monthly">Mensual</button>
+        <button class="toggle-btn" data-period="annual">Anual</button>
+      </div>
+    )}
+
+    <div class="plans">
+      {
+        items.map((item, i) => {
+          const colorMap = i === 0 ? "primary" : "primary-alt";
+          return (
+            <div class="plan" class:list={[i === 1 && "featured"]}>
+              <div class="plan-inner">
+                <h3 class="u-text plan-title" data-sy-reveal="words">
+                  {item.title}
+                </h3>
+                <p class="u-text plan-description" data-sy-reveal="lines">
+                  {item.description}
+                </p>
+                <p class="u-heading price">
+                  <span data-sy-reveal="words">{item.price.amount}</span>
+                  <span class="duration u-text" data-sy-reveal="words">
+                    /{item.price.duration}
+                  </span>
+                </p>
+                <ul class="u-text features">
+                  {item.features.map((feat) => (
+                    <li
+                      class:list={[!feat.disabled && "available"]}
+                      data-sy-reveal="lines"
+                    >
+                      {feat.title}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  {...item.link}
+                  color={colorMap as "primary" | "primary-alt"}
+                />
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  [data-gl-place] {
+    --d: 1;
+    --s: 18.75rem;
+    margin: 3rem auto 5rem;
+
+    @media (--mq-tablet) {
+      --s: 16rem;
+    }
+  }
+
+  .sy-plans {
+    margin: 2rem 0;
+    position: relative;
+    z-index: 2;
+    padding: 6rem 0;
+    background: var(--color-bg);
+
+    @media (--mq-tablet) {
+      padding: 4rem 0;
+    }
+
+    @media (--mq-phone) {
+      padding: 3rem 0;
+    }
+  }
+
+  .title {
+    --fs: 3rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 0.1em;
+    color: var(--color-text);
+
+    @media (--mq-tablet) {
+      --fs: 2.5rem;
+    }
+
+    @media (--mq-phone) {
+      --fs: 2rem;
+    }
+  }
+
+  .subtitle {
+    --fs: var(--font-size-md);
+    color: var(--color-text-alt);
+    max-width: 32em;
+    text-align: center;
+    margin: 0 auto 2em;
+  }
+
+  .pricing-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s var(--ease-out-cubic);
+
+    &[data-sy-reveal="fade"].is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .toggle-btn {
+    padding: 0.75rem 2rem;
+    border: 2px solid rgba(var(--rgb-text), 0.15);
+    background: var(--color-bg);
+    color: var(--color-text-alt);
+    border-radius: 2rem;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out-cubic);
+
+    &:hover {
+      border-color: rgba(var(--rgb-purple-accent), 0.3);
+      color: var(--color-text);
+    }
+
+    &.active {
+      background: var(--color-purple);
+      color: var(--color-white);
+      border-color: var(--color-purple);
+    }
+  }
+
+  .plans {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @media (--mq-tablet-sm) {
+      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  .plan {
+    border-radius: 1rem;
+    max-width: 24rem;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding: 2px;
+    background: var(--color-bg);
+    overflow: hidden;
+    border: 2px solid rgba(var(--rgb-text), 0.08);
+    transition: all 0.3s var(--ease-out-cubic);
+
+    &:hover {
+      box-shadow: 0 8px 30px rgba(var(--rgb-text), 0.1);
+      transform: translateY(-4px);
+      border-color: rgba(var(--rgb-purple-accent), 0.3);
+    }
+
+    &.featured {
+      border-color: var(--color-purple);
+      box-shadow: 0 8px 40px rgba(var(--rgb-purple-accent), 0.2);
+
+      .plan-inner {
+        background: rgba(var(--rgb-purple-accent), 0.03);
+      }
+    }
+  }
+
+  .plan-inner {
+    background: var(--color-bg);
+    border-radius: 0.9rem;
+    padding: 2.5rem 2rem;
+
+    @media (--mq-phone) {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  .plan-title {
+    --fs: var(--font-size-xl);
+    --fw: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .plan-description {
+    --fs: var(--font-size-sm);
+    color: var(--color-text-alt);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: 0.1em;
+    margin: 0;
+    --fs: 3rem;
+    --fw: 400;
+    color: var(--color-text);
+
+    @media (--mq-phone) {
+      --fs: 2.5rem;
+    }
+  }
+
+  .duration {
+    --fs: var(--font-size-sm);
+    padding-top: 0.5em;
+    color: var(--color-text-alt);
+  }
+
+  .features {
+    --fs: var(--font-size-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75em;
+    margin: 2rem 0;
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      color: var(--color-text-alt);
+
+      &:before {
+        opacity: 0;
+        transition: opacity 0.3s var(--ease-out-cubic);
+        background: currentColor;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='253' height='251' fill='%23000' viewBox='0 0 253 251'%3E%3Cpath d='M250.06 8.59a17.57 17.57 0 0 0-28.72-2.11L92.92 164.79a7.5 7.5 0 0 1-11.97-.42l-30.77-43.92a27.8 27.8 0 0 0-45.52 31.87l62.97 89.95a19.22 19.22 0 0 0 31.53-.03l18.07-25.97 132.1-188.66a17.56 17.56 0 0 0 .7-19.02h.03Z'/%3E%3C/svg%3E%0A")
+          no-repeat center / contain;
+        width: 0.6em;
+        height: 0.6em;
+        content: "";
+        display: block;
+      }
+
+      &.is-in:before {
+        opacity: 1;
+      }
+
+      &.available {
+        color: var(--color-green);
+      }
+    }
+  }
+</style>
+
+<script>
+  // Pricing toggle functionality
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      toggleButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      const period = (button as HTMLButtonElement).dataset.period;
+      console.log(`Switched to ${period} pricing`);
+      // Here you would update prices based on period
+    });
+  });
+</script>

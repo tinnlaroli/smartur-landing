@@ -1,0 +1,129 @@
+---
+import circuitImg from "../assets/imgs/circuit.png";
+
+interface Props {
+  title: string;
+  text: string;
+  features: { title: string; description: string }[];
+}
+
+const { title, text, features } = Astro.props;
+---
+
+<div class="sy-technology-section">
+  <div class="circuit-bg"></div>
+  <div class="u-container container">
+    <div class="inner">
+      <div class="header">
+        <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+        <p class="u-text intro" data-sy-reveal="lines">
+          {text}
+        </p>
+      </div>
+      <div class="features">
+        {
+          features.map((feature) => (
+            <div class="feature-card">
+              <h3 class="u-heading feature-title">{feature.title}</h3>
+              <p class="u-text feature-description">{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sy-technology-section {
+    position: relative;
+    padding: 10rem 0;
+    background: rgba(var(--rgb-purple-accent), 0.05); /* Solid subtle purple background */
+    overflow: hidden;
+  }
+
+  .circuit-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/src/assets/imgs/circuit.png");
+    background-repeat: repeat;
+    background-size: 100px;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .header {
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .title {
+    --fs: 3rem;
+    --lh: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--color-pink);
+
+    @media (--mq-phone) {
+      --fs: 2.5rem;
+    }
+  }
+
+  .intro {
+    --fs: var(--font-size-lg);
+    color: var(--color-text-alt);
+    line-height: 1.6;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+
+    @media (--mq-phone) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-card {
+    background: var(--color-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    border: 2px solid rgba(var(--rgb-purple-accent), 0.3);
+    transition: all 0.3s var(--ease-out-cubic);
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(var(--rgb-pink-primary), 0.2);
+      border-color: rgba(var(--rgb-pink-primary), 0.6);
+    }
+  }
+
+  .feature-title {
+    --fs: 1.25rem;
+    --fw: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-purple);
+  }
+
+  .feature-description {
+    --fs: var(--font-size-sm);
+    color: var(--color-text-alt);
+    line-height: 1.6;
+  }
+</style>

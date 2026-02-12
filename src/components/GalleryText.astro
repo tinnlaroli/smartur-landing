@@ -2,7 +2,6 @@
 import type { Link, Image } from "../types";
 import Button from "./Button.astro";
 import Gallery from "./Gallery.astro";
-import GradientBackground from "./GradientBackground.astro";
 import TextMarquee from "../components/TextMarquee.astro";
 
 interface Props {
@@ -26,7 +25,7 @@ const { title, text, cta, images, marqueeTexts } = Astro.props;
     <Gallery class="gallery" images={images} />
   </div>
   <TextMarquee class="marquee" texts={marqueeTexts} direction={-1} />
-  <GradientBackground />
+  <div class="solid-background"></div>
 </div>
 
 <style>
@@ -103,5 +102,16 @@ const { title, text, cta, images, marqueeTexts } = Astro.props;
     padding: 2rem 0;
     margin: 6rem 0 0;
     --c: var(--color-white);
+  }
+
+  .solid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--rgb-purple-accent), 0.03);
+    z-index: 1;
+    pointer-events: none;
   }
 </style>

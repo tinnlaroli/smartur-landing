@@ -7,6 +7,7 @@ type CommonProps = {
   title: string;
   revealable?: boolean;
   manualReveal?: boolean;
+  ariaLabel?: string;
 };
 
 type AnchorProps = {
@@ -34,6 +35,7 @@ const {
   arrow = false,
   revealable = true,
   manualReveal = false,
+  ariaLabel,
 } = Astro.props;
 
 const Element = url ? "a" : "button";
@@ -58,6 +60,7 @@ const attrs =
     className.toString(),
   ]}
   {...attrs}
+  aria-label={ariaLabel || title}
   data-sy-reveal={revealable ? "" : undefined}
   data-sy-reveal-manual={manualReveal ? "" : undefined}
 >
@@ -72,9 +75,9 @@ const attrs =
     --fs: var(--font-size-xs);
     --fw: 600;
     --text-color: var(--btn-txt-color, var(--color-white));
-    --bg-color: var(--btn-bg-color, var(--color-brand-1));
+    --bg-color: var(--btn-bg-color, var(--color-orange));
     --hover-bg-color: var(--btn-hover-bg-color, var(--color-white));
-    --hover-text-color: var(--btn-hover-text-color, var(--color-brand-1));
+    --hover-text-color: var(--btn-hover-text-color, var(--color-orange));
 
     cursor: pointer;
     margin: 0;
@@ -125,6 +128,11 @@ const attrs =
         line-height: 1.25;
         background: var(--bg-color);
 
+        /* Reduce padding on narrower screens */
+        @media (max-width: 1024px) {
+          padding: 0.8em 1.2em;
+        }
+
         &:first-child {
           transition: clip-path 0.25s var(--ease-out-cubic);
           color: var(--hover-text-color);
@@ -137,8 +145,10 @@ const attrs =
     }
 
     &:global(.btn-primary-alt) {
-      --text-color: var(--btn-txt-color, var(--color-text));
-      --bg-color: var(--btn-bg-color, var(--color-brand-3));
+      --text-color: var(--btn-txt-color, var(--color-white));
+      --bg-color: var(--btn-bg-color, var(--color-purple));
+      --hover-bg-color: var(--btn-hover-bg-color, var(--color-white));
+      --hover-text-color: var(--btn-hover-text-color, var(--color-purple));
     }
 
     &:hover,
