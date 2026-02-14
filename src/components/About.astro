@@ -2,17 +2,45 @@
 import Button from "./Button.astro";
 import type { Link } from "../types";
 
+interface Stat {
+  number: string;
+  suffix: string;
+  label: string;
+}
+
+interface Slide {
+  id: string;       // "mission" | "vision" | "values"
+  label: string;
+  text: string;
+}
+
 interface Props {
   id?: string;
   title: string;
   subtitle?: string;
+  sectionLabel: string;
   award: string;
-  mission: string;
+  awardBadge: string;
+  awardYear?: string;
+  slides: Slide[];
   description: string;
+  stats: Stat[];
   cta?: Link;
 }
 
-const { id = "about", title, subtitle, award, mission, description, cta } = Astro.props;
+const {
+  id = "about",
+  title,
+  subtitle,
+  sectionLabel,
+  award,
+  awardBadge,
+  awardYear = "2024",
+  slides,
+  description,
+  stats,
+  cta,
+} = Astro.props;
 ---
 
 <section class="sy-about" id={id}>
@@ -23,7 +51,7 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
       <div class="content-column">
         <div class="section-label" data-sy-reveal="">
           <span class="label-line"></span>
-          <span class="label-text">Nuestra Historia</span>
+          <span class="label-text">{sectionLabel}</span>
         </div>
 
         <h2 class="editorial-title" data-sy-reveal="words">
@@ -53,24 +81,23 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
                 d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
               ></path>
             </svg>
-            <span class="seal-text">Galardonado</span>
+            <span class="seal-text">{awardBadge}</span>
           </div>
           <div class="award-info">
             <h3 class="award-name">{award}</h3>
-            <span class="award-year">2024</span>
+            <span class="award-year">{awardYear}</span>
           </div>
         </div>
 
-        <!-- Mission Statement - Clean Typography -->
-        <div class="mission-statement" data-sy-reveal="lines">
-          <h3 class="mission-label">Nuestra Misión</h3>
-          <p class="mission-text">{mission}</p>
+        <!-- Mission/Vision/Values Cycling Statement -->
+        <div class="mission-carousel" id="mission-carousel">
+          {slides.map((slide, i) => (
+            <div class={`mission-slide ${i === 0 ? 'active' : ''}`} data-slide={slide.id}>
+              <h3 class="mission-label">{slide.label}</h3>
+              <p class="mission-text" set:html={slide.text} />
+            </div>
+          ))}
         </div>
-
-        <!-- Description -->
-        <p class="editorial-description" data-sy-reveal="lines">
-          {description}
-        </p>
 
         {cta ? <Button {...cta} arrow class="cta-button" /> : null}
       </div>
@@ -78,24 +105,13 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
       <!-- Right Column: Stats Overlay (40%) -->
       <div class="stats-column">
         <div class="stats-overlay" data-sy-reveal="">
-          <!-- Minimal Stats Display -->
-          <div class="stat-item">
-            <div class="stat-number">100<span class="stat-plus">+</span></div>
-            <div class="stat-divider"></div>
-            <div class="stat-label">MiPyMEs Registradas</div>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-number">50<span class="stat-plus">K+</span></div>
-            <div class="stat-divider"></div>
-            <div class="stat-label">Recomendaciones IA</div>
-          </div>
-
-          <div class="stat-item">
-            <div class="stat-number">15<span class="stat-plus">+</span></div>
-            <div class="stat-divider"></div>
-            <div class="stat-label">Municipios Cubiertos</div>
-          </div>
+          {stats.map((stat) => (
+            <div class="stat-item">
+              <div class="stat-number">{stat.number}<span class="stat-plus">{stat.suffix}</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-label">{stat.label}</div>
+            </div>
+          ))}
         </div>
 
         <!-- Decorative Element -->
@@ -109,7 +125,7 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
   .sy-about {
     padding: 10rem 0;
     position: relative;
-    background: var(--color-bg); /* Pure white/solid background */
+    background: var(--color-bg);
 
     @media (--mq-tablet) {
       padding: 6rem 0;
@@ -119,7 +135,7 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
   /* Editorial Grid Layout */
   .editorial-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* 60/40 split */
+    grid-template-columns: 1.5fr 1fr;
     gap: 6rem;
     align-items: start;
 
@@ -173,7 +189,7 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
     letter-spacing: -0.02em;
     color: var(--color-text);
     margin: 0 0 1.5rem 0;
-    max-width: 20ch; /* Optimal reading width */
+    max-width: 20ch;
 
     @media (--mq-phone) {
       font-size: 2.25rem;
@@ -246,11 +262,50 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
     color: var(--color-text-alt);
   }
 
-  /* Mission Statement - Clean Typography */
-  .mission-statement {
+  /* Mission/Vision/Values Carousel */
+  .mission-carousel {
+    position: relative;
     margin: 3rem 0;
+    min-height: 14rem;
+  }
+
+  .mission-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding-left: 2rem;
     border-left: 2px solid var(--color-purple);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+
+    /* Color variants by slide type */
+    &[data-slide="mission"] {
+      border-left-color: var(--color-green);
+
+      .mission-label { color: var(--color-green); }
+    }
+
+    &[data-slide="vision"] {
+      border-left-color: var(--color-purple);
+
+      .mission-label { color: var(--color-purple); }
+    }
+
+    &[data-slide="values"] {
+      border-left-color: var(--color-pink);
+
+      .mission-label { color: var(--color-pink); }
+    }
   }
 
   .mission-label {
@@ -265,23 +320,12 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
 
   .mission-text {
     font-family: var(--font-family-body);
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.7;
     color: var(--color-text);
     margin: 0;
     max-width: 55ch;
-  }
-
-  /* Editorial Description */
-  .editorial-description {
-    font-family: var(--font-family-body);
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--color-text-alt);
-    margin: 2.5rem 0;
-    max-width: 60ch;
   }
 
   .cta-button {
@@ -380,3 +424,17 @@ const { id = "about", title, subtitle, award, mission, description, cta } = Astr
     }
   }
 </style>
+
+<script>
+  const carousel = document.getElementById('mission-carousel');
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.mission-slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 6000);
+  }
+</script>

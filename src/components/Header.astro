@@ -81,20 +81,22 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     --br: 1.5rem;
 
     position: fixed;
-    top: 0;
+    top: 0.75rem;
     left: 0;
     right: 0;
     z-index: 10;
     color: var(--color-text);
     margin: 0 auto;
+    padding: 0.5rem 0;
     transition: transform 0.3s var(--ease-out-cubic);
 
     :global(body.is-nav-hidden) & {
-      transform: translateY(-100%);
+      transform: translateY(calc(-100% - 0.75rem));
     }
 
     @media (--mq-tablet-sm) {
       --br: 1rem;
+      top: 0.5rem;
     }
 
     &::before,
@@ -142,7 +144,8 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
+    gap: 2.25rem;
+    padding: 0.35rem 0;
 
     @media (--mq-tablet) {
       flex-wrap: wrap;
@@ -156,7 +159,7 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     flex-shrink: 0;
 
     img {
-      height: 2.2rem; /* Reduced from 2.4rem */
+      height: 3.2rem;
       width: auto;
     }
   }
@@ -210,7 +213,7 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     :global(ul) {
       @extend %u-text;
 
-      --fs: var(--font-size-sm);
+      --fs: var(--font-size-base);
       display: flex;
       list-style: none;
       padding: 0;

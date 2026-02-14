@@ -1,7 +1,7 @@
 ---
 import type { Link } from "../types";
 import Button from "./Button.astro";
-import mockupVideo from "../assets/video/mockup.mp4";
+
 
 interface Props {
   title: string;
@@ -40,17 +40,9 @@ const { title, subtitle, cta } = Astro.props;
         }
       </div>
       <div class="video-wrapper hero-video-wrap">
-        <video
-          src={mockupVideo}
-          poster="/src/assets/imgs/mountain.png"
-          autoplay
-          loop
-          muted
-          playsinline
-          aria-label="Demostración de la plataforma SMARTUR en acción"
-          class="hero-video"
-          title="Demostración interactiva de SMARTUR"></video>
+        <!-- 3D Phone Container -->
       </div>
+    
     </div>
   </div>
 </div>
@@ -269,50 +261,69 @@ const { title, subtitle, cta } = Astro.props;
 
 <script>
   import gsap from "gsap";
+  import { initPhoneScene } from "../assets/3d/phone";
+
+  let heroAnimated = false;
 
   function animateHero() {
+    if (heroAnimated) return;
+    heroAnimated = true;
+
     const hero = document.getElementById("hero-section");
     if (!hero) return;
+
+    // Remove hero-revealed class to ensure GSAP animations are not overridden by CSS
+    hero.classList.remove("hero-revealed");
 
     const titleEl = hero.querySelector(".hero-title") as HTMLElement;
     const subtitleEl = hero.querySelector(".hero-subtitle") as HTMLElement;
     const ctaEl = hero.querySelector(".hero-cta") as HTMLElement;
-    const videoEl = hero.querySelector(".hero-video-wrap") as HTMLElement;
+    const phoneContainer = hero.querySelector(".hero-video-wrap") as HTMLElement;
     const shimmerEl = hero.querySelector(".hero-shimmer") as HTMLElement;
     const ctaShimmer = hero.querySelector(".cta-shimmer") as HTMLElement;
 
+    // Explicitly set initial states to ensure they are hidden before animation starts
+    const elementsToHide = [titleEl, subtitleEl, ctaEl, phoneContainer].filter(el => el !== null);
+    gsap.set(elementsToHide, { opacity: 0 });
+    
+    if (titleEl) gsap.set(titleEl, { y: 40 });
+    if (subtitleEl) gsap.set(subtitleEl, { y: 30, filter: "blur(8px)" });
+    if (ctaEl) gsap.set(ctaEl, { scale: 0.7 });
+    if (phoneContainer) gsap.set(phoneContainer, { x: 80, scale: 0.92 });
+
     const tl = gsap.timeline({
+      defaults: { ease: "power3.out" },
       onComplete() {
         hero.classList.add("hero-revealed");
       },
     });
 
     // ——— Background shimmer wash ———
-    tl.to(
-      shimmerEl,
-      {
-        opacity: 1,
-        x: "200%",
-        duration: 1.5,
-        ease: "power2.inOut",
-      },
-      0,
-    );
+    if (shimmerEl) {
+       tl.to(
+        shimmerEl,
+        {
+          opacity: 1,
+          x: "200%",
+          duration: 1.5,
+          ease: "power2.inOut",
+        },
+        0,
+      );
 
-    tl.to(
-      shimmerEl,
-      {
-        opacity: 0,
-        duration: 0.5,
-      },
-      1.2,
-    );
+      tl.to(
+        shimmerEl,
+        {
+          opacity: 0,
+          duration: 0.5,
+        },
+        1.2,
+      );
+    }
 
     // ——— Title: words cascade ———
     if (titleEl) {
-      // Wrap each word in a span for animation
       const html = titleEl.innerHTML;
-      // Process: split text nodes into word spans, keeping existing HTML tags
       const tempDiv = document.createElement("div");
       tempDiv.innerHTML = html;
 
@@ -335,7 +346,6 @@ const { title, subtitle, cta } = Astro.props;
           node.parentNode?.replaceChild(frag, node);
         } else if (node.nodeType === Node.ELEMENT_NODE) {
           const el = node as HTMLElement;
-          // For color spans and br tags, don't split - just add class
           if (el.tagName === "SPAN" && el.style.color) {
             el.classList.add("hero-word");
             el.style.display = "inline-block";
@@ -360,11 +370,11 @@ const { title, subtitle, cta } = Astro.props;
           opacity: 1,
           y: 0,
           rotateX: 0,
-          duration: 0.7,
+          duration: 0.8,
           stagger: 0.08,
-          ease: "back.out(1.4)",
+          ease: "back.out(1.2)",
         },
-        0.2,
+        0.1,
       );
     }
 
@@ -376,10 +386,9 @@ const { title, subtitle, cta } = Astro.props;
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 0.8,
-          ease: "power3.out",
+          duration: 1,
         },
-        0.8,
+        0.5,
       );
     }
 
@@ -390,13 +399,12 @@ const { title, subtitle, cta } = Astro.props;
         {
           opacity: 1,
           scale: 1,
-          duration: 0.8,
+          duration: 1,
           ease: "elastic.out(1, 0.5)",
         },
-        1.1,
+        0.7,
       );
 
-      // Shimmer across button
       if (ctaShimmer) {
         tl.to(
           ctaShimmer,
@@ -405,23 +413,24 @@ const { title, subtitle, cta } = Astro.props;
             duration: 0.8,
             ease: "power2.inOut",
           },
-          1.6,
+          1.2,
         );
       }
     }
 
-    // ——— Video: slide from right ———
-    if (videoEl) {
+    // ——— Video/Phone: slide from right with bounce ———
+    // Container only — 3D canvas handles its own fade-in via phone.ts
+    if (phoneContainer) {
       tl.to(
-        videoEl,
+        phoneContainer,
         {
           opacity: 1,
           x: 0,
           scale: 1,
           duration: 1.2,
-          ease: "power3.out",
+          ease: "back.out(1.5)",
         },
-        0.5,
+        0.3, 
       );
     }
   }
@@ -433,4 +442,17 @@ const { title, subtitle, cta } = Astro.props;
   if (!document.body.classList.contains("is-loading")) {
     setTimeout(animateHero, 100);
   }
+
+  // ——— 3D Phone: Load SEPARATELY during page loader phase ———
+  // This runs while the user watches the loader animation,
+  // so WebGL context + scene download don't interfere with hero text animation
+  (function preload3D() {
+    const phoneContainer = document.querySelector(".hero-video-wrap") as HTMLElement;
+    if (!phoneContainer) return;
+    try {
+      initPhoneScene(phoneContainer);
+    } catch (e) {
+      console.warn("Failed to initialize 3D Phone scene:", e);
+    }
+  })();
 </script>

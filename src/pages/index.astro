@@ -162,9 +162,33 @@ import PlansNew from "../components/PlansNew.astro";
     id="nosotros"
     title="Quiénes Somos"
     subtitle="Innovación tecnológica al servicio del turismo regional"
+    sectionLabel="Nuestra Historia"
     award="Galardón Turístico Mi Veracruz"
-    mission="Conectar turistas con experiencias auténticas en Las Altas Montañas mediante inteligencia artificial que empodera a las MiPyMEs locales."
+    awardBadge="Galardonado"
+    awardYear="2024"
+    slides={[
+      {
+        id: "mission",
+        label: "Misión",
+        text: "Impulsar una plataforma inteligente que conecte a viajeros con experiencias locales auténticas y personalizadas mediante el uso de inteligencia artificial. Promovemos el consumo responsable y el fortalecimiento de la economía regional, ofreciendo información clara, accesible y alineada a los intereses del usuario.",
+      },
+      {
+        id: "vision",
+        label: "Visión",
+        text: "Consolidarnos como la plataforma digital líder en recomendaciones turísticas dentro de la región de Las Altas Montañas. Buscamos ser referentes en innovación tecnológica y sostenibilidad, generando un impacto social positivo a través de un modelo de turismo inclusivo, moderno y ético.",
+      },
+      {
+        id: "values",
+        label: "Valores",
+        text: "Nuestra cultura organizacional se fundamenta en pilares de integridad y servicio:<br/><br/><strong>Ética y Honestidad:</strong> Actuamos con transparencia y fiabilidad.<br/><strong>Empatía e Inclusión:</strong> Diseñamos para todos con respeto y equidad.<br/><strong>Responsabilidad:</strong> Comprometidos con el desarrollo local sostenible.<br/><strong>Seguridad e Imparcialidad:</strong> Garantizamos confianza en cada recomendación.",
+      },
+    ]}
     description="Galardonados con el 'Galardón Turístico Mi Veracruz 2024', SMARTUR utiliza algoritmos avanzados de Machine Learning para ofrecer recomendaciones personalizadas que benefician tanto a viajeros como a negocios locales."
+    stats={[
+      { number: "100", suffix: "+", label: "MiPyMEs Registradas" },
+      { number: "50", suffix: " mil+", label: "Recomendaciones IA" },
+      { number: "15", suffix: "+", label: "Municipios Cubiertos" },
+    ]}
     cta={{
       title: "Ver Planes",
       url: "#pricing",

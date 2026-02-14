@@ -36,15 +36,29 @@ export const ui = {
     // About
     "about.title": "Quiénes Somos",
     "about.subtitle": "Innovación tecnológica al servicio del turismo regional",
+    "about.sectionLabel": "Nuestra Historia",
     "about.award": "Galardón Turístico Mi Veracruz",
-    "about.mission.title": "Nuestra Misión",
+    "about.awardBadge": "Galardonado",
+    "about.mission.title": "Misión",
     "about.mission.text":
-      "Conectar turistas con experiencias auténticas en Las Altas Montañas mediante inteligencia artificial que empodera a las MiPyMEs locales.",
+      "Impulsar una plataforma inteligente que conecte a viajeros con experiencias locales auténticas y personalizadas mediante el uso de inteligencia artificial. Promovemos el consumo responsable y el fortalecimiento de la economía regional, ofreciendo información clara, accesible y alineada a los intereses del usuario.",
+    "about.vision.title": "Visión",
+    "about.vision.text":
+      "Consolidarnos como la plataforma digital líder en recomendaciones turísticas dentro de la región de Las Altas Montañas. Buscamos ser referentes en innovación tecnológica y sostenibilidad, generando un impacto social positivo a través de un modelo de turismo inclusivo, moderno y ético.",
+    "about.values.title": "Valores",
+    "about.values.text":
+      "Nuestra cultura organizacional se fundamenta en pilares de integridad y servicio:<br/><br/><strong>Ética y Honestidad:</strong> Actuamos con transparencia y fiabilidad.<br/><strong>Empatía e Inclusión:</strong> Diseñamos para todos con respeto y equidad.<br/><strong>Responsabilidad:</strong> Comprometidos con el desarrollo local sostenible.<br/><strong>Seguridad e Imparcialidad:</strong> Garantizamos confianza en cada recomendación.",
     "about.description":
       "Galardonados con el 'Galardón Turístico Mi Veracruz 2024', SMARTUR utiliza algoritmos avanzados de Machine Learning para ofrecer recomendaciones personalizadas que benefician tanto a viajeros como a negocios locales.",
-    "about.stat.mipymes": "MiPyMEs Registradas",
-    "about.stat.recommendations": "Recomendaciones IA",
-    "about.stat.municipalities": "Municipios Cubiertos",
+    "about.stat1.number": "100",
+    "about.stat1.suffix": "+",
+    "about.stat1.label": "MiPyMEs Registradas",
+    "about.stat2.number": "50",
+    "about.stat2.suffix": " mil+",
+    "about.stat2.label": "Recomendaciones IA",
+    "about.stat3.number": "15",
+    "about.stat3.suffix": "+",
+    "about.stat3.label": "Municipios Cubiertos",
 
     // Introducing
     "introducing.title":
@@ -238,15 +252,29 @@ export const ui = {
     "about.title": "Who We Are",
     "about.subtitle":
       "Technological innovation at the service of regional tourism",
+    "about.sectionLabel": "Our Story",
     "about.award": "Mi Veracruz Tourism Award",
-    "about.mission.title": "Our Mission",
+    "about.awardBadge": "Award-Winning",
+    "about.mission.title": "Mission",
     "about.mission.text":
-      "Connect tourists with authentic experiences in the High Mountains through artificial intelligence that empowers local SMEs.",
+      "To drive an intelligent platform that connects travelers with authentic and personalized local experiences through artificial intelligence. We promote responsible consumption and the strengthening of the regional economy, offering clear, accessible information aligned with user interests.",
+    "about.vision.title": "Vision",
+    "about.vision.text":
+      "To establish ourselves as the leading digital platform for tourism recommendations in the High Mountains region. We aim to be a benchmark in technological innovation and sustainability, generating positive social impact through an inclusive, modern, and ethical tourism model.",
+    "about.values.title": "Values",
+    "about.values.text":
+      "Our organizational culture is built on pillars of integrity and service:<br/><br/><strong>Ethics & Honesty:</strong> We act with transparency and reliability.<br/><strong>Empathy & Inclusion:</strong> We design for everyone with respect and equity.<br/><strong>Responsibility:</strong> Committed to sustainable local development.<br/><strong>Security & Impartiality:</strong> We guarantee trust in every recommendation.",
     "about.description":
       "Awarded the 'Mi Veracruz Tourism Award 2024', SMARTUR uses advanced Machine Learning algorithms to offer personalized recommendations that benefit both travelers and local businesses.",
-    "about.stat.mipymes": "Registered SMEs",
-    "about.stat.recommendations": "AI Recommendations",
-    "about.stat.municipalities": "Municipalities Covered",
+    "about.stat1.number": "100",
+    "about.stat1.suffix": "+",
+    "about.stat1.label": "Registered SMEs",
+    "about.stat2.number": "50",
+    "about.stat2.suffix": "K+",
+    "about.stat2.label": "AI Recommendations",
+    "about.stat3.number": "15",
+    "about.stat3.suffix": "+",
+    "about.stat3.label": "Municipalities Covered",
 
     // Introducing
     "introducing.title":
@@ -416,15 +444,29 @@ export const ui = {
     "about.title": "Qui sommes-nous",
     "about.subtitle":
       "Innovation technologique au service du tourisme régional",
+    "about.sectionLabel": "Notre Histoire",
     "about.award": "Prix Touristique Mi Veracruz",
-    "about.mission.title": "Notre Mission",
+    "about.awardBadge": "Primé",
+    "about.mission.title": "Mission",
     "about.mission.text":
-      "Connecter les touristes avec des expériences authentiques dans les Hautes Montagnes grâce à l'intelligence artificielle qui autonomise les PME locales.",
+      "Promouvoir une plateforme intelligente qui connecte les voyageurs avec des expériences locales authentiques et personnalisées grâce à l'intelligence artificielle. Nous encourageons la consommation responsable et le renforcement de l'économie régionale, en offrant des informations claires, accessibles et alignées sur les intérêts des utilisateurs.",
+    "about.vision.title": "Vision",
+    "about.vision.text":
+      "Nous consolider comme la principale plateforme numérique de recommandations touristiques dans la région des Hautes Montagnes. Nous cherchons à être une référence en innovation technologique et durabilité, en générant un impact social positif à travers un modèle de tourisme inclusif, moderne et éthique.",
+    "about.values.title": "Valeurs",
+    "about.values.text":
+      "Notre culture organisationnelle repose sur des piliers d'intégrité et de service :<br/><br/><strong>Éthique et Honnêteté :</strong> Nous agissons avec transparence et fiabilité.<br/><strong>Empathie et Inclusion :</strong> Nous concevons pour tous avec respect et équité.<br/><strong>Responsabilité :</strong> Engagés dans le développement local durable.<br/><strong>Sécurité et Impartialité :</strong> Nous garantissons la confiance dans chaque recommandation.",
     "about.description":
       "Lauréat du 'Prix Touristique Mi Veracruz 2024', SMARTUR utilise des algorithmes avancés de Machine Learning pour offrir des recommandations personnalisées qui profitent aux voyageurs et aux entreprises locales.",
-    "about.stat.mipymes": "PME Enregistrées",
-    "about.stat.recommendations": "Recommandations IA",
-    "about.stat.municipalities": "Municipalités Couvertes",
+    "about.stat1.number": "100",
+    "about.stat1.suffix": "+",
+    "about.stat1.label": "PME Enregistrées",
+    "about.stat2.number": "50",
+    "about.stat2.suffix": "K+",
+    "about.stat2.label": "Recommandations IA",
+    "about.stat3.number": "15",
+    "about.stat3.suffix": "+",
+    "about.stat3.label": "Municipalités Couvertes",
 
     // Introducing
     "introducing.title":

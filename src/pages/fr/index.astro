@@ -161,9 +161,33 @@ import Testimonials from "../../components/Testimonials.astro";
     id="about"
     title="Qui Sommes-Nous"
     subtitle="Innovation technologique au service du tourisme régional"
-    award="Prix du Tourisme Mi Veracruz"
-    mission="Connecter les touristes avec des expériences authentiques dans les Hautes Montagnes grâce à l'intelligence artificielle qui autonomise les PME locales."
-    description="Lauréat du 'Prix du Tourisme Mi Veracruz 2024', SMARTUR utilise des algorithmes avancés de Machine Learning pour offrir des recommandations personnalisées qui profitent aux voyageurs et aux entreprises locales."
+    sectionLabel="Notre Histoire"
+    award="Prix Touristique Mi Veracruz"
+    awardBadge="Primé"
+    awardYear="2024"
+    slides={[
+      {
+        id: "mission",
+        label: "Mission",
+        text: "Promouvoir une plateforme intelligente qui connecte les voyageurs avec des expériences locales authentiques et personnalisées grâce à l'intelligence artificielle. Nous encourageons la consommation responsable et le renforcement de l'économie régionale, en offrant des informations claires, accessibles et alignées sur les intérêts des utilisateurs.",
+      },
+      {
+        id: "vision",
+        label: "Vision",
+        text: "Nous consolider comme la principale plateforme numérique de recommandations touristiques dans la région des Hautes Montagnes. Nous cherchons à être une référence en innovation technologique et durabilité, en générant un impact social positif à travers un modèle de tourisme inclusif, moderne et éthique.",
+      },
+      {
+        id: "values",
+        label: "Valeurs",
+        text: "Notre culture organisationnelle repose sur des piliers d'intégrité et de service :<br/><br/><strong>Éthique et Honnêteté :</strong> Nous agissons avec transparence et fiabilité.<br/><strong>Empathie et Inclusion :</strong> Nous concevons pour tous avec respect et équité.<br/><strong>Responsabilité :</strong> Engagés dans le développement local durable.<br/><strong>Sécurité et Impartialité :</strong> Nous garantissons la confiance dans chaque recommandation.",
+      },
+    ]}
+    description="Lauréat du 'Prix Touristique Mi Veracruz 2024', SMARTUR utilise des algorithmes avancés de Machine Learning pour offrir des recommandations personnalisées qui profitent aux voyageurs et aux entreprises locales."
+    stats={[
+      { number: "100", suffix: "+", label: "PME Enregistrées" },
+      { number: "50", suffix: "K+", label: "Recommandations IA" },
+      { number: "15", suffix: "+", label: "Municipalités Couvertes" },
+    ]}
     cta={{
       title: "Voir les Plans",
       url: "#pricing",

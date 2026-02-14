@@ -161,9 +161,33 @@ import Testimonials from "../../components/Testimonials.astro";
     id="about"
     title="Who We Are"
     subtitle="Technological innovation at the service of regional tourism"
+    sectionLabel="Our Story"
     award="Mi Veracruz Tourism Award"
-    mission="Connect tourists with authentic experiences in the High Mountains through artificial intelligence that empowers local SMEs."
+    awardBadge="Award-Winning"
+    awardYear="2024"
+    slides={[
+      {
+        id: "mission",
+        label: "Mission",
+        text: "To drive an intelligent platform that connects travelers with authentic and personalized local experiences through artificial intelligence. We promote responsible consumption and the strengthening of the regional economy, offering clear, accessible information aligned with user interests.",
+      },
+      {
+        id: "vision",
+        label: "Vision",
+        text: "To establish ourselves as the leading digital platform for tourism recommendations in the High Mountains region. We aim to be a benchmark in technological innovation and sustainability, generating positive social impact through an inclusive, modern, and ethical tourism model.",
+      },
+      {
+        id: "values",
+        label: "Values",
+        text: "Our organizational culture is built on pillars of integrity and service:<br/><br/><strong>Ethics &amp; Honesty:</strong> We act with transparency and reliability.<br/><strong>Empathy &amp; Inclusion:</strong> We design for everyone with respect and equity.<br/><strong>Responsibility:</strong> Committed to sustainable local development.<br/><strong>Security &amp; Impartiality:</strong> We guarantee trust in every recommendation.",
+      },
+    ]}
     description="Awarded the 'Mi Veracruz Tourism Award 2024', SMARTUR uses advanced Machine Learning algorithms to offer personalized recommendations that benefit both travelers and local businesses."
+    stats={[
+      { number: "100", suffix: "+", label: "Registered SMEs" },
+      { number: "50", suffix: "K+", label: "AI Recommendations" },
+      { number: "15", suffix: "+", label: "Municipalities Covered" },
+    ]}
     cta={{
       title: "View Plans",
       url: "#pricing",
