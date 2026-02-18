@@ -18,8 +18,8 @@ const { title, subtitle, mobileTitle, items } = Astro.props;
   <div class="u-container container">
     <div class="content">
       <h2 class="u-heading" data-sy-reveal="words">
-        <span>{title}</span>
-        <span aria-hidden>{mobileTitle}</span>
+        <span set:html={title} />
+        <span aria-hidden set:html={mobileTitle} />
       </h2>
       <p class="u-text subtitle" data-sy-reveal="lines">{subtitle}</p>
     </div>
@@ -91,9 +91,10 @@ const { title, subtitle, mobileTitle, items } = Astro.props;
         panel.hidden = !expanded;
 
         gsap.to(panel, {
-          duration: 0.4,
-          ease: "power3.inOut",
+          duration: 0.5,
+          ease: "power2.out", // Smoother easing
           height: expanded ? "auto" : 0,
+          opacity: expanded ? 1 : 0, // Fade in/out
         });
       }
 
@@ -110,7 +111,16 @@ const { title, subtitle, mobileTitle, items } = Astro.props;
   sy-faqs {
     display: block;
     overflow: hidden;
-    margin: 8rem 0;
+    margin: 6rem 0;
+
+    @media (--mq-tablet) {
+      margin: 4rem 0;
+    }
+
+    @media (--mq-phone) {
+      margin: 3rem 0;
+    }
+
     position: relative;
   }
 
@@ -124,7 +134,11 @@ const { title, subtitle, mobileTitle, items } = Astro.props;
 
   .content {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+
+    @media (--mq-phone) {
+      margin-bottom: 2rem;
+    }
   }
 
   h2 {
@@ -172,7 +186,8 @@ const { title, subtitle, mobileTitle, items } = Astro.props;
     display: block;
     height: 0;
     overflow: hidden;
-    will-change: height;
+    will-change: height, opacity;
+    opacity: 0; /* Default hidden state opacity */
   }
 
   .answer {

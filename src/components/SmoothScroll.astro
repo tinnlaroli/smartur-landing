@@ -1,58 +1,65 @@
 <script>
-  declare global {
-    interface Window {
-      scrollVelocity: number;
-      scrollDirection: number;
-      scrollCurrent: number;
-      scrollStickyOffsets: [number, number, number][];
-    }
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+  import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
+
+  const useNativeScroll = () =>
+    window.matchMedia("(max-width: 987px)").matches || "ontouchstart" in window;
+
+  function setupAnchorLinks(useSmoother: boolean, smoother?: { scrollTo: (href: string, a: boolean, b: string) => void }) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href");
+        if (!href || href === "#") return;
+        e.preventDefault();
+        const id = href.slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          if (useSmoother && smoother) {
+            smoother.scrollTo(href, true, "top top");
+          } else {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      });
+    });
   }
 
-  import Lenis from "lenis";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-  import { addGlobalTicker } from "../utils/globalTicker";
+  const initSmoothScroll = () => {
+    const wrapper = document.getElementById("smooth-wrapper");
+    const content = document.getElementById("smooth-content");
+    if (!wrapper || !content) return;
 
-  window.scrollStickyOffsets = window.scrollStickyOffsets || [];
-  window.scrollVelocity = 0;
-  window.scrollDirection = 1;
+    if (useNativeScroll()) {
+      document.body.classList.add("native-scroll");
+      setupAnchorLinks(false);
+      return;
+    }
 
-  const lenis = new Lenis({
-    syncTouch: true,
-    lerp: 0.125,
-  });
-  lenis.on("scroll", ScrollTrigger.update);
+    document.body.classList.remove("native-scroll");
+    const smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 2,
+      effects: true,
+      smoothTouch: 0.1,
+    });
+    setupAnchorLinks(true, smoother);
+  };
 
-  lenis.direction = 1;
-
-  addGlobalTicker((t: number) => {
-    lenis.raf(t * 1000);
-    window.scrollVelocity = lenis.velocity;
-    window.scrollDirection = lenis.direction;
-    window.scrollCurrent = lenis.animatedScroll;
-  });
+  document.addEventListener("astro:page-load", initSmoothScroll);
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(initSmoothScroll, 10);
+  } else {
+    document.addEventListener("DOMContentLoaded", initSmoothScroll);
+  }
 </script>
 
-<style>
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis:not(.lenis-autoToggle).lenis-stopped {
-    overflow: clip;
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-  }
-
-  .lenis.lenis-smooth iframe {
-    pointer-events: none;
-  }
-
-  .lenis.lenis-autoToggle {
-    transition-property: overflow;
-    transition-duration: 1ms;
-    transition-behavior: allow-discrete;
-  }
+<style is:global>
+  /* Optional: Hide scrollbar if needed, though ScrollSmoother handles it usually. 
+     Astro's ViewTransitions might re-inject styles, so global styles here are safer. 
+  */
 </style>

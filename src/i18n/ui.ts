@@ -10,11 +10,13 @@ export const ui = {
   es: {
     // Accessibility
     "accessibility.skip-to-content": "Saltar al contenido",
+    "accessibility.toggleMenu": "Alternar menú móvil",
 
     // Navigation
     "nav.home": "Inicio",
     "nav.about": "Nosotros",
-    "nav.technology": "Tecnología",
+    "nav.technology": "Beneficios",
+    "nav.destination": "Destino",
     "nav.pricing": "Precios",
     "nav.contact": "Contacto",
 
@@ -28,16 +30,17 @@ export const ui = {
     "button.contact": "Contactar",
 
     // Hero
-    "hero.title": "IA que guía, turismo que une.",
+    "hero.title":
+      "IA que <span style=\"color: var(--color-purple)\">guía,</span><br><span style=\"color: var(--color-cyan)\">turismo</span> que une.",
     "hero.subtitle":
       "SMARTUR conecta turistas con experiencias auténticas mediante IA, impulsando a las MiPyMEs de Veracruz en su transformación digital.",
-    "hero.cta": "Descubre SMARTUR",
+    "hero.cta": "Sé Parte De SMARTUR",
 
     // About
-    "about.title": "Quiénes Somos",
-    "about.subtitle": "Innovación tecnológica al servicio del turismo regional",
+    "about.title": "Quiénes <span style=\"color: var(--color-pink)\">Somos</span>",
+    "about.subtitle": "Innovación <span style=\"color: var(--color-purple)\">tecnológica</span> al servicio del <span style=\"color: var(--color-cyan)\">turismo</span> regional",
     "about.sectionLabel": "Nuestra Historia",
-    "about.award": "Galardón Turístico Mi Veracruz",
+    "about.award": "Galardón <span style=\"color: var(--color-green)\">Turístico</span> Mi Veracruz",
     "about.awardBadge": "Galardonado",
     "about.mission.title": "Misión",
     "about.mission.text":
@@ -62,17 +65,17 @@ export const ui = {
 
     // Introducing
     "introducing.title":
-      "Transformando el turismo regional con tecnología e innovación",
+      "Transformando el <span style=\"color: var(--color-cyan)\">turismo</span> regional con <span style=\"color: var(--color-purple)\">tecnología</span> e <span style=\"color: var(--color-pink)\">innovación</span>",
     "introducing.text":
       "SMARTUR nace del manual de procedimientos galardonado 'Galardón Turístico Mi Veracruz 2024'. Nuestra misión es empoderar a las MiPyMEs turísticas de las Altas Montañas mediante inteligencia artificial, ofreciendo recomendaciones personalizadas que conectan a viajeros con experiencias auténticas y fortalecen la economía local.",
 
     // Region
-    "region.title": "Las Altas Montañas de Veracruz",
+    "region.title": "Las <span style=\"color: var(--color-green)\">Altas Montañas</span> de Veracruz",
     "region.text":
       "Una región rica en cultura, naturaleza y tradiciones. Desde pueblos mágicos hasta paisajes montañosos impresionantes, Las Altas Montañas ofrece experiencias turísticas únicas que SMARTUR ayuda a descubrir y promover.",
 
     // Technology
-    "tech.title": "Tecnología que impulsa el turismo",
+    "tech.title": "<span style=\"color: var(--color-purple)\">Tecnología</span> que impulsa el <span style=\"color: var(--color-cyan)\">turismo</span>",
     "tech.text":
       "SMARTUR utiliza algoritmos de Machine Learning para analizar preferencias, comportamientos y contextos, generando recomendaciones turísticas personalizadas que benefician tanto a viajeros como a negocios locales.",
     "tech.feature1.title": "Recomendaciones Personalizadas",
@@ -84,9 +87,17 @@ export const ui = {
     "tech.feature3.title": "Datos Seguros",
     "tech.feature3.desc":
       "Protección de información con estándares de seguridad y privacidad de clase mundial.",
+    "tech.card1.title": "Tu ADN Viajero",
+    "tech.card1.desc": "No eres un turista más. Nuestra IA analiza tus gustos específicos para diseñar una ruta que se siente hecha a mano.",
+    "tech.card2.title": "Tesoros Ocultos",
+    "tech.card2.desc": "Conectamos con el corazón de las Altas Montañas. Descubre MiPyMEs locales y rincones secretos que los buscadores genéricos ignoran.",
+    "tech.card3.title": "Brújula Inteligente",
+    "tech.card3.desc": "Machine Learning que predice tu próxima parada favorita, desde un café en la neblina hasta senderos inexplorados.",
+    "tech.card4.title": "Legado Galardonado",
+    "tech.card4.desc": "Tecnología premiada con el Galardón Turístico Mi Veracruz, uniendo la innovación con la esencia de nuestra tierra.",
 
     // Timeline
-    "timeline.title": "Nuestro camino",
+    "timeline.title": "Nuestro <span style=\"color: var(--color-orange)\">camino</span>",
     "timeline.step1.title": "Galardón Turístico Mi Veracruz 2024",
     "timeline.step1.text":
       "SMARTUR nace del manual de procedimientos galardonado, reconocido por su innovación en la promoción del turismo regional.",
@@ -109,10 +120,12 @@ export const ui = {
       "Empoderamos a las MiPyMEs locales con herramientas digitales accesibles que fortalecen su competitividad y crecimiento sostenible.",
 
     // Pricing
-    "pricing.title": "Planes SMARTUR",
+    "pricing.title": "Planes <span style=\"color: var(--color-pink)\">SMARTUR</span>",
     "pricing.subtitle": "Soluciones para MiPyMEs turísticas",
+    "pricing.discount": "-20%",
     "pricing.basic.title": "Básico",
-    "pricing.basic.price": "$499",
+    "pricing.basic.desc": "Para pequeños negocios",
+    "pricing.basic.price": "$249",
     "pricing.basic.duration": "mes",
     "pricing.basic.feature1": "Perfil de negocio básico",
     "pricing.basic.feature2": "Hasta 10 fotos",
@@ -124,13 +137,14 @@ export const ui = {
     "pricing.mipyme.price": "$999",
     "pricing.mipyme.duration": "mes",
     "pricing.mipyme.feature1": "Perfil de negocio completo",
-    "pricing.mipyme.feature2": "Fotos ilimitadas",
+    "pricing.mipyme.feature2": "Fotos illimitadas",
     "pricing.mipyme.feature3": "Recomendaciones IA prioritarias",
     "pricing.mipyme.feature4": "Soporte prioritario",
     "pricing.mipyme.feature5": "Análisis y métricas",
     "pricing.mipyme.feature6": "Promociones destacadas",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.enterprise.price": "$1,999",
+    "pricing.enterprise.desc": "Para empresas en crecimiento",
+    "pricing.enterprise.price": "$499",
     "pricing.enterprise.duration": "mes",
     "pricing.enterprise.feature1": "Todo en MiPyME, más:",
     "pricing.enterprise.feature2": "Múltiples ubicaciones",
@@ -140,7 +154,8 @@ export const ui = {
     "pricing.enterprise.feature6": "Reportes personalizados",
 
     // User Segmentation
-    "segmentation.title": "Forma parte del catálogo",
+    "segmentation.title": "Forma parte del <span style=\"color: var(--color-purple)\">catálogo</span>",
+    "region.cta": "Descubre la región",
     "segmentation.business.title": "Registrar mi negocio",
     "segmentation.business.desc": "Para MiPyMEs",
     "segmentation.business.text":
@@ -151,21 +166,33 @@ export const ui = {
       "Descubre experiencias auténticas en Las Altas Montañas con recomendaciones personalizadas por IA.",
 
     // Benefits
-    "benefits.title": "¿Por qué elegirnos?",
-    "benefits.subtitle": "Beneficios de pertenecer a SMARTUR",
-    "benefits.improvements.title": "Mejoras claras con IA",
+    "benefits.title": "¿Por qué <span style=\"color: var(--color-green)\">elegirnos?</span>",
+    "benefits.subtitle": "Beneficios de pertenecer a <span style=\"color: var(--color-cyan)\">SMARTUR</span>",
+    "benefits.improvements.title": "Mejoras claras con <span style=\"color: var(--color-purple)\">IA</span>",
 
     // Video Section
-    "video.title": "Explora la riqueza de nuestra región",
+    "video.title": "Se parte de la <span style=\"color: var(--color-orange)\">riqueza</span> de nuestra <span style=\"color: var(--color-green)\">región</span>",
     "video.description":
       "Descubre la belleza natural y cultural de Las Altas Montañas de Veracruz",
 
     // Testimonials
-    "testimonials.title": "Testimonios: ¿Qué dicen los servicios asociados?",
+    "testimonials.title": "Testimonios: ¿Qué dicen los <span style=\"color: var(--color-pink)\">servicios asociados</span> ?",
+    "testimonials.item1.name": "Cha Ji-Hun",
+    "testimonials.item1.role": "Propietario",
+    "testimonials.item1.business": "Café Las Montañas",
+    "testimonials.item1.content": "Desde que nos unimos a SMARTUR, nuestras reservas aumentaron un 45%. La plataforma nos conecta con turistas que realmente valoran la experiencia auténtica que ofrecemos.",
+    "testimonials.item2.name": "María González",
+    "testimonials.item2.role": "Gerente",
+    "testimonials.item2.business": "Hotel Vista Hermosa",
+    "testimonials.item2.content": "Las recomendaciones de IA son increíbles. Recibimos exactamente el tipo de huéspedes que buscan lo que ofrecemos. El dashboard de análisis nos ayuda a tomar mejores decisiones.",
+    "testimonials.item3.name": "Roberto Sánchez",
+    "testimonials.item3.role": "Guía Turístico",
+    "testimonials.item3.business": "Aventuras Veracruz",
+    "testimonials.item3.content": "SMARTUR transformó mi negocio. Ahora puedo enfocarme en ofrecer experiencias memorables mientras la plataforma se encarga de conectarme con los viajeros adecuados.",
 
     // New Pricing Plans
     "pricing.new.title":
-      "Soluciones diseñadas para cada actor del ecosistema turístico",
+      "Soluciones diseñadas para cada <span style=\"color: var(--color-purple)\">actor</span> del ecosistema <span style=\"color: var(--color-cyan)\">turístico</span>",
     "pricing.new.subtitle": "Planes flexibles que se adaptan a tus necesidades",
     "pricing.toggle.monthly": "Mensual",
     "pricing.toggle.annual": "Anual",
@@ -179,7 +206,7 @@ export const ui = {
     "pricing.emprendedor.feature4": "Soporte por email",
     "pricing.emprendedor.cta": "Registrar mi negocio",
     "pricing.destino.title": "Destino",
-    "pricing.destino.desc": "Para Pacaemy Argentohes",
+    "pricing.destino.desc": "Para organizaciones y gobiernos",
     "pricing.destino.price": "$00",
     "pricing.destino.duration": "mes",
     "pricing.destino.feature1": "Todo en Emprendedor, más:",
@@ -216,20 +243,39 @@ export const ui = {
 
     // Footer
     "footer.slogan": "IA que guía, turismo que une",
+    "footer.description": "Plataforma de turismo inteligente que conecta viajeros con experiencias auténticas en Las Altas Montañas de Veracruz.",
     "footer.quicklinks": "Enlaces Rápidos",
     "footer.contact": "Contacto",
-    "footer.social": "Redes Sociales",
+    "footer.social": "Síguenos",
     "footer.location": "Las Altas Montañas, Veracruz",
     "footer.copyright": "Todos los derechos reservados.",
+
+    // Tab visibility
+    "tab.away": "¿A dónde fuiste?  Regresa a SMARTUR",
+
+    // ActionBridge
+    "action.tourist.label": "Soy Turista",
+    "action.tourist.description": "Ir a la App Web",
+    "action.business.label": "Tengo un negocio",
+    "action.business.description": "Ver Planes y Precios",
+
+    // Contact CTA (Minimal)
+    "contact.cta.label": "Contáctanos",
+    "contact.cta.title": "Solicita una evaluación",
+    "contact.cta.text": "Descubre cómo nuestra tecnología puede transformar tu destino o negocio. Déjanos tu correo y te contactaremos para una asesoría personalizada.",
+    "contact.cta.emailPlaceholder": "tu correo",
+    "contact.cta.submit": "Enviar",
   },
   en: {
     // Accessibility
     "accessibility.skip-to-content": "Skip to content",
+    "accessibility.toggleMenu": "Toggle mobile menu",
 
     // Navigation
     "nav.home": "Home",
     "nav.about": "About",
-    "nav.technology": "Technology",
+    "nav.technology": "Benefits",
+    "nav.destination": "Destination",
     "nav.pricing": "Pricing",
     "nav.contact": "Contact",
 
@@ -242,18 +288,44 @@ export const ui = {
     "button.view-plans": "View Plans",
     "button.contact": "Contact",
 
+    // Benefits
+    "benefits.title": "Why <span style=\"color: var(--color-green)\">Choose Us?</span>",
+    "benefits.subtitle": "Benefits of joining <span style=\"color: var(--color-cyan)\">SMARTUR</span>",
+    "benefits.improvements.title": "Clear improvements with <span style=\"color: var(--color-purple)\">AI</span>",
+
+    // Video Section
+    "video.title": "Explore the <span style=\"color: var(--color-orange)\">richness</span> of our <span style=\"color: var(--color-green)\">region</span>",
+    "video.description":
+      "Discover the natural and cultural beauty of the High Mountains of Veracruz",
+
     // Hero
-    "hero.title": "Smart Tourism for the High Mountains",
+    "hero.title":
+      "AI that <span style=\"color: var(--color-purple)\">guides,</span><br><span style=\"color: var(--color-cyan)\">tourism</span> that unites.",
     "hero.subtitle":
       "SMARTUR connects tourists with authentic experiences through AI, empowering Veracruz SMEs in their digital transformation.",
     "hero.cta": "Discover SMARTUR",
 
+    // Testimonials
+    "testimonials.title": "Testimonials: What do <span style=\"color: var(--color-pink)\">associated services</span> say?",
+    "testimonials.item1.name": "Cha Ji-Hun",
+    "testimonials.item1.role": "Owner",
+    "testimonials.item1.business": "Café Las Montañas",
+    "testimonials.item1.content": "Since joining SMARTUR, our bookings increased by 45%. The platform connects us with tourists who truly value the authentic experience we offer.",
+    "testimonials.item2.name": "María González",
+    "testimonials.item2.role": "Manager",
+    "testimonials.item2.business": "Hotel Vista Hermosa",
+    "testimonials.item2.content": "AI recommendations are incredible. We receive exactly the type of guests looking for what we offer. The analytics dashboard helps us make better decisions.",
+    "testimonials.item3.name": "Roberto Sánchez",
+    "testimonials.item3.role": "Tour Guide",
+    "testimonials.item3.business": "Aventuras Veracruz",
+    "testimonials.item3.content": "SMARTUR transformed my business. Now I can focus on offering memorable experiences while the platform takes care of connecting me with the right travelers.",
+
     // About
-    "about.title": "Who We Are",
+    "about.title": "Who <span style=\"color: var(--color-pink)\">We Are</span>",
     "about.subtitle":
-      "Technological innovation at the service of regional tourism",
+      "Technological <span style=\"color: var(--color-purple)\">innovation</span> at the service of regional <span style=\"color: var(--color-cyan)\">tourism</span>",
     "about.sectionLabel": "Our Story",
-    "about.award": "Mi Veracruz Tourism Award",
+    "about.award": "Mi Veracruz <span style=\"color: var(--color-green)\">Tourism</span> Award",
     "about.awardBadge": "Award-Winning",
     "about.mission.title": "Mission",
     "about.mission.text":
@@ -278,17 +350,17 @@ export const ui = {
 
     // Introducing
     "introducing.title":
-      "Transforming regional tourism with technology and innovation",
+      "Transforming regional <span style=\"color: var(--color-cyan)\">tourism</span> with <span style=\"color: var(--color-purple)\">technology</span> and <span style=\"color: var(--color-pink)\">innovation</span>",
     "introducing.text":
       "SMARTUR was born from the award-winning procedures manual 'Mi Veracruz Tourism Award 2024'. Our mission is to empower tourism SMEs in the High Mountains through artificial intelligence, offering personalized recommendations that connect travelers with authentic experiences and strengthen the local economy.",
 
     // Region
-    "region.title": "The High Mountains of Veracruz",
+    "region.title": "The <span style=\"color: var(--color-green)\">High Mountains</span> of Veracruz",
     "region.text":
       "A region rich in culture, nature, and traditions. From magical towns to breathtaking mountain landscapes, the High Mountains offer unique tourism experiences that SMARTUR helps discover and promote.",
 
     // Technology
-    "tech.title": "Technology that drives tourism",
+    "tech.title": "<span style=\"color: var(--color-purple)\">Technology</span> that drives <span style=\"color: var(--color-cyan)\">tourism</span>",
     "tech.text":
       "SMARTUR uses Machine Learning algorithms to analyze preferences, behaviors, and contexts, generating personalized tourism recommendations that benefit both travelers and local businesses.",
     "tech.feature1.title": "Personalized Recommendations",
@@ -300,9 +372,17 @@ export const ui = {
     "tech.feature3.title": "Secure Data",
     "tech.feature3.desc":
       "Information protection with world-class security and privacy standards.",
+    "tech.card1.title": "Your Traveler DNA",
+    "tech.card1.desc": "You are not just another tourist. Our AI analyzes your specific tastes to design a route that feels handmade.",
+    "tech.card2.title": "Hidden Treasures",
+    "tech.card2.desc": "We connect with the heart of the Hight Mountains. Discover local SMEs and secret corners that generic search engines ignore.",
+    "tech.card3.title": "Smart Compass",
+    "tech.card3.desc": "Machine Learning that predicts your next favorite stop, from a coffee in the mist to unexplored trails.",
+    "tech.card4.title": "Award-Winning Legacy",
+    "tech.card4.desc": "Technology awarded with the Mi Veracruz Tourism Award, uniting innovation with the essence of our land.",
 
     // Timeline
-    "timeline.title": "Our Journey",
+    "timeline.title": "Our <span style=\"color: var(--color-orange)\">Journey</span>",
     "timeline.step1.title": "Mi Veracruz Tourism Award 2024",
     "timeline.step1.text":
       "SMARTUR was born from the award-winning procedures manual, recognized for its innovation in promoting regional tourism.",
@@ -325,11 +405,12 @@ export const ui = {
       "We empower local SMEs with accessible digital tools that strengthen their competitiveness and sustainable growth.",
 
     // Pricing
-    "pricing.title": "SMARTUR Plans",
+    "pricing.title": "SMARTUR <span style=\"color: var(--color-pink)\">Plans</span>",
     "pricing.subtitle": "Solutions for tourism SMEs",
+    "pricing.discount": "-20%",
     
     // New Pricing Plans
-    "pricing.new.title": "Solutions designed for every player in the tourism ecosystem",
+    "pricing.new.title": "Solutions designed for every <span style=\"color: var(--color-purple)\">player</span> in the <span style=\"color: var(--color-cyan)\">tourism</span> ecosystem",
     "pricing.new.subtitle": "Flexible plans that adapt to your needs",
     "pricing.toggle.monthly": "Monthly",
     "pricing.toggle.annual": "Annual",
@@ -354,7 +435,8 @@ export const ui = {
     "pricing.destino.cta": "Schedule demo",
 
     "pricing.basic.title": "Basic",
-    "pricing.basic.price": "$499",
+    "pricing.basic.desc": "For small businesses",
+    "pricing.basic.price": "$249",
     "pricing.basic.duration": "month",
     "pricing.basic.feature1": "Basic business profile",
     "pricing.basic.feature2": "Up to 10 photos",
@@ -372,7 +454,8 @@ export const ui = {
     "pricing.mipyme.feature5": "Analytics and metrics",
     "pricing.mipyme.feature6": "Featured promotions",
     "pricing.enterprise.title": "Enterprise",
-    "pricing.enterprise.price": "$1,999",
+    "pricing.enterprise.desc": "For growing companies",
+    "pricing.enterprise.price": "$499",
     "pricing.enterprise.duration": "month",
     "pricing.enterprise.feature1": "Everything in SME, plus:",
     "pricing.enterprise.feature2": "Multiple locations",
@@ -380,6 +463,18 @@ export const ui = {
     "pricing.enterprise.feature4": "Dedicated account manager",
     "pricing.enterprise.feature5": "System integration",
     "pricing.enterprise.feature6": "Custom reports",
+
+    // User Segmentation
+    "segmentation.title": "Join the <span style=\"color: var(--color-purple)\">catalog</span>",
+    "region.cta": "Discover the region",
+    "segmentation.business.title": "Register my business",
+    "segmentation.business.desc": "For SMEs",
+    "segmentation.business.text":
+      "Register your tourism business and access intelligent recommendations that connect travelers with your services.",
+    "segmentation.tourist.title": "I am a tourist",
+    "segmentation.tourist.desc": "For Travelers",
+    "segmentation.tourist.text":
+      "Discover authentic experiences in the High Mountains with AI-powered personalized recommendations.",
 
     // Marquee
     "marquee.text1": "Smart Tourism",
@@ -408,20 +503,39 @@ export const ui = {
 
     // Footer
     "footer.slogan": "AI that guides, tourism that unites",
+    "footer.description": "Intelligent tourism platform that connects travelers with authentic experiences in the High Mountains of Veracruz.",
     "footer.quicklinks": "Quick Links",
     "footer.contact": "Contact",
-    "footer.social": "Social Media",
+    "footer.social": "Follow Us",
     "footer.location": "High Mountains, Veracruz",
     "footer.copyright": "All rights reserved.",
+
+    // Tab visibility
+    "tab.away": "Where did you go?  Come back to SMARTUR",
+
+    // ActionBridge
+    "action.tourist.label": "I'm a Tourist",
+    "action.tourist.description": "Go to Web App",
+    "action.business.label": "I have a Business",
+    "action.business.description": "View Plans & Pricing",
+
+    // Contact CTA (Minimal)
+    "contact.cta.label": "Contact",
+    "contact.cta.title": "Request an evaluation",
+    "contact.cta.text": "Discover how our technology can transform your destination or business. Leave your email and we will contact you for a personalized consultation.",
+    "contact.cta.emailPlaceholder": "your email",
+    "contact.cta.submit": "Send",
   },
   fr: {
     // Accessibility
     "accessibility.skip-to-content": "Passer au contenu",
+    "accessibility.toggleMenu": "Basculer le menu mobile",
 
     // Navigation
     "nav.home": "Accueil",
     "nav.about": "À propos",
-    "nav.technology": "Technologie",
+    "nav.technology": "Bénéfices",
+    "nav.destination": "Destination",
     "nav.pricing": "Tarifs",
     "nav.contact": "Contact",
 
@@ -434,18 +548,44 @@ export const ui = {
     "button.view-plans": "Voir les plans",
     "button.contact": "Contacter",
 
+    // Benefits
+    "benefits.title": "Pourquoi <span style=\"color: var(--color-green)\">nous choisir ?</span>",
+    "benefits.subtitle": "Avantages de rejoindre <span style=\"color: var(--color-cyan)\">SMARTUR</span>",
+    "benefits.improvements.title": "Des améliorations claires avec l'<span style=\"color: var(--color-purple)\">IA</span>",
+
+    // Video Section
+    "video.title": "Explorez la <span style=\"color: var(--color-orange)\">richesse</span> de notre <span style=\"color: var(--color-green)\">région</span>",
+    "video.description":
+      "Découvrez la beauté naturelle et culturelle des Hautes Montagnes de Veracruz",
+
     // Hero
-    "hero.title": "Tourisme Intelligent pour les Hautes Montagnes",
+    "hero.title":
+      "L'IA qui <span style=\"color: var(--color-purple)\">guide,</span><br>le <span style=\"color: var(--color-cyan)\">tourisme</span> qui unit.",
     "hero.subtitle":
       "SMARTUR connecte les touristes avec des expériences authentiques grâce à l'IA, en soutenant les PME de Veracruz dans leur transformation numérique.",
     "hero.cta": "Découvrir SMARTUR",
 
+    // Testimonials
+    "testimonials.title": "Témoignages : Que disent les <span style=\"color: var(--color-pink)\">services associés</span> ?",
+    "testimonials.item1.name": "Cha Ji-Hun",
+    "testimonials.item1.role": "Propriétaire",
+    "testimonials.item1.business": "Café Las Montañas",
+    "testimonials.item1.content": "Depuis que nous avons rejoint SMARTUR, nos réservations ont augmenté de 45 %. La plateforme nous connecte avec des touristes qui apprécient vraiment l'expérience authentique que nous offrons.",
+    "testimonials.item2.name": "María González",
+    "testimonials.item2.role": "Gérante",
+    "testimonials.item2.business": "Hôtel Vista Hermosa",
+    "testimonials.item2.content": "Les recommandations de l'IA sont incroyables. Nous recevons exactement le type de clients qui recherchent ce que nous offrons. Le tableau de bord d'analyse nous aide à prendre de meilleures décisions.",
+    "testimonials.item3.name": "Roberto Sánchez",
+    "testimonials.item3.role": "Guide Touristique",
+    "testimonials.item3.business": "Aventures Veracruz",
+    "testimonials.item3.content": "SMARTUR a transformé mon entreprise. Maintenant, je peux me concentrer sur l'offre d'expériences mémorables pendant que la plateforme s'occupe de me connecter avec les bons voyageurs.",
+
     // About
-    "about.title": "Qui sommes-nous",
+    "about.title": "Qui <span style=\"color: var(--color-pink)\">Sommes-Nous</span>",
     "about.subtitle":
-      "Innovation technologique au service du tourisme régional",
+      "Innovation <span style=\"color: var(--color-purple)\">technologique</span> au service du <span style=\"color: var(--color-cyan)\">tourisme</span> régional",
     "about.sectionLabel": "Notre Histoire",
-    "about.award": "Prix Touristique Mi Veracruz",
+    "about.award": "Prix <span style=\"color: var(--color-green)\">Touristique</span> Mi Veracruz",
     "about.awardBadge": "Primé",
     "about.mission.title": "Mission",
     "about.mission.text":
@@ -470,17 +610,17 @@ export const ui = {
 
     // Introducing
     "introducing.title":
-      "Transformer le tourisme régional avec la technologie et l'innovation",
+      "Transformer le <span style=\"color: var(--color-cyan)\">tourisme</span> régional avec la <span style=\"color: var(--color-purple)\">technologie</span> et l'<span style=\"color: var(--color-pink)\">innovation</span>",
     "introducing.text":
       "SMARTUR est né du manuel de procédures primé 'Prix Touristique Mi Veracruz 2024'. Notre mission est d'autonomiser les PME touristiques des Hautes Montagnes grâce à l'intelligence artificielle, en offrant des recommandations personnalisées qui connectent les voyageurs avec des expériences authentiques et renforcent l'économie locale.",
 
     // Region
-    "region.title": "Les Hautes Montagnes de Veracruz",
+    "region.title": "Les <span style=\"color: var(--color-green)\">Hautes Montagnes</span> de Veracruz",
     "region.text":
       "Une région riche en culture, nature et traditions. Des villages magiques aux paysages montagneux époustouflants, les Hautes Montagnes offrent des expériences touristiques uniques que SMARTUR aide à découvrir et promouvoir.",
 
     // Technology
-    "tech.title": "Technologie qui stimule le tourisme",
+    "tech.title": "<span style=\"color: var(--color-purple)\">Technologie</span> qui stimule le <span style=\"color: var(--color-cyan)\">tourisme</span>",
     "tech.text":
       "SMARTUR utilise des algorithmes de Machine Learning pour analyser les préférences, les comportements et les contextes, générant des recommandations touristiques personnalisées qui profitent aux voyageurs et aux entreprises locales.",
     "tech.feature1.title": "Recommandations Personnalisées",
@@ -492,9 +632,17 @@ export const ui = {
     "tech.feature3.title": "Données Sécurisées",
     "tech.feature3.desc":
       "Protection des informations avec des normes de sécurité et de confidentialité de classe mondiale.",
+    "tech.card1.title": "Votre ADN Voyageur",
+    "tech.card1.desc": "Vous n'êtes pas un touriste de plus. Notre IA analyse vos goûts spécifiques pour concevoir un itinéraire qui semble fait main.",
+    "tech.card2.title": "Trésors Cachés",
+    "tech.card2.desc": "Nous connectons avec le cœur des Hautes Montagnes. Découvrez des PME locales et des coins secrets que les moteurs de recherche génériques ignorent.",
+    "tech.card3.title": "Boussole Intelligente",
+    "tech.card3.desc": "Machine Learning qui prédit votre prochain arrêt préféré, d'un café dans la brume à des sentiers inexplorés.",
+    "tech.card4.title": "Héritage Primé",
+    "tech.card4.desc": "Technologie récompensée par le Prix Touristique Mi Veracruz, unissant l'innovation à l'essence de notre terre.",
 
     // Timeline
-    "timeline.title": "Notre Parcours",
+    "timeline.title": "Notre <span style=\"color: var(--color-orange)\">Parcours</span>",
     "timeline.step1.title": "Prix Touristique Mi Veracruz 2024",
     "timeline.step1.text":
       "SMARTUR est né du manuel de procédures primé, reconnu pour son innovation dans la promotion du tourisme régional.",
@@ -517,11 +665,12 @@ export const ui = {
       "Nous autonomisons les PME locales avec des outils numériques accessibles qui renforcent leur compétitivité et leur croissance durable.",
 
     // Pricing
-    "pricing.title": "Plans SMARTUR",
+    "pricing.title": "Plans <span style=\"color: var(--color-pink)\">SMARTUR</span>",
     "pricing.subtitle": "Solutions pour les PME touristiques",
+    "pricing.discount": "-20%",
 
     // New Pricing Plans
-    "pricing.new.title": "Des solutions conçues pour chaque acteur de l'écosystème touristique",
+    "pricing.new.title": "Des solutions conçues pour chaque <span style=\"color: var(--color-purple)\">acteur</span> de l'écosystème <span style=\"color: var(--color-cyan)\">touristique</span>",
     "pricing.new.subtitle": "Des plans flexibles qui s'adaptent à vos besoins",
     "pricing.toggle.monthly": "Mensuel",
     "pricing.toggle.annual": "Annuel",
@@ -546,6 +695,7 @@ export const ui = {
     "pricing.destino.cta": "Planifier une démo",
 
     "pricing.basic.title": "Basique",
+    "pricing.basic.desc": "Pour les petites entreprises",
     "pricing.basic.price": "$499",
     "pricing.basic.duration": "mois",
     "pricing.basic.feature1": "Profil d'entreprise basique",
@@ -564,6 +714,7 @@ export const ui = {
     "pricing.mipyme.feature5": "Analyses et métriques",
     "pricing.mipyme.feature6": "Promotions en vedette",
     "pricing.enterprise.title": "Enterprise",
+    "pricing.enterprise.desc": "Pour les entreprises en croissance",
     "pricing.enterprise.price": "$1,999",
     "pricing.enterprise.duration": "mois",
     "pricing.enterprise.feature1": "Tout dans PME, plus:",
@@ -572,6 +723,18 @@ export const ui = {
     "pricing.enterprise.feature4": "Gestionnaire de compte dédié",
     "pricing.enterprise.feature5": "Intégration avec les systèmes",
     "pricing.enterprise.feature6": "Rapports personnalisés",
+
+    // User Segmentation
+    "segmentation.title": "Rejoignez le <span style=\"color: var(--color-purple)\">catalogue</span>",
+    "region.cta": "Découvrir la région",
+    "segmentation.business.title": "Enregistrer mon entreprise",
+    "segmentation.business.desc": "Pour les PME",
+    "segmentation.business.text":
+      "Enregistrez votre entreprise touristique et accédez à des recommandations intelligentes qui connectent les voyageurs avec vos services.",
+    "segmentation.tourist.title": "Je suis un touriste",
+    "segmentation.tourist.desc": "Pour les Voyageurs",
+    "segmentation.tourist.text":
+      "Découvrez des expériences authentiques dans les Hautes Montagnes avec des recommandations personnalisées par IA.",
 
     // Marquee
     "marquee.text1": "Tourisme Intelligent",
@@ -600,10 +763,27 @@ export const ui = {
 
     // Footer
     "footer.slogan": "L'IA qui guide, le tourisme qui unit",
+    "footer.description": "Plateforme de tourisme intelligent qui connecte les voyageurs avec des expériences authentiques dans les Hautes Montagnes de Veracruz.",
     "footer.quicklinks": "Liens Rapides",
     "footer.contact": "Contact",
-    "footer.social": "Réseaux Sociaux",
+    "footer.social": "Suivez-nous",
     "footer.location": "Hautes Montagnes, Veracruz",
     "footer.copyright": "Tous droits réservés.",
+
+    // Tab visibility
+    "tab.away": "Où es-tu allé ?  Reviens sur SMARTUR",
+
+    // ActionBridge
+    "action.tourist.label": "Je suis Touriste",
+    "action.tourist.description": "Aller à l'App Web",
+    "action.business.label": "J'ai une Entreprise",
+    "action.business.description": "Voir Plans et Tarifs",
+
+    // Contact CTA (Minimal)
+    "contact.cta.label": "Contactez-nous",
+    "contact.cta.title": "Demander une évaluation",
+    "contact.cta.text": "Découvrez comment notre technologie peut transformer votre destination ou votre activité. Laissez votre courriel et nous vous contacterons pour une consultation personnalisée.",
+    "contact.cta.emailPlaceholder": "votre courriel",
+    "contact.cta.submit": "Envoyer",
   },
 } as const;

@@ -14,7 +14,7 @@ const { title, text, cta } = Astro.props;
 <div class="sy-introducing">
   <div class="u-container container">
     <div class="inner">
-      <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+      <h2 class="u-heading title" data-sy-reveal="words" set:html={title} />
       <p class="u-text" data-sy-reveal="lines">
         {text}
       </p>

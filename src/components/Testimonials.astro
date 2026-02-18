@@ -17,7 +17,7 @@ const { title, testimonials } = Astro.props;
 
 <section class="testimonials-section">
   <div class="u-container">
-    <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+    <h2 class="u-heading title sy-kinetic-heading" data-sy-reveal="" set:html={title} />
 
     <div class="testimonials-grid">
       {testimonials.map((testimonial, index) => (
@@ -98,8 +98,33 @@ const { title, testimonials } = Astro.props;
     }
 
     @media (--mq-phone) {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
       gap: 1.5rem;
+      padding-bottom: 1rem;
+      margin-left: calc(-1 * var(--container-offset));
+      margin-right: calc(-1 * var(--container-offset));
+      padding-left: var(--container-offset);
+      padding-right: var(--container-offset);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(var(--rgb-text), 0.2) transparent;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(var(--rgb-text), 0.2);
+        border-radius: 3px;
+      }
     }
   }
 
@@ -111,14 +136,11 @@ const { title, testimonials } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    transition: all 0.3s var(--ease-out-cubic);
-    opacity: 0;
-    transform: translateY(30px);
-
-    &[data-sy-reveal="fade"].is-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Entry animation is handled globally via [data-sy-reveal="fade"] */
+    transition:
+      border-color 0.25s var(--ease-standard),
+      box-shadow 0.25s var(--ease-standard),
+      transform 0.25s var(--ease-standard);
 
     &:hover {
       border-color: rgba(var(--rgb-cyan-accent), 0.3);
@@ -127,7 +149,11 @@ const { title, testimonials } = Astro.props;
     }
 
     @media (--mq-phone) {
+      flex: 0 0 85%;
+      min-width: 85%;
+      max-width: 85%;
       padding: 2rem 1.5rem;
+      scroll-snap-align: start;
     }
   }
 

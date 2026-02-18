@@ -10,7 +10,6 @@ import personIcon from "../assets/imgs/person.png";
   <div class="vortex-container">
     <!-- Logo central (pequeño al inicio) -->
 
-
     <!-- Orbital rings (los iconos que se convierten en anillos borrosos) -->
     <div class="orbital-ring ring-circuit">
       <div class="ring-icon">
@@ -122,17 +121,26 @@ import personIcon from "../assets/imgs/person.png";
 
   .ring-icon {
     position: absolute;
-    width: 45px;
-    height: 45px;
+    width: 50px; /* Uniform measure */
+    height: 50px;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    transform-origin: center calc(70px); /* Radio de órbita */
+    transform-origin: center calc(70px); /* Keeps rotation centered in orbit */
+    
+    /* Harmonizing visual style */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 1px solid currentColor; /* Inherits specific color (purple, green, etc) */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); /* Soft uniform shadow, safe for rotation */
   }
 
   .ring-icon img {
-    width: 100%;
-    height: 100%;
+    width: 55%; /* Reduced size to float nicely inside the bubble */
+    height: 55%;
     object-fit: contain;
   }
 
@@ -268,7 +276,9 @@ import personIcon from "../assets/imgs/person.png";
 
   if (loader) {
     const counterEl = loader.querySelector(".counter-text");
-    const progressBar = loader.querySelector(".loader-progress-bar") as HTMLElement | null;
+    const progressBar = loader.querySelector(
+      ".loader-progress-bar",
+    ) as HTMLElement | null;
     const vortexContainer = loader.querySelector(".vortex-container");
     const centralLogo = loader.querySelector(".central-logo");
     const logoGlow = loader.querySelector(".logo-glow");
@@ -284,7 +294,11 @@ import personIcon from "../assets/imgs/person.png";
     tl.to(centralLogo, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
     tl.to(logoGlow, { opacity: 0.6, duration: 0.5, ease: "power2.out" }, 0.2);
     tl.to(counterWrap, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.3);
-    tl.to(orbitalRings, { opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }, 0.4);
+    tl.to(
+      orbitalRings,
+      { opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" },
+      0.4,
+    );
 
     tl.set(".ring-circuit .ring-icon", { rotation: 0 }, 0);
     tl.set(".ring-leaf .ring-icon", { rotation: 90 }, 0);
@@ -304,13 +318,14 @@ import personIcon from "../assets/imgs/person.png";
       ease: "power1.inOut",
       onUpdate() {
         if (counterEl) counterEl.textContent = String(Math.round(counter.val));
-        if (progressBar) progressBar.style.width = Math.round(counter.val) + "%";
+        if (progressBar)
+          progressBar.style.width = Math.round(counter.val) + "%";
       },
     });
 
     const finishLoading = () => {
       progressTween.kill();
-      
+
       const exitTl = gsap.timeline();
 
       exitTl.to(counter, {
@@ -318,53 +333,75 @@ import personIcon from "../assets/imgs/person.png";
         duration: 0.5,
         ease: "power2.out",
         onUpdate() {
-           if (counterEl) counterEl.textContent = String(Math.round(counter.val));
-           if (progressBar) progressBar.style.width = Math.round(counter.val) + "%";
+          if (counterEl)
+            counterEl.textContent = String(Math.round(counter.val));
+          if (progressBar)
+            progressBar.style.width = Math.round(counter.val) + "%";
         },
       });
 
       exitTl.to(rotateLoop, { timeScale: 5, duration: 0.5 }, 0);
 
-      exitTl.to(ringIcons, {
-        filter: "blur(20px)",
-        scale: 1.5,
-        duration: 0.6,
-        ease: "power2.in",
-      }, 0.5);
+      exitTl.to(
+        ringIcons,
+        {
+          filter: "blur(20px)",
+          scale: 1.5,
+          duration: 0.6,
+          ease: "power2.in",
+        },
+        0.5,
+      );
 
-      exitTl.to(explosionOverlay, {
-        opacity: 1,
-        scale: 2,
-        duration: 0.6,
-        ease: "power2.out",
-      }, 0.6);
+      exitTl.to(
+        explosionOverlay,
+        {
+          opacity: 1,
+          scale: 2,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        0.6,
+      );
 
-      exitTl.to([counterWrap, ".loader-progress", vortexContainer], {
-        opacity: 0,
-        duration: 0.4,
-      }, 0.6);
+      exitTl.to(
+        [counterWrap, ".loader-progress", vortexContainer],
+        {
+          opacity: 0,
+          duration: 0.4,
+        },
+        0.6,
+      );
 
-      exitTl.to(loader, {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.inOut",
-      }, 1.0);
+      exitTl.to(
+        loader,
+        {
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.inOut",
+        },
+        1.0,
+      );
 
-      exitTl.call(() => {
-        window.dispatchEvent(new CustomEvent("smartur:loaded"));
-        document.body.classList.remove("is-loading");
-        loader.style.display = "none";
-        rotateLoop.kill();
-      }, [], 1.8);
+      exitTl.call(
+        () => {
+          window.dispatchEvent(new CustomEvent("smartur:loaded"));
+          document.body.classList.remove("is-loading");
+          loader.style.display = "none";
+          rotateLoop.kill();
+        },
+        [],
+        1.8,
+      );
     };
 
     if (document.readyState === "complete") {
-      setTimeout(finishLoading, 1500); 
+      setTimeout(finishLoading, 1500);
     } else {
       window.addEventListener("load", () => {
-        setTimeout(finishLoading, 1000); 
+        setTimeout(finishLoading, 1000);
       });
-      setTimeout(finishLoading, 5000); 
+      setTimeout(finishLoading, 5000);
     }
   }
 </script>

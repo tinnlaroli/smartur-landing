@@ -14,7 +14,7 @@ const { title, items } = Astro.props;
   <div class="u-container container">
     <div class="wrapper">
       <div class="content">
-        <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+        <h2 class="u-heading title sy-kinetic-heading" data-sy-reveal="" set:html={title} />
       </div>
       <div class="items-wrapper">
         <div class="items">
@@ -22,9 +22,7 @@ const { title, items } = Astro.props;
             items.map((item, i) => (
               <div class:list={["item", i === 0 && "is-active"]}>
                 <div class="item-inner">
-                  <h3 class="u-heading item-title" data-sy-reveal="words">
-                    {item.title}
-                  </h3>
+                  <h3 class="u-heading item-title" data-sy-reveal="words" set:html={item.title} />
                   <p class="u-text item-text" data-sy-reveal="lines">
                     {item.text}
                   </p>
@@ -33,6 +31,10 @@ const { title, items } = Astro.props;
             ))
           }
         </div>
+      </div>
+      
+      <div class="logo-container">
+        <img src="/src/assets/imgs/logo.png" alt="Smartur Logo" class="jumping-logo" />
       </div>
     </div>
     <div data-gl-place="0" data-gl-place-factor="1.05"></div>
@@ -51,7 +53,30 @@ const { title, items } = Astro.props;
       const itemsWrapper = this.querySelector(".items-wrapper");
       const wrapper = this.querySelector(".wrapper");
       const items = Array.from(this.querySelectorAll<HTMLElement>(".item"));
+      
+      if (!itemsWrapper || !wrapper || items.length === 0) return;
+
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
       let current = 0;
+
+      if (isMobile) {
+        // No pin on mobile: use IntersectionObserver to set active step for fluidity
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const idx = items.indexOf(entry.target as HTMLElement);
+              if (idx < 0) return;
+              items[current].classList.remove("is-active");
+              items[idx].classList.add("is-active");
+              current = idx;
+            });
+          },
+          { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
+        );
+        items.forEach((el) => observer.observe(el));
+        return;
+      }
 
       new ScrollTrigger({
         trigger: itemsWrapper,
@@ -100,11 +125,48 @@ const { title, items } = Astro.props;
     }
   }
 
+  /* Logo Animation Styles */
+  .logo-container {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
+    
+    @media (--mq-laptop) {
+      right: -5%;
+      transform: translateY(-50%) scale(0.8);
+    }
+
+    @media (--mq-tablet) {
+      display: none; 
+    }
+  }
+
+  .jumping-logo {
+    width: 28rem; /* Increased size */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    animation: jump 3s infinite ease-in-out;
+  }
+
+  @keyframes jump {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+  }
+
   sy-steps-timeline {
     display: block;
     position: relative;
-    margin: 7rem 0;
+    padding: 7rem 0; /* Changed from margin to padding to match About */
+    margin: 0;
     z-index: 9;
+    background: var(--color-bg); /* Ensure defined background */
   }
 
   .container {
@@ -114,6 +176,9 @@ const { title, items } = Astro.props;
 
   .content {
     position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
     @media (--mq-tablet) {
       display: contents;
@@ -125,6 +190,7 @@ const { title, items } = Astro.props;
     --lh: 1;
     max-width: 10em;
     margin-bottom: 1em;
+    padding: 0; /* Ensure no padding shift */
   }
 
   .wrapper {
@@ -132,6 +198,10 @@ const { title, items } = Astro.props;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0; /* Strict zero padding */
   }
 
   .items-wrapper {
@@ -158,9 +228,10 @@ const { title, items } = Astro.props;
       content: "";
       display: block;
       min-height: 100%;
-      min-width: 3px;
+      min-width: 8px; /* Thicker bar */
       margin-right: 3rem;
-      background: var(--color-purple); /* Solid purple instead of gradient */
+      background: var(--color-purple); 
+      border-radius: 4px;
 
       @media (--mq-tablet-sm) {
         margin-right: 1.5rem;
@@ -199,11 +270,13 @@ const { title, items } = Astro.props;
       top: 0;
       bottom: 0;
       margin: auto;
-      transition: color 0.2s var(--ease-in-out-cubic);
-      border-right: 2px solid transparent;
-      padding-right: calc(4rem - 2px);
+      transition: all 0.6s var(--ease-out-cubic);
+      border-right: 8px solid transparent;
+      padding-right: calc(4rem - 8px);
       width: 0;
-      opacity: 0.5;
+      opacity: 0.3;
+      border-radius: 4px;
+      color: var(--color-text-alt);
 
       @media (--mq-tablet-sm) {
         right: calc(100% + 1.5rem + 4rem);
@@ -214,8 +287,20 @@ const { title, items } = Astro.props;
         &::before {
           opacity: 1;
           border-right-color: var(--color-orange);
+          color: var(--color-text);
+          padding-right: calc(4rem - 8px); /* Ensure padding stays consistent or animates if needed */
         }
       }
+  }
+
+  /* Add transition to the item content itself for better focus */
+  .item {
+    transition: opacity 0.6s var(--ease-out-cubic);
+    opacity: 0.3;
+  }
+  
+  .item.is-active {
+    opacity: 1;
   }
 
   .item-title {

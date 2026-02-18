@@ -69,9 +69,13 @@ export function initPhoneScene(container: HTMLElement, onLoad?: () => void) {
                     phone.rotation.x = baseRotationX + (mouseY * sensitivity);
                 };
 
-                // Agregar el listener solo si sigue montado
-                if (isMounted) {
+                // Agregar el listener solo si sigue montado y NO es móvil
+                if (isMounted && window.innerWidth > 768) {
                     window.addEventListener('mousemove', onMouseMove);
+                } else if (isMounted) {
+                    // Optional: Set a static pleasant rotation for mobile since interaction is disabled
+                    phone.rotation.x = -0.5;
+                    phone.rotation.y = 0.5;
                 }
             }
         });

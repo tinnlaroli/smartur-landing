@@ -2,7 +2,6 @@
 import type { Link } from "../types";
 import Button from "./Button.astro";
 
-
 interface Props {
   title: string;
   subtitle?: string;
@@ -42,7 +41,6 @@ const { title, subtitle, cta } = Astro.props;
       <div class="video-wrapper hero-video-wrap">
         <!-- 3D Phone Container -->
       </div>
-    
     </div>
   </div>
 </div>
@@ -208,7 +206,7 @@ const { title, subtitle, cta } = Astro.props;
     z-index: 5;
   }
 
-  /* Seamless video integration */
+  /* Seamless video integration — 3D phone only on desktop for performance */
   .video-wrapper {
     flex-shrink: 0;
     width: 50%;
@@ -245,8 +243,13 @@ const { title, subtitle, cta } = Astro.props;
       margin: 0 auto;
     }
 
+    /* Show video on phone (fallback), but 3D scene is disabled via JS */
     @media (--mq-phone) {
-      max-width: 450px;
+      display: block !important;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9; /* Or adjust as needed for the video content */
+      margin-top: 2rem;
     }
   }
 
@@ -278,18 +281,31 @@ const { title, subtitle, cta } = Astro.props;
     const titleEl = hero.querySelector(".hero-title") as HTMLElement;
     const subtitleEl = hero.querySelector(".hero-subtitle") as HTMLElement;
     const ctaEl = hero.querySelector(".hero-cta") as HTMLElement;
-    const phoneContainer = hero.querySelector(".hero-video-wrap") as HTMLElement;
+    const phoneContainer = hero.querySelector(
+      ".hero-video-wrap",
+    ) as HTMLElement;
     const shimmerEl = hero.querySelector(".hero-shimmer") as HTMLElement;
     const ctaShimmer = hero.querySelector(".cta-shimmer") as HTMLElement;
 
     // Explicitly set initial states to ensure they are hidden before animation starts
-    const elementsToHide = [titleEl, subtitleEl, ctaEl, phoneContainer].filter(el => el !== null);
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const elementsToHide = [titleEl, subtitleEl, ctaEl].filter((el) => el !== null);
+    if (phoneContainer) elementsToHide.push(phoneContainer);
+
     gsap.set(elementsToHide, { opacity: 0 });
-    
+
     if (titleEl) gsap.set(titleEl, { y: 40 });
     if (subtitleEl) gsap.set(subtitleEl, { y: 30, filter: "blur(8px)" });
     if (ctaEl) gsap.set(ctaEl, { scale: 0.7 });
-    if (phoneContainer) gsap.set(phoneContainer, { x: 80, scale: 0.92 });
+    
+    // Desktop: slide from right. Mobile: slide up slightly
+    if (phoneContainer) {
+       if (!isMobile) {
+         gsap.set(phoneContainer, { x: 80, scale: 0.92 });
+       } else {
+         gsap.set(phoneContainer, { y: 30 });
+       }
+    }
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
@@ -300,7 +316,7 @@ const { title, subtitle, cta } = Astro.props;
 
     // ——— Background shimmer wash ———
     if (shimmerEl) {
-       tl.to(
+      tl.to(
         shimmerEl,
         {
           opacity: 1,
@@ -321,61 +337,65 @@ const { title, subtitle, cta } = Astro.props;
       );
     }
 
-    // ——— Title: words cascade ———
+    // ——— Title: words cascade on desktop; simple fade on mobile for performance ———
     if (titleEl) {
-      const html = titleEl.innerHTML;
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = html;
+      if (isMobile) {
+        gsap.set(titleEl, { opacity: 1, y: 0 });
+        tl.to(titleEl, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.1);
+      } else {
+        const html = titleEl.innerHTML;
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
 
-      function wrapWords(node: Node): void {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const text = node.textContent || "";
-          const words = text.split(/(\s+)/);
-          const frag = document.createDocumentFragment();
-          words.forEach((w) => {
-            if (w.trim()) {
-              const span = document.createElement("span");
-              span.className = "hero-word";
-              span.style.display = "inline-block";
-              span.textContent = w;
-              frag.appendChild(span);
-            } else if (w) {
-              frag.appendChild(document.createTextNode(w));
+        function wrapWords(node: Node): void {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent || "";
+            const words = text.split(/(\s+)/);
+            const frag = document.createDocumentFragment();
+            words.forEach((w) => {
+              if (w.trim()) {
+                const span = document.createElement("span");
+                span.className = "hero-word";
+                span.style.display = "inline-block";
+                span.textContent = w;
+                frag.appendChild(span);
+              } else if (w) {
+                frag.appendChild(document.createTextNode(w));
+              }
+            });
+            node.parentNode?.replaceChild(frag, node);
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const el = node as HTMLElement;
+            if (el.tagName === "SPAN" && el.style.color) {
+              el.classList.add("hero-word");
+              el.style.display = "inline-block";
+              return;
             }
-          });
-          node.parentNode?.replaceChild(frag, node);
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const el = node as HTMLElement;
-          if (el.tagName === "SPAN" && el.style.color) {
-            el.classList.add("hero-word");
-            el.style.display = "inline-block";
-            return;
+            if (el.tagName === "BR") return;
+            Array.from(node.childNodes).forEach(wrapWords);
           }
-          if (el.tagName === "BR") return;
-          Array.from(node.childNodes).forEach(wrapWords);
         }
+
+        Array.from(tempDiv.childNodes).forEach(wrapWords);
+        titleEl.innerHTML = tempDiv.innerHTML;
+
+        const words = titleEl.querySelectorAll(".hero-word");
+        gsap.set(titleEl, { opacity: 1, y: 0 });
+        gsap.set(words, { opacity: 0, y: 50, rotateX: 45 });
+
+        tl.to(
+          words,
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "back.out(1.2)",
+          },
+          0.1,
+        );
       }
-
-      Array.from(tempDiv.childNodes).forEach(wrapWords);
-      titleEl.innerHTML = tempDiv.innerHTML;
-
-      const words = titleEl.querySelectorAll(".hero-word");
-
-      gsap.set(titleEl, { opacity: 1, y: 0 });
-      gsap.set(words, { opacity: 0, y: 50, rotateX: 45 });
-
-      tl.to(
-        words,
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: "back.out(1.2)",
-        },
-        0.1,
-      );
     }
 
     // ——— Subtitle: blur-to-clear ———
@@ -418,20 +438,33 @@ const { title, subtitle, cta } = Astro.props;
       }
     }
 
-    // ——— Video/Phone: slide from right with bounce ———
-    // Container only — 3D canvas handles its own fade-in via phone.ts
+    // ——— Video/Phone: slide from right (desktop) or up (mobile) ———
     if (phoneContainer) {
-      tl.to(
-        phoneContainer,
-        {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: "back.out(1.5)",
-        },
-        0.3, 
-      );
+      if (!isMobile) {
+        tl.to(
+          phoneContainer,
+          {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1.2,
+            ease: "back.out(1.5)",
+          },
+          0.3,
+        );
+      } else {
+        // Mobile simple fade up
+        tl.to(
+          phoneContainer,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          0.3
+        );
+      }
     }
   }
 
@@ -443,11 +476,12 @@ const { title, subtitle, cta } = Astro.props;
     setTimeout(animateHero, 100);
   }
 
-  // ——— 3D Phone: Load SEPARATELY during page loader phase ———
-  // This runs while the user watches the loader animation,
-  // so WebGL context + scene download don't interfere with hero text animation
+  // ——— 3D Phone: only on desktop (≥768px) to avoid heavy WebGL on mobile/tablet ———
   (function preload3D() {
-    const phoneContainer = document.querySelector(".hero-video-wrap") as HTMLElement;
+    if (!window.matchMedia("(min-width: 768px)").matches) return;
+    const phoneContainer = document.querySelector(
+      ".hero-video-wrap",
+    ) as HTMLElement;
     if (!phoneContainer) return;
     try {
       initPhoneScene(phoneContainer);

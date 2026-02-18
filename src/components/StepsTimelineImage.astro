@@ -57,6 +57,10 @@ const { title, items } = Astro.props;
       const itemsWrapper = this.querySelector(".items-wrapper");
       const wrapper = this.querySelector(".wrapper");
       const items = Array.from(this.querySelectorAll<HTMLElement>(".item"));
+
+      // Bail out safely if the structure is not present
+      if (!itemsWrapper || !wrapper || items.length === 0) return;
+
       let current = 0;
 
       new ScrollTrigger({
@@ -66,10 +70,12 @@ const { title, items } = Astro.props;
         end: "+=130%",
         invalidateOnRefresh: true,
         onUpdate: (st) => {
-          const index = Math.round(st.progress * (items.length - 1));
+          const rawIndex = Math.round(st.progress * (items.length - 1));
+          const index = Math.min(Math.max(rawIndex, 0), items.length - 1);
+
           if (index !== current) {
-            items[current].classList.remove("is-active");
-            items[index].classList.add("is-active");
+            items[current]?.classList.remove("is-active");
+            items[index]?.classList.add("is-active");
             current = index;
           }
         },

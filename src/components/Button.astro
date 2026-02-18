@@ -1,9 +1,10 @@
 ---
 type CommonProps = {
   class?: string;
-  color?: "primary" | "primary-alt";
+  color?: "primary" | "primary-alt" | "green" | "cyan";
   size?: "sm" | "md";
   arrow?: boolean;
+  external?: boolean;
   title: string;
   revealable?: boolean;
   manualReveal?: boolean;
@@ -33,6 +34,7 @@ const {
   type = "button",
   color = "primary",
   arrow = false,
+  external = false,
   revealable = true,
   manualReveal = false,
   ariaLabel,
@@ -57,6 +59,7 @@ const attrs =
     `btn-${size}`,
     `btn-${color}`,
     arrow && `btn-arrow`,
+    external && `btn-external`,
     className.toString(),
   ]}
   {...attrs}
@@ -90,6 +93,7 @@ const attrs =
     position: relative;
     overflow: hidden;
     border-radius: 100px;
+    white-space: nowrap; /* Prevent text wrapping */
 
     &[data-sy-reveal] {
       clip-path: inset(0 100% 0 0 round 100px);
@@ -124,6 +128,7 @@ const attrs =
         position: relative;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0.9375em 1.5em;
         line-height: 1.25;
         background: var(--bg-color);
@@ -134,11 +139,17 @@ const attrs =
         }
 
         &:first-child {
-          transition: clip-path 0.25s var(--ease-out-cubic);
+          transition: clip-path 0.6s var(--ease-out-cubic);
           color: var(--hover-text-color);
           background: var(--hover-bg-color);
           z-index: 2;
           position: absolute;
+          /* fix text alignment */
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          justify-content: center;
           clip-path: inset(50% round 99px);
         }
       }
@@ -149,6 +160,21 @@ const attrs =
       --bg-color: var(--btn-bg-color, var(--color-purple));
       --hover-bg-color: var(--btn-hover-bg-color, var(--color-white));
       --hover-text-color: var(--btn-hover-text-color, var(--color-purple));
+    }
+
+    &:global(.btn-green) {
+      --text-color: var(--btn-txt-color, var(--color-white));
+      --bg-color: var(--btn-bg-color, var(--color-green));
+      --hover-bg-color: var(--btn-hover-bg-color, var(--color-white));
+      --hover-text-color: var(--btn-hover-text-color, var(--color-green));
+    }
+
+    &:global(.btn-cyan) {
+      --text-color: var(--btn-txt-color, var(--color-cyan));
+      --bg-color: var(--btn-bg-color, transparent);
+      --hover-bg-color: var(--btn-hover-bg-color, var(--color-cyan));
+      --hover-text-color: var(--btn-hover-text-color, var(--color-white));
+      border: none;
     }
 
     &:hover,
@@ -189,6 +215,37 @@ const attrs =
             clip-path: inset(-25% -5% -25% 0% round 99px);
           }
         }
+      }
+    }
+
+    &:global(.btn-external) {
+      > span {
+        > span {
+          padding-right: 1.25em;
+
+          &::after {
+            content: "";
+            flex-shrink: 0; /* Prevent squashing */
+            display: block;
+            width: 1.5em; 
+            height: 1.5em;
+            margin-left: 0.5em;
+            background-color: currentcolor; 
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") no-repeat center / contain;
+          }
+
+          &:first-child {
+            /* Start as a small point in center (hidden) */
+            clip-path: circle(0% at 50% 50%);
+          }
+        }
+      }
+
+      /* Animate as an expanding circle from center */
+      &:hover > span > span:first-child,
+      &:focus > span > span:first-child {
+        clip-path: circle(150% at 50% 50%);
       }
     }
   }

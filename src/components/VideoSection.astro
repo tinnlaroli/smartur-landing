@@ -4,15 +4,16 @@ import laRegionVideo from "../assets/video/laRegion.mp4";
 interface Props {
   title: string;
   description?: string;
+  id?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, id } = Astro.props;
 ---
 
-<section class="video-section">
+<section class="video-section" id={id}>
   <div class="u-container">
     <div class="header">
-      <h2 class="u-heading title" data-sy-reveal="words">{title}</h2>
+      <h2 class="u-heading title sy-kinetic-heading" data-sy-reveal="" set:html={title} />
       {description && (
         <p class="u-text description" data-sy-reveal="lines">{description}</p>
       )}
@@ -22,7 +23,6 @@ const { title, description } = Astro.props;
       <video
         class="region-video"
         data-src={laRegionVideo}
-        poster="/placeholder-poster.jpg"
         preload="metadata"
         controls
         playsinline
@@ -93,14 +93,12 @@ const { title, description } = Astro.props;
     overflow: hidden;
     border: 2px solid rgba(var(--rgb-text), 0.08);
     background: rgba(var(--rgb-text), 0.02);
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s var(--ease-out-cubic);
-
-    &[data-sy-reveal="fade"].is-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Entry animation is handled globally via [data-sy-reveal="fade"] */
+    transition:
+      opacity 0.6s var(--ease-standard),
+      transform 0.6s var(--ease-standard),
+      border-color 0.25s var(--ease-standard),
+      box-shadow 0.25s var(--ease-standard);
 
     &:hover {
       border-color: rgba(var(--rgb-purple-accent), 0.2);
@@ -128,12 +126,38 @@ const { title, description } = Astro.props;
     }
   }
 </style>
-
 <script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Video Zoom Effect
+  const section = document.querySelector('.video-section');
+  const container = document.querySelector('.video-container');
+
+  if (section && container && !window.matchMedia("(max-width: 767px)").matches) {
+    gsap.fromTo(
+      container,
+      { scale: 0.9, borderRadius: "2rem" },
+      {
+        scale: 1,
+        borderRadius: "0rem",
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "center center",
+          scrub: 1,
+        },
+      }
+    );
+  }
+
   // Lazy loading video with Intersection Observer
   const observerOptions = {
     root: null,
-    rootMargin: '200px', // Start loading 200px before video enters viewport
+    rootMargin: '200px',
     threshold: 0
   };
 
@@ -154,7 +178,6 @@ const { title, description } = Astro.props;
     });
   }, observerOptions);
 
-  // Observe all videos with data-src attribute
   document.addEventListener('DOMContentLoaded', () => {
     const lazyVideos = document.querySelectorAll('video[data-src]');
     lazyVideos.forEach(video => {

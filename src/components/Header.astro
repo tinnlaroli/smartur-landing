@@ -2,7 +2,7 @@
 import Button from "./Button.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
-import logoImage from "../assets/imgs/logo_arriba.png";
+import logoImage from "../assets/imgs/logo.png";
 import type { Link } from "../types";
 
 interface Props {
@@ -11,9 +11,10 @@ interface Props {
   links: Link[];
   link1?: Link;
   link2?: Link;
+  mobileMenuLabel?: string;
 }
 
-const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
+const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" } = Astro.props;
 ---
 
 <header>
@@ -43,16 +44,17 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
         </div>
 
         <div class="buttons">
-          {
+            {
             link1 ? (
-              <a class="tourist-link" href={link1.url} target="_blank" rel="noopener noreferrer">
-                <span>{link1.title}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
+              <Button 
+                url={link1.url} 
+                title={link1.title} 
+                color="cyan" 
+                size="md" 
+                target="_blank" 
+                revealable={false}
+                external
+              />
             ) : null
           }
           {link2 ? <Button {...link2} revealable={false} /> : null}
@@ -62,8 +64,8 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
             <ThemeToggle />
           </div>
 
-          <button type="button" class="toggle" aria-label="">
-            <span class="u-sr-only">Toggle Mobile Menu</span>
+          <button type="button" class="toggle" aria-label={mobileMenuLabel}>
+            <span class="u-sr-only">{mobileMenuLabel}</span>
             <span aria-hidden>
               <span></span>
               <span></span>
@@ -84,15 +86,22 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     top: 0.75rem;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 100;
     color: var(--color-text);
     margin: 0 auto;
     padding: 0.5rem 0;
     transition: transform 0.3s var(--ease-out-cubic);
 
+    /* When menu is open, disable the transform to avoid stacking context issues */
+    :global(body.is-nav-opened) & {
+      transform: none !important;
+    }
+
+    /* ... existing styles ... */
     :global(body.is-nav-hidden) & {
       transform: translateY(calc(-100% - 0.75rem));
     }
+
 
     @media (--mq-tablet-sm) {
       --br: 1rem;
@@ -222,13 +231,10 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
       gap: 1.75em;
 
       @media (--mq-tablet) {
-        color: var(--color-text);
-      }
-
-      @media (--mq-tablet) {
         flex-direction: column;
         font-size: 2rem;
         gap: 1rem;
+        color: var(--color-text) !important; /* Force text color for visibility */
       }
 
       :global(li) {
@@ -239,6 +245,9 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
         @media (--mq-tablet) {
           flex-direction: column;
           gap: 1rem;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         &::after {
@@ -255,9 +264,29 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
         }
       }
 
+      /* Staggered animation for menu items */
+      @media (--mq-tablet) {
+        :global(body.is-nav-opened) & :global(li) {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        :global(body.is-nav-opened) & :global(li:nth-child(1)) { transition-delay: 0.1s; }
+        :global(body.is-nav-opened) & :global(li:nth-child(2)) { transition-delay: 0.2s; }
+        :global(body.is-nav-opened) & :global(li:nth-child(3)) { transition-delay: 0.3s; }
+        :global(body.is-nav-opened) & :global(li:nth-child(4)) { transition-delay: 0.4s; }
+        :global(body.is-nav-opened) & :global(li:nth-child(5)) { transition-delay: 0.5s; }
+      }
+
       :global(a) {
         text-decoration: none;
         position: relative;
+        color: var(--color-text) !important; /* Ensure links are visible */
+
+        @media (--mq-tablet) {
+          color: var(--color-text) !important;
+          font-weight: 500;
+        }
 
         &::before {
           content: "";
@@ -275,6 +304,8 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
 
         &:hover,
         &:focus {
+          color: var(--color-purple) !important;
+
           &::before {
             transform: scaleX(1);
             transform-origin: left;
@@ -291,13 +322,14 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     z-index: 2;
     margin-left: auto;
 
-    /* Intermediate breakpoint for narrower screens */
-    @media (max-width: 1024px) {
-      gap: 0.9rem;
-    }
-
     @media (--mq-tablet) {
       gap: 1.5rem;
+      position: relative;
+      z-index: 100;
+    }
+
+    @media (max-width: 1024px) {
+      gap: 0.9rem;
     }
   }
 
@@ -327,69 +359,32 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
     }
   }
 
-  .tourist-link {
-    @extend %u-text;
 
-    --fs: var(--font-size-xs);
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
-    background: rgba(var(--rgb-cyan-accent), 0.08);
-    border: 1px solid rgba(var(--rgb-cyan-accent), 0.2);
-    color: var(--color-cyan);
-    font-weight: 600;
-    white-space: nowrap;
-    transition: all 0.3s var(--ease-out-cubic);
-    flex-shrink: 0;
-
-    svg {
-      flex-shrink: 0;
-      width: 14px;
-      height: 14px;
-      transition: transform 0.3s var(--ease-out-cubic);
-    }
-
-    &:hover,
-    &:focus {
-      background: rgba(var(--rgb-cyan-accent), 0.15);
-      border-color: var(--color-cyan);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(var(--rgb-cyan-accent), 0.2);
-
-      svg {
-        transform: translate(2px, -2px);
-      }
-    }
-
-    /* Hide on narrower screens */
-    @media (max-width: 1100px) {
-      display: none;
-    }
-
-    @media (--mq-phone) {
-      display: none;
-    }
-  }
 
   .toggle {
     border: none;
     background: none;
-    padding: 0;
+    padding: 0.75rem;
+    margin: -0.75rem;
     cursor: pointer;
-    align-self: normal;
+    align-self: center;
     align-items: center;
+    justify-content: center;
     display: none;
-    z-index: 2;
-    color: var(--color-purple);
+    position: relative;
+    z-index: 110;
+    color: var(--color-text);
     transition: color 0.3s var(--ease-out-expo);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-width: 44px;
+    min-height: 44px;
 
     :global(.has-no-bg &) {
       color: var(--color-pink);
     }
 
-    :global(body.is-nav-opened &),
+    :global(body.is-nav-opened) &,
     :global(body.is-nav-small) & {
       color: var(--color-purple);
     }
@@ -402,16 +397,16 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 1.5rem;
-      width: 2.25rem;
+      height: 1.25rem;
+      width: 1.75rem;
 
       span {
-        display: flex;
+        display: block;
         width: 100%;
-        height: 4px;
-        background: currentcolor;
+        height: 3px;
+        background: currentColor;
         border-radius: 10px;
-        transition: transform 0.2s var(--ease-out-cubic);
+        transition: transform 0.2s var(--ease-out-cubic), opacity 0.2s;
         transform: translateZ(0);
 
         &:nth-child(2) {
@@ -426,7 +421,7 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
       > span {
         span {
           &:first-child {
-            transform: translateY(calc(0.75rem - 2px)) rotate(45deg);
+            transform: translateY(calc(0.625rem - 1.5px)) rotate(45deg);
           }
 
           &:nth-child(2) {
@@ -434,7 +429,7 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
           }
 
           &:last-child {
-            transform: translateY(calc(-0.75rem + 2px)) rotate(-45deg);
+            transform: translateY(calc(-0.625rem + 1.5px)) rotate(-45deg);
           }
         }
       }
@@ -450,21 +445,33 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
   class Header extends HTMLElement {
     smallThreshold = 100;
     hiddenThreshold = 200;
-    toggleEl = this.querySelector(".toggle")!;
     hero = document.querySelector(heroSelectors.join(","));
     prevY = -1;
 
     constructor() {
       super();
-
       addScrollObserver(this);
+    }
 
-      this.toggleEl.addEventListener("click", this.toggleNav);
+    connectedCallback() {
+      const toggleEl = this.querySelector(".toggle");
+      if (toggleEl) {
+        toggleEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.toggleNav();
+        });
+      }
 
-      // addResizeObserver(this);
+      const menuLinks = this.querySelectorAll(".menu a[href^='#']");
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          document.body.classList.remove("is-nav-opened");
+        });
+      });
 
       this.onResize();
-      this.onScroll(window.scrollY);
+      this.onScroll(typeof window !== "undefined" ? window.scrollY : 0);
     }
 
     onScroll(y: number) {
@@ -490,6 +497,11 @@ const { logoUrl, logoAlt, link1, link2, links } = Astro.props;
 
     toggleNav = () => {
       document.body.classList.toggle("is-nav-opened");
+      if (document.body.classList.contains("is-nav-opened")) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
     };
 
     onResize() {
