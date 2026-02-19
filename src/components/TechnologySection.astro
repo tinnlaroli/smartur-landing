@@ -4,12 +4,20 @@ import circuitImg from "../assets/imgs/circuit.png";
 import { Target, TrendingUp, Store, ShieldCheck, ArrowRight } from "lucide-react";
 import Button from "./Button.astro";
 
+// Stat Interface
+interface Stat {
+  number: string;
+  suffix: string;
+  label: string;
+}
+
 interface Props {
   lang?: keyof typeof ui;
   id?: string;
+  stats?: Stat[];
 }
 
-const { lang = "es", id } = Astro.props;
+const { lang = "es", id, stats } = Astro.props;
 const t = ui[lang];
 
 // Content Data - Partner Benefits
@@ -156,6 +164,26 @@ const currentLang = lang as keyof typeof titleText;
       ))}
     </div>
 
+    {/* Statistics Section - New Addition */}
+    {stats && (
+      <div class="stats-container reveal-stats grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
+        {stats.map((stat, i) => (
+          <div class="stat-item text-center">
+            <div 
+              class="stat-number text-5xl md:text-6xl font-extrabold mb-2 text-gray-900"
+              data-value={stat.number}
+            >
+              0
+              <span class="stat-suffix text-3xl md:text-4xl text-gray-400 font-bold ml-1">{stat.suffix}</span>
+            </div>
+            <p class="stat-label text-gray-500 font-medium uppercase tracking-wider text-sm">
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    )}
+
     {/* CTA Button */}
     <div class="reveal-fade-up flex justify-center" style="animation-delay: 700ms;">
       <Button 
@@ -238,6 +266,48 @@ const currentLang = lang as keyof typeof titleText;
       if (cardArray[1]) gsap.set(cardArray[1], { y: 100 });
       if (cardArray[2]) gsap.set(cardArray[2], { x: 100 });
       if (cardArray[3]) gsap.set(cardArray[3], { y: -100 });
+    }
+
+    // Stats Counter Animation
+    const statsContainer = document.querySelector(".reveal-stats");
+    if (statsContainer) {
+      const numbers = statsContainer.querySelectorAll(".stat-number");
+      
+      ScrollTrigger.create({
+        trigger: statsContainer,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          numbers.forEach((num) => {
+             // Extract numeric value, removing non-numeric chars if any (though data-value should be clean)
+             // The raw text might have spans, so we use data-value
+             const finalValue = parseInt(num.getAttribute("data-value") || "0", 10);
+             const suffixInfo = num.querySelector(".stat-suffix");
+             const suffixHTML = suffixInfo ? suffixInfo.outerHTML : "";
+
+             // Create a proxy object to animate
+             const proxy = { val: 0 };
+             
+             gsap.to(proxy, {
+               val: finalValue,
+               duration: 2.5,
+               ease: "power2.out",
+               onUpdate: () => {
+                 // Update text content but keep the suffix span
+                 // We need to be careful not to overwrite the span if it was inside.
+                 // Actually, the structure is: [text node "0"][span suffix]
+                 // We can clear HTML and rebuild it
+                 num.innerHTML = `${Math.floor(proxy.val)}${suffixHTML}`;
+               }
+             });
+          });
+          
+          gsap.fromTo(statsContainer, 
+            { y: 30, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" }
+          );
+        }
+      });
     }
   }
 
@@ -325,6 +395,13 @@ const currentLang = lang as keyof typeof titleText;
   
   .feature-green { color: #16a34a; }
   .feature-bg-green { background-color: #dcfce7; }
+  
+  /* Stats Styling */
+  .stat-number {
+    /* Gradient handled by tailwind classes in HTML, but fallback color here */
+    /* color: #9333ea; removed */
+  }
+
 
 
   /* ─── DARK MODE OVERRIDES ([data-theme="dark"]) ─── */
@@ -394,6 +471,16 @@ const currentLang = lang as keyof typeof titleText;
 
   :global([data-theme="dark"]) .feature-green { color: #4ade80; }
   :global([data-theme="dark"]) .feature-bg-green { background-color: rgba(20, 83, 45, 0.3); }
+
+  :global([data-theme="dark"]) .stat-number {
+     /* Using bg-clip-text in HTML but ensuring visibility */
+     color: #ffffff;
+     text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  
+  :global([data-theme="dark"]) .stat-suffix {
+    color: #6b7280; /* gray-500 */
+  }
 
 
 

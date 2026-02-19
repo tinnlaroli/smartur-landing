@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import HeroHome from "../components/HeroHome.astro";
 import Faqs from "../components/Faqs.astro";
-import StepsTimeline from "../components/StepsTimeline.astro";
+
 import VideoSection from "../components/VideoSection.astro";
 
 import TechnologySection from "../components/TechnologySection.astro";
@@ -36,7 +36,15 @@ import { ui, defaultLang } from "../i18n/ui";
   />
 
   <section id="tecnologia">
-    <TechnologySection id="tecnologia-inner" lang="es" />
+    <TechnologySection 
+      id="tecnologia-inner" 
+      lang="es" 
+      stats={[
+        { number: ui.es["about.stat1.number"], suffix: ui.es["about.stat1.suffix"], label: ui.es["about.stat1.label"] },
+        { number: ui.es["about.stat2.number"], suffix: ui.es["about.stat2.suffix"], label: ui.es["about.stat2.label"] },
+        { number: ui.es["about.stat3.number"], suffix: ui.es["about.stat3.suffix"], label: ui.es["about.stat3.label"] },
+      ]}
+    />
   </section>
 
   <Statements
@@ -82,17 +90,9 @@ import { ui, defaultLang } from "../i18n/ui";
       },
     ]}
     description={ui.es["about.description"]}
-    stats={[
-      { number: ui.es["about.stat1.number"], suffix: ui.es["about.stat1.suffix"], label: ui.es["about.stat1.label"] },
-      { number: ui.es["about.stat2.number"], suffix: ui.es["about.stat2.suffix"], label: ui.es["about.stat2.label"] },
-      { number: ui.es["about.stat3.number"], suffix: ui.es["about.stat3.suffix"], label: ui.es["about.stat3.label"] },
-    ]}
 
-  />
-
-  <StepsTimeline
-    title={ui.es["timeline.title"]}
-    items={[
+    timelineTitle={ui.es["timeline.title"]}
+    timelineItems={[
       {
         title: ui.es["timeline.step1.title"],
         text: ui.es["timeline.step1.text"],
@@ -105,8 +105,14 @@ import { ui, defaultLang } from "../i18n/ui";
         title: ui.es["timeline.step3.title"],
         text: ui.es["timeline.step3.text"],
       },
+      {
+        title: ui.es["timeline.step4.title"],
+        text: ui.es["timeline.step4.text"],
+      },
     ]}
   />
+
+  {/* StepsTimeline moved to About */}
 
 
 

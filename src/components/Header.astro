@@ -435,6 +435,16 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
       }
     }
   }
+
+  /* Active state for navigation links */
+  .menu :global(a.is-active) {
+    color: var(--color-purple) !important;
+  }
+
+  .menu :global(a.is-active::before) {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 </style>
 
 <script>
@@ -472,6 +482,45 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
 
       this.onResize();
       this.onScroll(typeof window !== "undefined" ? window.scrollY : 0);
+      
+      this.initScrollSpy();
+    }
+
+    initScrollSpy() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Find the link corresponding to this section
+              const id = entry.target.id;
+              const link = this.querySelector(`.menu a[href="#${id}"]`);
+              if (link) {
+                // Remove active class from all links
+                this.querySelectorAll(".menu a").forEach((l) => l.classList.remove("is-active"));
+                // Add active class to the current link
+                link.classList.add("is-active");
+              }
+            }
+          });
+        },
+        {
+          rootMargin: "-20% 0px -60% 0px", // Trigger when section is near the top
+          threshold: 0,
+        }
+      );
+
+      // Select all sections that have a corresponding link in the menu
+      const links = this.querySelectorAll(".menu a[href^='#']");
+      links.forEach((link) => {
+        const href = link.getAttribute("href");
+        if (href && href.length > 1) {
+          const id = href.substring(1);
+          const section = document.getElementById(id);
+          if (section) {
+            observer.observe(section);
+          }
+        }
+      });
     }
 
     onScroll(y: number) {

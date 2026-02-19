@@ -2,11 +2,11 @@
 import Button from "./Button.astro";
 import type { Link } from "../types";
 
-interface Stat {
-  number: string;
-  suffix: string;
-  label: string;
-}
+// interface Stat {
+//   number: string;
+//   suffix: string;
+//   label: string;
+// }
 
 interface Slide {
   id: string;       // "mission" | "vision" | "values"
@@ -24,8 +24,13 @@ interface Props {
   awardYear?: string;
   slides: Slide[];
   description: string;
-  stats: Stat[];
+  // stats: Stat[]; removed
   cta?: Link;
+  timelineTitle?: string;
+  timelineItems?: {
+    title: string;
+    text: string;
+  }[];
 }
 
 const {
@@ -38,8 +43,10 @@ const {
   awardYear = "2024",
   slides,
   description,
-  stats,
+  // stats, removed
   cta,
+  timelineTitle,
+  timelineItems,
 } = Astro.props;
 ---
 
@@ -98,20 +105,25 @@ const {
         {cta ? <Button {...cta} arrow class="cta-button" /> : null}
       </div>
 
-      <!-- Right Column: Stats Overlay (40%) -->
-      <div class="stats-column">
-        <div class="stats-overlay" data-sy-reveal="">
-          {stats.map((stat) => (
-            <div class="stat-item">
-              <div class="stat-number">{stat.number}<span class="stat-plus">{stat.suffix}</span></div>
-              <div class="stat-divider"></div>
-              <div class="stat-label">{stat.label}</div>
+      <!-- Right Column: Stepper Timeline -->
+      <div class="stepper-column">
+        {timelineItems && (
+          <div class="stepper-wrapper">
+            <!-- Title removed as requested -->
+            <div class="items-wrapper">
+              <div class="items">
+                {timelineItems.map((item, i) => (
+                  <div class:list={["step-item", i === 0 && "is-active"]}>
+                    <div class="item-inner">
+                      <h3 class="step-title" set:html={item.title} />
+                      <p class="step-text">{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-
-        <!-- Decorative Element -->
-        <div class="decorative-accent"></div>
+          </div>
+        )}
       </div>
     </div>
   </div>
@@ -135,12 +147,13 @@ const {
   /* Editorial Grid Layout */
   .editorial-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 6rem;
+    grid-template-columns: 1fr 1fr; /* Restore 2 columns */
+    gap: 4rem;
     align-items: start;
+    position: relative; /* Context for sticky */
 
     @media (--mq-desktop-lg) {
-      gap: 4rem;
+      gap: 3rem;
     }
 
     @media (--mq-tablet) {
@@ -262,16 +275,15 @@ const {
     color: var(--color-text-alt);
   }
 
-  /* Mission/Vision/Values Carousel - Grid Stacking for adaptive height */
+  /* Mission/Vision/Values Carousel */
   .mission-carousel {
     display: grid;
     grid-template-columns: 1fr;
     margin: 1.5rem 0;
-    /* Removed min-height, grid will size to tallest content or active content */
   }
 
   .mission-slide {
-    grid-area: 1 / 1; /* Stack all slides on top of each other */
+    grid-area: 1 / 1; 
     width: 100%;
     padding-left: 2rem;
     border-left: 2px solid var(--color-purple);
@@ -280,16 +292,6 @@ const {
     transition: opacity 0.6s ease, transform 0.6s ease;
     pointer-events: none;
     
-    /* Ensure hidden slides don't take up space/clicks if using visibility, 
-       but with grid they all take space. 
-       Actually, for a carousel where height should animate or fit, 
-       we often want the container to be as tall as the TALLEST slide, 
-       OR as tall as the CURRENT slide.
-       
-       With grid-area 1/1, the container height = max(height of all slides).
-       This is perfect to prevent jumping.
-    */
-
     &.active {
       opacity: 1;
       transform: translateY(0);
@@ -297,22 +299,18 @@ const {
       z-index: 1;
     }
 
-    /* Color variants by slide type */
     &[data-slide="mission"] {
       border-left-color: var(--color-green);
-
       .mission-label { color: var(--color-green); }
     }
 
     &[data-slide="vision"] {
       border-left-color: var(--color-purple);
-
       .mission-label { color: var(--color-purple); }
     }
 
     &[data-slide="values"] {
       border-left-color: var(--color-pink);
-
       .mission-label { color: var(--color-pink); }
     }
   }
@@ -341,100 +339,105 @@ const {
     margin-top: 1rem;
   }
 
-  /* Stats Column - Minimal Overlay Style */
-  .stats-column {
+
+  /* Stepper / Timeline Styles (Restored) */
+  .stepper-column {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    height: 100%;
+    min-height: 100vh;
   }
 
-  .stats-overlay {
-    background: rgba(var(--rgb-text), 0.02);
-    border: 1px solid rgba(var(--rgb-text), 0.08);
-    border-radius: 0.5rem;
-    padding: 3rem 2rem;
+  .stepper-wrapper {
+    /* Container for the sticky content */
+  }
+
+  .items-wrapper {
+    display: flex;
+    padding-left: 2rem; /* Reduced from original 4rem for column fit */
+    position: relative;
+    
+    &::before {
+      content: "";
+      display: block;
+      min-height: 100%;
+      min-width: 2px; /* Thin line */
+      margin-right: 2rem;
+      background: rgba(var(--rgb-text), 0.1); 
+      border-radius: 0;
+    }
+  }
+
+  .items {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s var(--ease-out-cubic);
+    width: 100%;
+    counter-reset: items;
+    gap: 1rem;
+  }
 
-    &.is-in {
+  .step-item {
+    transition: opacity 0.6s var(--ease-out-cubic);
+    opacity: 0.3;
+    
+    &.is-active {
       opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (--mq-tablet) {
-      padding: 2.5rem 2rem;
     }
   }
 
-  /* Stat Item - Inline Minimal Design */
-  .stat-item {
+  .item-inner {
     display: flex;
+    position: relative;
     flex-direction: column;
-    gap: 0.75rem;
-  }
+    gap: 0.5rem;
+    padding: 2rem 0;
 
-  .stat-number {
-    font-family: var(--font-family-heading);
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--color-text);
-    letter-spacing: -0.02em;
+    /* The number indicator */
+    &::before {
+      content: '';
+      position: absolute;
+      right: calc(100% + 2rem - 5px); /* Center on the 2px line */
+      top: 2.5rem; /* Optical alignment with title */
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-bg);
+      border: 2px solid var(--color-text-alt);
+      z-index: 1;
+      transition: all 0.4s ease;
+    }
 
-    @media (--mq-phone) {
-      font-size: 3rem;
+    /* Active state for the dot */
+    :global(.step-item.is-active &) {
+      &::before {
+        background: var(--color-purple);
+        border-color: var(--color-purple);
+        transform: scale(1.2);
+        box-shadow: 0 0 0 4px rgba(var(--rgb-purple), 0.2);
+      }
     }
   }
 
-  .stat-plus {
-    font-size: 2rem;
-    color: var(--color-text-alt);
+  .step-title {
+    font-family: var(--font-family-body);
+    font-size: 1.125rem;
     font-weight: 600;
+    color: var(--color-text);
   }
 
-  .stat-divider {
-    width: 2rem;
-    height: 2px;
-    background: var(--color-orange);
-  }
-
-  .stat-label {
+  .step-text {
     font-family: var(--font-family-body);
     font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.4;
     color: var(--color-text-alt);
-    max-width: 20ch;
-  }
-
-  /* Decorative Accent */
-  .decorative-accent {
-    position: absolute;
-    top: -2rem;
-    right: -2rem;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      rgba(var(--rgb-purple-accent), 0.08) 0%,
-      transparent 70%
-    );
-    pointer-events: none;
-    z-index: -1;
-
-    @media (--mq-tablet) {
-      display: none;
-    }
+    line-height: 1.6;
   }
 </style>
 
 <script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
   const carousel = document.getElementById('mission-carousel');
   if (carousel) {
     const slides = carousel.querySelectorAll('.mission-slide');
@@ -446,4 +449,38 @@ const {
       slides[current].classList.add('active');
     }, 6000);
   }
+
+  // Stepper Logic
+  const initStepper = () => {
+    const items = document.querySelectorAll('.step-item');
+    
+    if (items.length === 0) return;
+
+    ScrollTrigger.create({
+      trigger: ".sy-about", // Use the section as trigger
+      start: "top top", 
+      end: "+=150%", 
+      pin: true, 
+      scrub: true, 
+      onUpdate: (self) => {
+        const total = items.length;
+        const index = Math.min(
+            Math.floor(self.progress * total), 
+            total - 1
+        );
+        
+        items.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('is-active');
+            } else {
+                item.classList.remove('is-active');
+            }
+        });
+      }
+    });
+  };
+
+  initStepper();
+  document.addEventListener('astro:page-load', initStepper);
 </script>
+
