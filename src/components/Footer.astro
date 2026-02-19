@@ -12,6 +12,7 @@ interface Props {
   contactTitle?: string;
   socialTitle?: string;
   copyright?: string;
+  address?: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   contactTitle,
   socialTitle,
   copyright,
+  address,
 } = Astro.props;
 ---
 
@@ -117,7 +119,7 @@ const {
                   ></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Avenida Universidad 350, 94910 Cuitláhuac, Ver.</span>
+                <span>{address}</span>
               </li>
             </ul>
           </div>

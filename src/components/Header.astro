@@ -14,7 +14,14 @@ interface Props {
   mobileMenuLabel?: string;
 }
 
-const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" } = Astro.props;
+const {
+  logoUrl,
+  logoAlt,
+  link1,
+  link2,
+  links,
+  mobileMenuLabel = "Toggle Menu",
+} = Astro.props;
 ---
 
 <header>
@@ -24,7 +31,7 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
         <a class="logo" href={logoUrl}>
           <img
             src={logoImage.src}
-            alt="Logotipo de SMARTUR - Plataforma de Turismo Inteligente con IA"
+            alt={logoAlt}
             loading="eager"
             decoding="async"
           />
@@ -44,21 +51,21 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
         </div>
 
         <div class="buttons">
-            {
+          {
             link1 ? (
-              <Button 
-                url={link1.url} 
-                title={link1.title} 
-                color="cyan" 
-                size="md" 
-                target="_blank" 
+              <Button
+                url={link1.url}
+                title={link1.title}
+                color="cyan"
+                size="md"
+                target="_blank"
                 revealable={false}
                 external
               />
             ) : null
           }
           {link2 ? <Button {...link2} revealable={false} /> : null}
-          
+
           <div class="controls">
             <LanguageSwitcher />
             <ThemeToggle />
@@ -101,7 +108,6 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
     :global(body.is-nav-hidden) & {
       transform: translateY(calc(-100% - 0.75rem));
     }
-
 
     @media (--mq-tablet-sm) {
       --br: 1rem;
@@ -177,7 +183,7 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
     display: flex;
     margin-left: 2rem;
     width: auto;
-    
+
     /* Adjust menu item spacing */
     @media (max-width: 1024px) {
       :global(ul) {
@@ -234,7 +240,9 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
         flex-direction: column;
         font-size: 2rem;
         gap: 1rem;
-        color: var(--color-text) !important; /* Force text color for visibility */
+        color: var(
+          --color-text
+        ) !important; /* Force text color for visibility */
       }
 
       :global(li) {
@@ -247,7 +255,9 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
           gap: 1rem;
           opacity: 0;
           transform: translateY(20px);
-          transition: opacity 0.4s ease, transform 0.4s ease;
+          transition:
+            opacity 0.4s ease,
+            transform 0.4s ease;
         }
 
         &::after {
@@ -271,11 +281,21 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
           transform: translateY(0);
         }
 
-        :global(body.is-nav-opened) & :global(li:nth-child(1)) { transition-delay: 0.1s; }
-        :global(body.is-nav-opened) & :global(li:nth-child(2)) { transition-delay: 0.2s; }
-        :global(body.is-nav-opened) & :global(li:nth-child(3)) { transition-delay: 0.3s; }
-        :global(body.is-nav-opened) & :global(li:nth-child(4)) { transition-delay: 0.4s; }
-        :global(body.is-nav-opened) & :global(li:nth-child(5)) { transition-delay: 0.5s; }
+        :global(body.is-nav-opened) & :global(li:nth-child(1)) {
+          transition-delay: 0.1s;
+        }
+        :global(body.is-nav-opened) & :global(li:nth-child(2)) {
+          transition-delay: 0.2s;
+        }
+        :global(body.is-nav-opened) & :global(li:nth-child(3)) {
+          transition-delay: 0.3s;
+        }
+        :global(body.is-nav-opened) & :global(li:nth-child(4)) {
+          transition-delay: 0.4s;
+        }
+        :global(body.is-nav-opened) & :global(li:nth-child(5)) {
+          transition-delay: 0.5s;
+        }
       }
 
       :global(a) {
@@ -359,8 +379,6 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
     }
   }
 
-
-
   .toggle {
     border: none;
     background: none;
@@ -406,7 +424,9 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
         height: 3px;
         background: currentColor;
         border-radius: 10px;
-        transition: transform 0.2s var(--ease-out-cubic), opacity 0.2s;
+        transition:
+          transform 0.2s var(--ease-out-cubic),
+          opacity 0.2s;
         transform: translateZ(0);
 
         &:nth-child(2) {
@@ -482,7 +502,7 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
 
       this.onResize();
       this.onScroll(typeof window !== "undefined" ? window.scrollY : 0);
-      
+
       this.initScrollSpy();
     }
 
@@ -496,7 +516,9 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
               const link = this.querySelector(`.menu a[href="#${id}"]`);
               if (link) {
                 // Remove active class from all links
-                this.querySelectorAll(".menu a").forEach((l) => l.classList.remove("is-active"));
+                this.querySelectorAll(".menu a").forEach((l) =>
+                  l.classList.remove("is-active"),
+                );
                 // Add active class to the current link
                 link.classList.add("is-active");
               }
@@ -506,7 +528,7 @@ const { logoUrl, logoAlt, link1, link2, links, mobileMenuLabel = "Toggle Menu" }
         {
           rootMargin: "-20% 0px -60% 0px", // Trigger when section is near the top
           threshold: 0,
-        }
+        },
       );
 
       // Select all sections that have a corresponding link in the menu

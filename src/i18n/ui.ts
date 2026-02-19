@@ -20,6 +20,9 @@ export const ui = {
     "nav.pricing": "Precios",
     "nav.contact": "Contacto",
 
+    // Branding
+    "header.logo.alt": "Logotipo de SMARTUR - Plataforma de Turismo Inteligente con IA",
+
     // Buttons
     "button.get-started": "Comenzar",
     "button.learn-more": "Saber Más",
@@ -104,6 +107,19 @@ export const ui = {
     "tech.card4.title": "Legado Galardonado",
     "tech.card4.desc":
       "Tecnología premiada con el Galardón Turístico Mi Veracruz, uniendo la innovación con la esencia de nuestra tierra.",
+
+    // Technology - Partner Benefits (New)
+    "tech.partner.title": "Impulsa tu negocio con <span class='highlight-text'>inteligencia</span>",
+    "tech.partner.intro": "Herramientas estratégicas diseñadas para crecer en el mercado turístico actual.",
+    "tech.partner.cta": "Ver Planes y Tarifas",
+    "tech.partner.feature1.title": "Atracción de Clientes Filtrados",
+    "tech.partner.feature1.desc": "El negocio recibirá turistas que ya están interesados en su oferta específica.",
+    "tech.partner.feature2.title": "Reportes de Demanda Regional",
+    "tech.partner.feature2.desc": "Qué están buscando los turistas en las Altas Montañas para que sepas qué vender más.",
+    "tech.partner.feature3.title": "Posicionamiento de Marca Local",
+    "tech.partner.feature3.desc": "Cómo SMARTUR te hace destacar frente a las grandes cadenas internacionales.",
+    "tech.partner.feature4.title": "Continuidad de Negocio",
+    "tech.partner.feature4.desc": "Garantía de que su escaparate digital siempre estará activo y vendiendo.",
 
     // Timeline
     "timeline.title":
@@ -273,6 +289,7 @@ export const ui = {
     "footer.social": "Síguenos",
     "footer.location": "Las Altas Montañas, Veracruz",
     "footer.copyright": "Todos los derechos reservados.",
+    "footer.address": "Avenida Universidad 350, 94910 Cuitláhuac, Ver.",
 
     // Tab visibility
     "tab.away": "¿A dónde fuiste?  Regresa a SMARTUR",
@@ -290,6 +307,7 @@ export const ui = {
       "Descubre cómo nuestra tecnología puede transformar tu destino o negocio. Déjanos tu correo y te contactaremos para una asesoría personalizada.",
     "contact.cta.emailPlaceholder": "tu correo",
     "contact.cta.submit": "Enviar",
+    "contact.form.success": "Gracias. Nos pondremos en contacto pronto.",
   },
   en: {
     // Accessibility
@@ -303,6 +321,9 @@ export const ui = {
     "nav.destination": "Destination",
     "nav.pricing": "Pricing",
     "nav.contact": "Contact",
+
+    // Branding
+    "header.logo.alt": "SMARTUR Logo - Intelligent Tourism AI Platform",
 
     // Buttons
     "button.get-started": "Get Started",
@@ -420,6 +441,19 @@ export const ui = {
     "tech.card4.title": "Award-Winning Legacy",
     "tech.card4.desc":
       "Technology awarded with the Mi Veracruz Tourism Award, uniting innovation with the essence of our land.",
+
+    // Technology - Partner Benefits (New)
+    "tech.partner.title": "Boost your business with <span class='highlight-text'>intelligence</span>",
+    "tech.partner.intro": "Strategic tools designed to grow in the current tourism market.",
+    "tech.partner.cta": "See Plans and Rates",
+    "tech.partner.feature1.title": "Filtered Customer Attraction",
+    "tech.partner.feature1.desc": "The business will receive tourists who are already interested in its specific offer.",
+    "tech.partner.feature2.title": "Regional Demand Reports",
+    "tech.partner.feature2.desc": "What tourists are looking for in the High Mountains so you know what to sell more.",
+    "tech.partner.feature3.title": "Local Brand Positioning",
+    "tech.partner.feature3.desc": "How SMARTUR makes you stand out against large international chains.",
+    "tech.partner.feature4.title": "Business Continuity",
+    "tech.partner.feature4.desc": "Guarantee that your digital showcase will always be active and selling.",
 
     // Timeline
     "timeline.title":
@@ -557,6 +591,7 @@ export const ui = {
     "footer.social": "Follow Us",
     "footer.location": "High Mountains, Veracruz",
     "footer.copyright": "All rights reserved.",
+    "footer.address": "Avenida Universidad 350, 94910 Cuitláhuac, Ver.",
 
     // Tab visibility
     "tab.away": "Where did you go?  Come back to SMARTUR",
@@ -574,6 +609,7 @@ export const ui = {
       "Discover how our technology can transform your destination or business. Leave your email and we will contact you for a personalized consultation.",
     "contact.cta.emailPlaceholder": "your email",
     "contact.cta.submit": "Send",
+    "contact.form.success": "Thank you. We will be in touch shortly.",
   },
   fr: {
     // Accessibility
@@ -582,6 +618,9 @@ export const ui = {
 
     // Navigation
     "nav.home": "Accueil",
+    
+    // Branding
+    "header.logo.alt": "Logo SMARTUR - Plateforme de Tourisme Intelligent avec IA",
     "nav.about": "À propos",
     "nav.technology": "Bénéfices",
     "nav.destination": "Destination",
@@ -679,6 +718,9 @@ export const ui = {
     "region.text":
       "Une région riche en culture, nature et traditions. Des villages magiques aux paysages montagneux époustouflants, les Hautes Montagnes offrent des expériences touristiques uniques que SMARTUR aide à découvrir et promouvoir.",
 
+    "video.ariaLabel": "Vidéo explorant la richesse des Hautes Montagnes de Veracruz",
+    "video.unsupported": "Votre navigateur ne supporte pas l'élément vidéo.",
+
     // Technology
     "tech.title":
       '<span style="color: var(--color-purple)">Technologie</span> qui stimule le <span style="color: var(--color-cyan)">tourisme</span>',
@@ -705,6 +747,19 @@ export const ui = {
     "tech.card4.title": "Héritage Primé",
     "tech.card4.desc":
       "Technologie récompensée par le Prix Touristique Mi Veracruz, unissant l'innovation à l'essence de notre terre.",
+
+    // Technology - Partner Benefits (New)
+    "tech.partner.title": "Boostez votre entreprise avec <span class='highlight-text'>intelligence</span>",
+    "tech.partner.intro": "Des outils stratégiques conçus pour croître sur le marché touristique actuel.",
+    "tech.partner.cta": "Voir Plans et Tarifs",
+    "tech.partner.feature1.title": "Attraction de Clients Filtrés",
+    "tech.partner.feature1.desc": "L'entreprise recevra des touristes déjà intéressés par son offre spécifique.",
+    "tech.partner.feature2.title": "Rapports de Demande Régionale",
+    "tech.partner.feature2.desc": "Ce que les touristes recherchent dans les Hautes Montagnes pour savoir quoi vendre le plus.",
+    "tech.partner.feature3.title": "Positionnement de Marque Locale",
+    "tech.partner.feature3.desc": "Comment SMARTUR vous permet de vous démarquer face aux grandes chaînes internationales.",
+    "tech.partner.feature4.title": "Continuité des Affaires",
+    "tech.partner.feature4.desc": "Garantie que votre vitrine numérique sera toujours active et vendeuse.",
 
     // Timeline
     "timeline.title":
@@ -795,46 +850,8 @@ export const ui = {
     "pricing.enterprise.feature5": "Intégration avec les systèmes",
     "pricing.enterprise.feature6": "Rapports personnalisés",
 
-    // User Segmentation
-    "segmentation.title":
-      'Rejoignez le <span style="color: var(--color-purple)">catalogue</span>',
-    "region.cta": "Découvrir la région",
-    "segmentation.business.title": "Enregistrer mon entreprise",
-    "segmentation.business.desc": "Pour les PME",
-    "segmentation.business.text":
-      "Enregistrez votre entreprise touristique et accédez à des recommandations intelligentes qui connectent les voyageurs avec vos services.",
-    "segmentation.tourist.title": "Je suis un touriste",
-    "segmentation.tourist.desc": "Pour les Voyageurs",
-    "segmentation.tourist.text":
-      "Découvrez des expériences authentiques dans les Hautes Montagnes avec des recommandations personnalisées par IA.",
-
-    // Marquee
-    "marquee.text1": "Tourisme Intelligent",
-    "marquee.text2": "Innovation Régionale",
-    "marquee.text3": "IA pour les PME",
-    "marquee.text4": "Les Hautes Montagnes",
-
-    // FAQs
-    "faqs.title": "FAQ",
-    "faqs.subtitle": "Réponses à vos questions sur SMARTUR",
-    "faq1.question": "Qu'est-ce que SMARTUR?",
-    "faq1.answer":
-      "SMARTUR est une plateforme de recommandation touristique intelligente qui utilise l'IA pour connecter les voyageurs avec des expériences authentiques dans les Hautes Montagnes de Veracruz, tout en soutenant les PME locales.",
-    "faq2.question": "Comment fonctionne le système de recommandations?",
-    "faq2.answer":
-      "Nous utilisons des algorithmes de Machine Learning qui analysent les préférences, les comportements et les contextes pour générer des suggestions personnalisées d'hôtels, restaurants et activités touristiques.",
-    "faq3.question": "Est-ce gratuit pour les entreprises locales?",
-    "faq3.answer":
-      "SMARTUR propose des plans accessibles spécifiquement conçus pour les PME, avec des options qui s'adaptent à différents besoins et budgets.",
-    "faq4.question": "Mes données sont-elles sécurisées?",
-    "faq4.answer":
-      "Oui. Nous mettons en œuvre des normes de sécurité et de confidentialité de classe mondiale pour protéger toutes les informations des utilisateurs et des entreprises.",
-    "faq5.question": "Comment puis-je intégrer mon entreprise à SMARTUR?",
-    "faq5.answer":
-      "Contactez-nous via le formulaire sur notre page. Notre équipe vous guidera dans le processus d'inscription et de configuration de votre profil d'entreprise.",
-
     // Footer
-    "footer.slogan": "L'IA qui guide, le tourisme qui unit",
+    "footer.slogan": "IA qui guide, tourisme qui unit",
     "footer.description":
       "Plateforme de tourisme intelligent qui connecte les voyageurs avec des expériences authentiques dans les Hautes Montagnes de Veracruz.",
     "footer.quicklinks": "Liens Rapides",
@@ -842,22 +859,26 @@ export const ui = {
     "footer.social": "Suivez-nous",
     "footer.location": "Hautes Montagnes, Veracruz",
     "footer.copyright": "Tous droits réservés.",
+    "footer.address": "Avenida Universidad 350, 94910 Cuitláhuac, Ver.",
 
     // Tab visibility
-    "tab.away": "Où es-tu allé ?  Reviens sur SMARTUR",
+    "tab.away": "Où êtes-vous allé(e) ? Revenez sur SMARTUR",
 
     // ActionBridge
-    "action.tourist.label": "Je suis Touriste",
+    "action.tourist.label": "Je suis touriste",
     "action.tourist.description": "Aller à l'App Web",
-    "action.business.label": "J'ai une Entreprise",
-    "action.business.description": "Voir Plans et Tarifs",
+    "action.business.label": "J'ai une entreprise",
+    "action.business.description": "Voir les plans et tarifs",
 
     // Contact CTA (Minimal)
-    "contact.cta.label": "Contactez-nous",
+    "contact.cta.label": "Contact",
     "contact.cta.title": "Demander une évaluation",
     "contact.cta.text":
-      "Découvrez comment notre technologie peut transformer votre destination ou votre activité. Laissez votre courriel et nous vous contacterons pour une consultation personnalisée.",
-    "contact.cta.emailPlaceholder": "votre courriel",
+      "Découvrez comment notre technologie peut transformer votre destination ou entreprise. Laissez votre email et nous vous contacterons pour une consultation personnalisée.",
+    "contact.cta.emailPlaceholder": "votre email",
     "contact.cta.submit": "Envoyer",
+    "contact.form.success": "Merci. Nous vous contacterons bientôt.",
+
+
   },
 } as const;

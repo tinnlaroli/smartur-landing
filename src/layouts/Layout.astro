@@ -133,7 +133,7 @@ const seo = seoMetadata[currentLang];
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "SMARTUR",
-        "description": "Plataforma de turismo inteligente con IA para Las Altas Montañas de Veracruz",
+        "description": "{seo.description}",
         "url": "https://smartur.mx",
         "logo": "https://smartur.mx/logo.png",
         "address": {
@@ -150,7 +150,7 @@ const seo = seoMetadata[currentLang];
     <a href="#main" class="skip-link">{t("accessibility.skip-to-content")}</a>
     <Header
       logoUrl="/"
-      logoAlt="SMARTUR"
+      logoAlt={t("header.logo.alt")}
       links={links}
       link1={{ title: t("button.login"), url: "https://app.smartur.mx" }}
       link2={{ title: t("button.get-started"), url: "#contacto" }}
@@ -171,6 +171,7 @@ const seo = seoMetadata[currentLang];
           contactTitle={t("footer.contact")}
           socialTitle={t("footer.social")}
           copyright={t("footer.copyright")}
+          address={t("footer.address")}
         />
       </div>
     </div>

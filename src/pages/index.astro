@@ -33,16 +33,29 @@ import { ui, defaultLang } from "../i18n/ui";
     id="region"
     title={ui.es["video.title"]}
     description={ui.es["video.description"]}
+    lang="es"
   />
 
   <section id="tecnologia">
-    <TechnologySection 
-      id="tecnologia-inner" 
-      lang="es" 
+    <TechnologySection
+      id="tecnologia-inner"
+      lang="es"
       stats={[
-        { number: ui.es["about.stat1.number"], suffix: ui.es["about.stat1.suffix"], label: ui.es["about.stat1.label"] },
-        { number: ui.es["about.stat2.number"], suffix: ui.es["about.stat2.suffix"], label: ui.es["about.stat2.label"] },
-        { number: ui.es["about.stat3.number"], suffix: ui.es["about.stat3.suffix"], label: ui.es["about.stat3.label"] },
+        {
+          number: ui.es["about.stat1.number"],
+          suffix: ui.es["about.stat1.suffix"],
+          label: ui.es["about.stat1.label"],
+        },
+        {
+          number: ui.es["about.stat2.number"],
+          suffix: ui.es["about.stat2.suffix"],
+          label: ui.es["about.stat2.label"],
+        },
+        {
+          number: ui.es["about.stat3.number"],
+          suffix: ui.es["about.stat3.suffix"],
+          label: ui.es["about.stat3.label"],
+        },
       ]}
     />
   </section>
@@ -90,7 +103,6 @@ import { ui, defaultLang } from "../i18n/ui";
       },
     ]}
     description={ui.es["about.description"]}
-
     timelineTitle={ui.es["timeline.title"]}
     timelineItems={[
       {
@@ -113,8 +125,6 @@ import { ui, defaultLang } from "../i18n/ui";
   />
 
   {/* StepsTimeline moved to About */}
-
-
 
   <Testimonials
     title={ui.es["testimonials.title"]}
@@ -187,7 +197,7 @@ import { ui, defaultLang } from "../i18n/ui";
           { title: ui[defaultLang]["pricing.enterprise.feature4"] },
           { title: ui[defaultLang]["pricing.enterprise.feature5"] },
         ],
-      }
+      },
     ]}
   />
 
