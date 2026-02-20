@@ -144,11 +144,7 @@ const text: Record<Lang, string[]> = {
     updatePath();
     window.addEventListener("resize", updatePath);
 
-    if (isMobile) {
-      // No pin/scrub on mobile: just show text and optional static plane for fluidity
-      if (plane) gsap.set(plane, { autoAlpha: 1, scale: 1 });
-      return;
-    }
+    // Allow GSAP animation universally, we will configure pinning inside the timeline setup
 
     if (plane) gsap.set(plane, { autoAlpha: 1, scale: 0.5 });
     if (maskPath) {
@@ -159,9 +155,9 @@ const text: Record<Lang, string[]> = {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#flight-divider",
-        start: "center center",
-        end: "+=150%",
-        pin: true,
+        start: isMobile ? "top bottom" : "center center",
+        end: isMobile ? "bottom top" : "+=150%",
+        pin: !isMobile,
         scrub: 1,
       }
     });
@@ -217,9 +213,6 @@ const text: Record<Lang, string[]> = {
   @media (--mq-phone) {
     .flight-divider-height {
       height: 50vh;
-    }
-    .divider-plane-el {
-      display: none; /* Skip Lottie on phone for performance */
     }
     .flight-text span {
       font-size: 1.75rem !important;

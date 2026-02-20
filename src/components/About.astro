@@ -509,28 +509,42 @@ const {
     const items = document.querySelectorAll('.step-item');
     if (items.length === 0) return;
 
-    // Apply ScrollTrigger animation across all devices
-    ScrollTrigger.create({
-      trigger: ".sy-about", // Use the section as trigger
-      start: "top top", 
-      end: () => `+=${window.innerHeight * (window.innerWidth < 1024 ? 2.5 : 3)}`, // Give enough scroll distance for the cards to transition cleanly
-      pin: true, 
-      scrub: true, 
-      onUpdate: (self) => {
-        const total = items.length;
-        const index = Math.min(
-            Math.floor(self.progress * total), 
-            total - 1
-        );
-        
-        items.forEach((item, i) => {
-            if (i === index) {
-                item.classList.add('is-active');
-            } else {
-                item.classList.remove('is-active');
-            }
-        });
-      }
+    let mm = gsap.matchMedia();
+
+    // Desktop/Tablet: Pinning
+    mm.add("(min-width: 768px)", () => {
+      ScrollTrigger.create({
+        trigger: ".sy-about",
+        start: "top top", 
+        end: () => `+=${window.innerHeight * (window.innerWidth < 1024 ? 2.5 : 3)}`, 
+        pin: true, 
+        scrub: true, 
+        onUpdate: (self) => {
+          const total = items.length;
+          const index = Math.min(Math.floor(self.progress * total), total - 1);
+          items.forEach((item, i) => {
+            item.classList.toggle('is-active', i === index);
+          });
+        }
+      });
+    });
+
+    // Mobile: No pinning
+    mm.add("(max-width: 767px)", () => {
+      ScrollTrigger.create({
+        trigger: ".sy-about",
+        start: "top center", 
+        end: "bottom center", 
+        pin: false, 
+        scrub: true, 
+        onUpdate: (self) => {
+          const total = items.length;
+          const index = Math.min(Math.floor(self.progress * total), total - 1);
+          items.forEach((item, i) => {
+            item.classList.toggle('is-active', i === index);
+          });
+        }
+      });
     });
   };
 

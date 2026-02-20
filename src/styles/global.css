@@ -88,7 +88,7 @@
   }
 
   @media (--mq-phone) {
-    --container-offset: 1.5rem;
+    --container-offset: 2.5rem;
   }
 }
 
