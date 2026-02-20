@@ -119,18 +119,22 @@ const validLang = currentLang in languages ? currentLang : "es";
         width: 20px;
         height: 20px;
       }
+
+      .current-lang {
+        display: none;
+      }
     }
   }
 
   .lang-dropdown {
     position: absolute;
     top: calc(100% + 0.5rem);
-    right: 0;
+    right: -10px; /* Adjust slightly for mobile so it doesn't touch screen edge */
     background: var(--color-bg);
     border: 1px solid rgba(var(--rgb-text), 0.1);
     border-radius: 0.5rem;
     box-shadow: 0 4px 20px rgba(var(--rgb-text), 0.15);
-    min-width: 180px;
+    min-width: 150px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -139,15 +143,11 @@ const validLang = currentLang in languages ? currentLang : "es";
     overflow: hidden;
 
     @media (--mq-tablet) {
-      position: fixed;
-      top: auto;
-      bottom: 5rem;
-      right: 1rem;
-      left: 1rem;
-      min-width: auto;
+      right: 0;
     }
   }
 
+  .language-switcher.is-open .lang-dropdown,
   .language-switcher:hover .lang-dropdown,
   .language-switcher:focus-within .lang-dropdown {
     opacity: 1;
@@ -155,6 +155,7 @@ const validLang = currentLang in languages ? currentLang : "es";
     transform: translateY(0);
   }
 
+  .language-switcher.is-open .chevron,
   .language-switcher:hover .chevron,
   .language-switcher:focus-within .chevron {
     transform: rotate(180deg);
@@ -224,11 +225,25 @@ const validLang = currentLang in languages ? currentLang : "es";
     }
   }
 
+  // Mobile toggle behavior
+  const switcher = document.querySelector(".language-switcher");
+  const trigger = document.querySelector(".lang-trigger");
+
+  trigger?.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevents document click from instantly closing it
+    if (switcher?.classList.contains("is-open")) {
+      switcher.classList.remove("is-open");
+      (trigger as HTMLElement).blur(); // Drops focus-within
+    } else {
+      switcher?.classList.add("is-open");
+    }
+  });
+
   // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    const switcher = document.querySelector(".language-switcher");
     if (switcher && !switcher.contains(e.target as Node)) {
-      // Dropdown will close automatically via CSS :hover
+      switcher.classList.remove("is-open");
+      (trigger as HTMLElement)?.blur();
     }
   });
 </script>

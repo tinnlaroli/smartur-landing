@@ -17,37 +17,53 @@ const { title, testimonials } = Astro.props;
 
 <section class="testimonials-section">
   <div class="u-container">
-    <h2 class="u-heading title sy-kinetic-heading" data-sy-reveal="" set:html={title} />
+    <h2
+      class="u-heading title sy-kinetic-heading"
+      data-sy-reveal=""
+      set:html={title}
+    />
 
     <div class="testimonials-grid">
-      {testimonials.map((testimonial, index) => (
-        <div class="testimonial-card" data-sy-reveal="fade" style={`transition-delay: ${index * 0.15}s`}>
-          <div class="quote-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
-            </svg>
-          </div>
-          
-          <p class="u-text testimonial-content">{testimonial.content}</p>
-          
-          <div class="testimonial-author">
-            <div class="author-avatar">
-              {testimonial.avatar ? (
-                <img src={testimonial.avatar} alt={testimonial.name} />
-              ) : (
-                <div class="avatar-placeholder">
-                  {testimonial.name.charAt(0)}
-                </div>
-              )}
+      {
+        testimonials.map((testimonial, index) => (
+          <div
+            class="testimonial-card"
+            data-sy-reveal="fade"
+            style={`transition-delay: ${index * 0.15}s`}
+          >
+            <div class="quote-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+              </svg>
             </div>
-            <div class="author-info">
-              <p class="u-text author-name">{testimonial.name}</p>
-              <p class="u-text author-role">{testimonial.role}</p>
-              <p class="u-text author-business">{testimonial.business}</p>
+
+            <p class="u-text testimonial-content">{testimonial.content}</p>
+
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                {testimonial.avatar ? (
+                  <img src={testimonial.avatar} alt={testimonial.name} />
+                ) : (
+                  <div class="avatar-placeholder">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <div class="author-info">
+                <p class="u-text author-name">{testimonial.name}</p>
+                <p class="u-text author-role">{testimonial.role}</p>
+                <p class="u-text author-business">{testimonial.business}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
@@ -110,20 +126,10 @@ const { title, testimonials } = Astro.props;
       margin-right: calc(-1 * var(--container-offset));
       padding-left: var(--container-offset);
       padding-right: var(--container-offset);
-      scrollbar-width: thin;
-      scrollbar-color: rgba(var(--rgb-text), 0.2) transparent;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
 
       &::-webkit-scrollbar {
-        height: 6px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: rgba(var(--rgb-text), 0.2);
-        border-radius: 3px;
+        display: none; /* Hide scrollbar Chrome/Safari */
       }
     }
   }
@@ -149,11 +155,14 @@ const { title, testimonials } = Astro.props;
     }
 
     @media (--mq-phone) {
-      flex: 0 0 85%;
-      min-width: 85%;
-      max-width: 85%;
-      padding: 2rem 1.5rem;
-      scroll-snap-align: start;
+      flex: 0 0 80vw;
+      min-width: 80vw;
+      max-width: 80vw;
+      padding: 2.5rem 1.5rem;
+      scroll-snap-align: center;
+      /* Add premium "floating" effect */
+      box-shadow: 0 10px 30px rgba(var(--rgb-text), 0.05);
+      margin: 0.5rem 0; /* Add top/bottom buffer to feel spacious and allow shadow bleed */
     }
   }
 

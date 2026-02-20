@@ -143,19 +143,19 @@ const BENEFITS = [
     {/* Statistics Section - New Addition */}
     {
       stats && (
-        <div class="stats-container reveal-stats grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
+        <div class="stats-container reveal-stats flex flex-row flex-wrap justify-between items-center gap-2 sm:gap-4 md:grid md:grid-cols-3 md:gap-8 mb-12 sm:mb-20 max-w-4xl mx-auto w-full px-2">
           {stats.map((stat, i) => (
-            <div class="stat-item text-center">
+            <div class="stat-item flex-1 text-center min-w-[max-content]">
               <div
-                class="stat-number text-5xl md:text-6xl font-extrabold mb-2 text-gray-900"
+                class="stat-number text-3xl sm:text-4xl md:text-6xl font-extrabold mb-1 md:mb-2 text-gray-900"
                 data-value={stat.number}
               >
                 0
-                <span class="stat-suffix text-3xl md:text-4xl text-gray-400 font-bold ml-1">
+                <span class="stat-suffix text-xl sm:text-2xl md:text-4xl text-gray-400 font-bold ml-1">
                   {stat.suffix}
                 </span>
               </div>
-              <p class="stat-label text-gray-500 font-medium uppercase tracking-wider text-sm">
+              <p class="stat-label text-gray-500 font-medium uppercase tracking-wider text-[10px] sm:text-xs md:text-sm">
                 {stat.label}
               </p>
             </div>

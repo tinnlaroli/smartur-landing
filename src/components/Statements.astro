@@ -72,7 +72,7 @@ const { items } = Astro.props;
 
     @media (--mq-phone) {
       min-height: 320px;
-      padding: 3rem 1rem;
+      padding: 0 1.5rem; /* Ensure padding doesn't push flexbox off absolute center */
     }
 
     &:nth-child(2) {

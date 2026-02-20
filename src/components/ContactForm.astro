@@ -49,7 +49,7 @@ const t = ui[lang];
           <input
             type="email"
             placeholder={t["contact.cta.emailPlaceholder"]}
-            class="flex-grow min-w-0 bg-[var(--color-bg-alt)] border border-[rgba(var(--rgb-text),0.12)] text-[var(--color-text)] rounded-full py-3 sm:py-4 px-4 sm:px-6 outline-none focus:ring-2 focus:ring-[var(--color-purple)] transition-all duration-300 ease-out placeholder:opacity-60"
+            class="w-full flex-grow min-w-0 bg-[var(--color-bg-alt)] border border-[rgba(var(--rgb-text),0.12)] text-[var(--color-text)] rounded-full py-3 sm:py-4 px-4 sm:px-6 outline-none focus:ring-2 focus:ring-[var(--color-purple)] transition-all duration-300 ease-out placeholder:opacity-60"
             required
           />
           <Button
@@ -57,7 +57,7 @@ const t = ui[lang];
             title={t["contact.cta.submit"]}
             color="primary-alt"
             arrow
-            class="whitespace-nowrap shadow-md hover:-translate-y-0.5"
+            class="w-full sm:w-auto whitespace-nowrap shadow-md hover:-translate-y-0.5"
           />
         </form>
       </div>

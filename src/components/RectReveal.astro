@@ -90,18 +90,20 @@ const { class: className, ignoreLast } = Astro.props;
       const inner = this.querySelector<HTMLElement>(".inner")!;
       const initRotation = 35;
       const theta = (initRotation * Math.PI) / 180;
-      const factor = Math.abs(Math.cos(theta)) + Math.abs(Math.sin(theta));
+      // In portrait/mobile, the square needs to be significantly larger to cover the vertical bleeding edges during rotation
+      const factor = (Math.abs(Math.cos(theta)) + Math.abs(Math.sin(theta))) * (window.innerHeight > window.innerWidth ? 1.8 : 1);
 
       const inners = this.querySelectorAll<HTMLElement>(".inner > *");
       const sizes = [0, 0];
 
+      // Removed matchMedia to allow animation on mobile as requested by user
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: inner,
           pin: true,
           scrub: true,
           start: "center center",
-          end: () => `+=${window.innerHeight * 3}`,
+          end: () => `+=${window.innerHeight * (window.innerWidth < 1024 ? 1.5 : 3)}`, // Shorten pin on mobile to avoid 14,000px height bug
           invalidateOnRefresh: true,
           onRefresh: () => {
             sizes[0] = window.innerWidth;
@@ -120,6 +122,9 @@ const { class: className, ignoreLast } = Astro.props;
 
         gsap.set(el, {
           zIndex: inners.length - i,
+          position: "absolute", // Revert to absolute to allow true GSAP clip-path stacking
+          height: "100%",
+          clipPath: "none"
         });
 
         tl.add(
@@ -164,7 +169,9 @@ const { class: className, ignoreLast } = Astro.props;
                 wHeight,
               );
 
-              const polygon = rotated.map((p) => `${p.x}% ${p.y}%`).join(", ");
+              const polygon = rotated
+                .map((p) => `${p.x}% ${p.y}%`)
+                .join(", ");
               el.style.clipPath = `polygon(${polygon})`;
             },
           },

@@ -160,6 +160,7 @@ const attrs =
       --bg-color: var(--btn-bg-color, var(--color-purple));
       --hover-bg-color: var(--btn-hover-bg-color, var(--color-white));
       --hover-text-color: var(--btn-hover-text-color, var(--color-purple));
+      --arrow-initial-clip: inset(50% round 99px); /* Hides the initial circle */
     }
 
     &:global(.btn-green) {
@@ -194,16 +195,19 @@ const attrs =
           &::after {
             content: "";
             display: block;
+            flex-shrink: 0; /* Prevent arrow from squashing to 0px in tight flex containers */
             width: 2em;
             height: 2em;
-            margin-left: 1em;
-            background: var(--bg-color);
+            margin-left: 0.5em; /* Reduced from 1em to bring the arrow closer to the text */
+            background: currentColor; /* Use text color so arrow changes properly */
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 21'%3E%3Cpath d='m16 9-6-6 2-1 8 8-1 1-7 7-2-1 6-6H0V9z'/%3E%3C/svg%3E")
+              no-repeat center / 1em 1em;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 21'%3E%3Cpath d='m16 9-6-6 2-1 8 8-1 1-7 7-2-1 6-6H0V9z'/%3E%3C/svg%3E")
               no-repeat center / 1em 1em;
           }
 
           &:first-child {
-            clip-path: inset(0.95em 1em 0.95em calc(100% - 3em) round 99px);
+            clip-path: var(--arrow-initial-clip, inset(0.95em 1em 0.95em calc(100% - 3em) round 99px));
           }
         }
       }

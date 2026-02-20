@@ -134,6 +134,9 @@ const {
     padding: 8rem 0 3rem;
     position: relative;
     background: var(--color-bg);
+    min-height: 100dvh; /* Restored to ensure pinning occupies full screen */
+    display: flex;
+    align-items: center;
 
     @media (--mq-tablet) {
       padding: 5rem 0 3rem;
@@ -342,9 +345,13 @@ const {
 
   /* Stepper / Timeline Styles (Restored) */
   .stepper-column {
-    position: relative;
-    height: 100%;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (--mq-phone) {
+      margin-top: 2rem;
+    }
   }
 
   .stepper-wrapper {
@@ -356,6 +363,10 @@ const {
     padding-left: 2rem; /* Reduced from original 4rem for column fit */
     position: relative;
     
+    @media (--mq-phone) {
+      padding-left: 0.5rem; /* Tighter on mobile */
+    }
+
     &::before {
       content: "";
       display: block;
@@ -364,23 +375,53 @@ const {
       margin-right: 2rem;
       background: rgba(var(--rgb-text), 0.1); 
       border-radius: 0;
+      
+      @media (--mq-phone) {
+        margin-right: 1.5rem; /* Tighter gap */
+      }
     }
   }
 
   .items {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    counter-reset: items;
-    gap: 1rem;
+
+    @media (--mq-phone) {
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+    }
   }
 
   .step-item {
     transition: opacity 0.6s var(--ease-out-cubic);
     opacity: 0.3;
+    position: relative;
+    padding-right: 2rem; /* Buffer from the line on desktop */
     
     &.is-active {
       opacity: 1;
+    }
+
+    @media (--mq-phone) {
+      padding: 1.5rem;
+      padding-right: 1.5rem;
+      
+      /* Premium Card Styling for Mobile */
+      background: rgba(var(--rgb-bg-alt), 0.8);
+      border-radius: 1rem;
+      border: 1px solid rgba(var(--rgb-text), 0.08);
+      box-shadow: 0 10px 30px rgba(var(--rgb-text), 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      
+      /* Scaling logic for non-active cards */
+      transform: scale(0.98);
+      transition: opacity 0.6s var(--ease-out-cubic), transform 0.6s var(--ease-out-cubic), border-color 0.4s ease;
+
+      &.is-active {
+        transform: scale(1);
+        border-color: rgba(var(--rgb-purple), 0.5);
+      }
     }
   }
 
@@ -390,6 +431,10 @@ const {
     flex-direction: column;
     gap: 0.5rem;
     padding: 2rem 0;
+
+    @media (--mq-phone) {
+      padding: 0;
+    }
 
     /* The number indicator */
     &::before {
@@ -404,6 +449,15 @@ const {
       border: 2px solid var(--color-text-alt);
       z-index: 1;
       transition: all 0.4s ease;
+
+      @media (--mq-phone) {
+        /* Move dot to the left vertical line */
+        /* Distance = padding of card + margin of line = 1.5rem + 1.5rem = 3rem. Plus half of 12px width = 6px */
+        left: calc(-3rem - 6px); 
+        top: 0.25rem;
+        right: auto;
+        transform: none;
+      }
     }
 
     /* Active state for the dot */
@@ -453,13 +507,13 @@ const {
   // Stepper Logic
   const initStepper = () => {
     const items = document.querySelectorAll('.step-item');
-    
     if (items.length === 0) return;
 
+    // Apply ScrollTrigger animation across all devices
     ScrollTrigger.create({
       trigger: ".sy-about", // Use the section as trigger
       start: "top top", 
-      end: "+=150%", 
+      end: () => `+=${window.innerHeight * (window.innerWidth < 1024 ? 2.5 : 3)}`, // Give enough scroll distance for the cards to transition cleanly
       pin: true, 
       scrub: true, 
       onUpdate: (self) => {
