@@ -36,16 +36,29 @@ const t = ui[lang];
     id="region"
     title={t["video.title"]}
     description={t["video.description"]}
+    lang={lang}
   />
 
   <section id="technology">
-    <TechnologySection 
-      id="tecnologia-inner" 
-      lang={lang} 
+    <TechnologySection
+      id="tecnologia-inner"
+      lang={lang}
       stats={[
-        { number: t["about.stat1.number"], suffix: t["about.stat1.suffix"], label: t["about.stat1.label"] },
-        { number: t["about.stat2.number"], suffix: t["about.stat2.suffix"], label: t["about.stat2.label"] },
-        { number: t["about.stat3.number"], suffix: t["about.stat3.suffix"], label: t["about.stat3.label"] },
+        {
+          number: t["about.stat1.number"],
+          suffix: t["about.stat1.suffix"],
+          label: t["about.stat1.label"],
+        },
+        {
+          number: t["about.stat2.number"],
+          suffix: t["about.stat2.suffix"],
+          label: t["about.stat2.label"],
+        },
+        {
+          number: t["about.stat3.number"],
+          suffix: t["about.stat3.suffix"],
+          label: t["about.stat3.label"],
+        },
       ]}
     />
   </section>
@@ -93,7 +106,6 @@ const t = ui[lang];
       },
     ]}
     description={t["about.description"]}
-  
     timelineTitle={t["timeline.title"]}
     timelineItems={[
       {
@@ -154,8 +166,8 @@ const t = ui[lang];
         title: t["pricing.basic.title"],
         description: t["pricing.basic.desc"],
         price: {
-          monthly: 499,
-          annual: Math.round(499 * 12 * 0.8),
+          monthly: 249,
+          annual: Math.round(249 * 12 * 0.8),
           duration: t["pricing.basic.duration"],
         },
         link: {
@@ -175,8 +187,8 @@ const t = ui[lang];
         title: t["pricing.enterprise.title"],
         description: t["pricing.enterprise.desc"],
         price: {
-          monthly: 1999,
-          annual: Math.round(1999 * 12 * 0.8),
+          monthly: 499,
+          annual: Math.round(499 * 12 * 0.8),
           duration: t["pricing.enterprise.duration"],
         },
         link: {
@@ -191,7 +203,7 @@ const t = ui[lang];
           { title: t["pricing.enterprise.feature5"] },
           { title: t["pricing.enterprise.feature6"] },
         ],
-      }
+      },
     ]}
   />
 

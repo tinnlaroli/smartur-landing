@@ -21,7 +21,8 @@ export const ui = {
     "nav.contact": "Contacto",
 
     // Branding
-    "header.logo.alt": "Logotipo de SMARTUR - Plataforma de Turismo Inteligente con IA",
+    "header.logo.alt":
+      "Logotipo de SMARTUR - Plataforma de Turismo Inteligente con IA",
 
     // Buttons
     "button.get-started": "Comenzar",
@@ -109,17 +110,23 @@ export const ui = {
       "Tecnología premiada con el Galardón Turístico Mi Veracruz, uniendo la innovación con la esencia de nuestra tierra.",
 
     // Technology - Partner Benefits (New)
-    "tech.partner.title": "Impulsa tu negocio con <span class='highlight-text'>inteligencia</span>",
-    "tech.partner.intro": "Herramientas estratégicas diseñadas para crecer en el mercado turístico actual.",
+    "tech.partner.title":
+      "Impulsa tu negocio con <span class='highlight-text'>inteligencia</span>",
+    "tech.partner.intro":
+      "Herramientas estratégicas diseñadas para crecer en el mercado turístico actual.",
     "tech.partner.cta": "Ver Planes y Tarifas",
     "tech.partner.feature1.title": "Atracción de Clientes Filtrados",
-    "tech.partner.feature1.desc": "El negocio recibirá turistas que ya están interesados en su oferta específica.",
+    "tech.partner.feature1.desc":
+      "El negocio recibirá turistas que ya están interesados en su oferta específica.",
     "tech.partner.feature2.title": "Reportes de Demanda Regional",
-    "tech.partner.feature2.desc": "Qué están buscando los turistas en las Altas Montañas para que sepas qué vender más.",
+    "tech.partner.feature2.desc":
+      "Qué están buscando los turistas en las Altas Montañas para que sepas qué vender más.",
     "tech.partner.feature3.title": "Posicionamiento de Marca Local",
-    "tech.partner.feature3.desc": "Cómo SMARTUR te hace destacar frente a las grandes cadenas internacionales.",
+    "tech.partner.feature3.desc":
+      "Cómo SMARTUR te hace destacar frente a las grandes cadenas internacionales.",
     "tech.partner.feature4.title": "Continuidad de Negocio",
-    "tech.partner.feature4.desc": "Garantía de que su escaparate digital siempre estará activo y vendiendo.",
+    "tech.partner.feature4.desc":
+      "Garantía de que su escaparate digital siempre estará activo y vendiendo.",
 
     // Timeline
     "timeline.title":
@@ -262,7 +269,7 @@ export const ui = {
     "marquee.text4": "Las Altas Montañas",
 
     // FAQs
-    "faqs.title": "FAQs",
+    "faqs.title": "Preguntas Frecuentes",
     "faqs.subtitle": "Respuestas a tus dudas sobre SMARTUR",
     "faq1.question": "¿Qué es SMARTUR?",
     "faq1.answer":
@@ -443,17 +450,23 @@ export const ui = {
       "Technology awarded with the Mi Veracruz Tourism Award, uniting innovation with the essence of our land.",
 
     // Technology - Partner Benefits (New)
-    "tech.partner.title": "Boost your business with <span class='highlight-text'>intelligence</span>",
-    "tech.partner.intro": "Strategic tools designed to grow in the current tourism market.",
+    "tech.partner.title":
+      "Boost your business with <span class='highlight-text'>intelligence</span>",
+    "tech.partner.intro":
+      "Strategic tools designed to grow in the current tourism market.",
     "tech.partner.cta": "See Plans and Rates",
     "tech.partner.feature1.title": "Filtered Customer Attraction",
-    "tech.partner.feature1.desc": "The business will receive tourists who are already interested in its specific offer.",
+    "tech.partner.feature1.desc":
+      "The business will receive tourists who are already interested in its specific offer.",
     "tech.partner.feature2.title": "Regional Demand Reports",
-    "tech.partner.feature2.desc": "What tourists are looking for in the High Mountains so you know what to sell more.",
+    "tech.partner.feature2.desc":
+      "What tourists are looking for in the High Mountains so you know what to sell more.",
     "tech.partner.feature3.title": "Local Brand Positioning",
-    "tech.partner.feature3.desc": "How SMARTUR makes you stand out against large international chains.",
+    "tech.partner.feature3.desc":
+      "How SMARTUR makes you stand out against large international chains.",
     "tech.partner.feature4.title": "Business Continuity",
-    "tech.partner.feature4.desc": "Guarantee that your digital showcase will always be active and selling.",
+    "tech.partner.feature4.desc":
+      "Guarantee that your digital showcase will always be active and selling.",
 
     // Timeline
     "timeline.title":
@@ -564,7 +577,7 @@ export const ui = {
     "marquee.text4": "The High Mountains",
 
     // FAQs
-    "faqs.title": "FAQs",
+    "faqs.title": "Frequently Asked Questions",
     "faqs.subtitle": "Answers to your questions about SMARTUR",
     "faq1.question": "What is SMARTUR?",
     "faq1.answer":
@@ -618,9 +631,10 @@ export const ui = {
 
     // Navigation
     "nav.home": "Accueil",
-    
+
     // Branding
-    "header.logo.alt": "Logo SMARTUR - Plateforme de Tourisme Intelligent avec IA",
+    "header.logo.alt":
+      "Logo SMARTUR - Plateforme de Tourisme Intelligent avec IA",
     "nav.about": "À propos",
     "nav.technology": "Bénéfices",
     "nav.destination": "Destination",
@@ -718,7 +732,8 @@ export const ui = {
     "region.text":
       "Une région riche en culture, nature et traditions. Des villages magiques aux paysages montagneux époustouflants, les Hautes Montagnes offrent des expériences touristiques uniques que SMARTUR aide à découvrir et promouvoir.",
 
-    "video.ariaLabel": "Vidéo explorant la richesse des Hautes Montagnes de Veracruz",
+    "video.ariaLabel":
+      "Vidéo explorant la richesse des Hautes Montagnes de Veracruz",
     "video.unsupported": "Votre navigateur ne supporte pas l'élément vidéo.",
 
     // Technology
@@ -749,17 +764,23 @@ export const ui = {
       "Technologie récompensée par le Prix Touristique Mi Veracruz, unissant l'innovation à l'essence de notre terre.",
 
     // Technology - Partner Benefits (New)
-    "tech.partner.title": "Boostez votre entreprise avec <span class='highlight-text'>intelligence</span>",
-    "tech.partner.intro": "Des outils stratégiques conçus pour croître sur le marché touristique actuel.",
+    "tech.partner.title":
+      "Boostez votre entreprise avec <span class='highlight-text'>intelligence</span>",
+    "tech.partner.intro":
+      "Des outils stratégiques conçus pour croître sur le marché touristique actuel.",
     "tech.partner.cta": "Voir Plans et Tarifs",
     "tech.partner.feature1.title": "Attraction de Clients Filtrés",
-    "tech.partner.feature1.desc": "L'entreprise recevra des touristes déjà intéressés par son offre spécifique.",
+    "tech.partner.feature1.desc":
+      "L'entreprise recevra des touristes déjà intéressés par son offre spécifique.",
     "tech.partner.feature2.title": "Rapports de Demande Régionale",
-    "tech.partner.feature2.desc": "Ce que les touristes recherchent dans les Hautes Montagnes pour savoir quoi vendre le plus.",
+    "tech.partner.feature2.desc":
+      "Ce que les touristes recherchent dans les Hautes Montagnes pour savoir quoi vendre le plus.",
     "tech.partner.feature3.title": "Positionnement de Marque Locale",
-    "tech.partner.feature3.desc": "Comment SMARTUR vous permet de vous démarquer face aux grandes chaînes internationales.",
+    "tech.partner.feature3.desc":
+      "Comment SMARTUR vous permet de vous démarquer face aux grandes chaînes internationales.",
     "tech.partner.feature4.title": "Continuité des Affaires",
-    "tech.partner.feature4.desc": "Garantie que votre vitrine numérique sera toujours active et vendeuse.",
+    "tech.partner.feature4.desc":
+      "Garantie que votre vitrine numérique sera toujours active et vendeuse.",
 
     // Timeline
     "timeline.title":
@@ -879,6 +900,23 @@ export const ui = {
     "contact.cta.submit": "Envoyer",
     "contact.form.success": "Merci. Nous vous contacterons bientôt.",
 
-
+    // FAQs
+    "faqs.title": "Foire Aux Questions",
+    "faqs.subtitle": "Réponses à vos questions sur SMARTUR",
+    "faq1.question": "Qu'est-ce que SMARTUR ?",
+    "faq1.answer":
+      "SMARTUR est une plateforme de recommandation touristique intelligente qui utilise l'IA pour connecter les voyageurs avec des expériences authentiques dans les Hautes Montagnes de Veracruz, tout en soutenant les PME locales.",
+    "faq2.question": "Comment fonctionne le système de recommandations ?",
+    "faq2.answer":
+      "Nous utilisons des algorithmes de Machine Learning qui analysent les préférences, les comportements et les contextes pour générer des suggestions personnalisées d'hôtels, de restaurants et d'activités touristiques.",
+    "faq3.question": "Est-ce gratuit pour les entreprises locales ?",
+    "faq3.answer":
+      "SMARTUR propose des plans accessibles conçus spécifiquement pour les PME, avec des options qui s'adaptent à différents besoins et budgets.",
+    "faq4.question": "Mes données sont-elles en sécurité ?",
+    "faq4.answer":
+      "Oui. Nous mettons en œuvre des normes de sécurité et de confidentialité de classe mondiale pour protéger toutes les informations des utilisateurs et des entreprises.",
+    "faq5.question": "Comment puis-je intégrer mon entreprise à SMARTUR ?",
+    "faq5.answer":
+      "Contactez-nous via le formulaire sur notre page. Notre équipe vous guidera dans le processus d'inscription et de configuration de votre profil d'entreprise.",
   },
 } as const;
