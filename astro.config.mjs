@@ -5,6 +5,8 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://tinnlaroli.github.io",
+  base: "/smartur-landing",
   integrations: [react(), tailwind()],
   scopedStyleStrategy: "where",
   i18n: {
