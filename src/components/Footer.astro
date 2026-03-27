@@ -27,6 +27,18 @@ const {
   copyright,
   address,
 } = Astro.props;
+
+// Obtener la última versión de la app desde GitHub
+let latestVersion = "v1.0.0";
+try {
+  const response = await fetch("https://api.github.com/repos/tinnlaroli/smartur-movil/releases/latest");
+  if (response.ok) {
+    const data = await response.json();
+    latestVersion = data.tag_name;
+  }
+} catch (e) {
+  console.error("Error fetching latest release:", e);
+}
 ---
 
 <sy-footer>
@@ -156,6 +168,34 @@ const {
               </li>
             </ul>
           </div>
+
+          <div class="footer-column">
+            <h3 class="column-title">App Móvil</h3>
+            <div class="app-download">
+              <span class="version-tag">Última versión: {latestVersion}</span>
+              <a
+                href="https://github.com/tinnlaroli/smartur-movil/releases/latest/download/app-release.apk"
+                class="download-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Descargar APK
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <p class="cp">© {new Date().getFullYear()} {logoAlt}. {copyright}</p>
@@ -244,12 +284,16 @@ const {
 
   .footer-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
 
     @media (--mq-tablet) {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
+    }
+
+    @media (--mq-phone) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -367,6 +411,54 @@ const {
         svg {
           transform: scale(1.1);
         }
+      }
+    }
+  }
+
+  .app-download {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .version-tag {
+      @extend %u-text;
+      --fs: var(--font-size-xs);
+      color: var(--color-text-alt);
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      background: var(--color-purple);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-out-cubic);
+      box-shadow: 0 4px 12px rgba(var(--rgb-purple-accent), 0.2);
+
+      svg {
+        transition: transform 0.3s var(--ease-out-cubic);
+      }
+
+      &:hover {
+        background: var(--color-pink);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(var(--rgb-pink-primary), 0.3);
+
+        svg {
+          transform: translateY(2px);
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
       }
     }
   }
