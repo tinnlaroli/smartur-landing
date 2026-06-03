@@ -325,7 +325,7 @@ const {
 
         &:hover,
         &:focus {
-          color: var(--color-green) !important;
+          color: var(--color-purple) !important;
 
           &::before {
             transform: scaleX(1);
@@ -335,12 +335,12 @@ const {
 
         &.is-active,
         &:global(.is-active) {
-          color: var(--color-green) !important;
+          color: var(--color-purple) !important;
 
           &::before {
             transform: scaleX(1);
             transform-origin: left;
-            background: var(--color-green);
+            background: var(--color-purple);
           }
         }
       }
@@ -460,7 +460,7 @@ const {
 
     :global(body.is-nav-opened) &,
     :global(body.is-nav-small) & {
-      color: var(--color-green);
+      color: var(--color-purple);
     }
 
     @media (--mq-tablet) {
@@ -492,7 +492,7 @@ const {
     }
 
     :global(body.is-nav-opened) & {
-      color: var(--color-green);
+      color: var(--color-purple);
 
       > span {
         span {
@@ -526,7 +526,7 @@ const {
 
   /* Active state for navigation links */
   .menu :global(a.is-active) {
-    color: var(--color-green) !important;
+    color: var(--color-purple) !important;
   }
 
   .menu :global(a.is-active::before) {
